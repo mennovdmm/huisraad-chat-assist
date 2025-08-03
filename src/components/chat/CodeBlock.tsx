@@ -48,7 +48,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
 
       {/* Code content */}
       <pre className="p-4 pr-16 overflow-x-auto">
-        <code className="text-sm font-mono leading-relaxed text-foreground">
+        <code className="text-[13px] font-mono leading-[1.5] text-foreground">
           {code}
         </code>
       </pre>

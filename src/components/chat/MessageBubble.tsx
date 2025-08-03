@@ -95,10 +95,10 @@ export function MessageBubble({ message, isLatest = false }: MessageBubbleProps)
         
         {/* Message Content - No bubble, flows with background */}
         <div className="flex-1 min-w-0">
-          <div className="text-sm leading-relaxed text-foreground font-medium">
+          <div className="text-[15px] leading-[1.6] text-foreground font-normal">
             {renderMessageContent()}
           </div>
-          <div className="text-xs mt-2 text-muted-foreground">
+          <div className="text-xs mt-3 text-muted-foreground font-normal">
             {message.timestamp.toLocaleTimeString('nl-NL', { 
               hour: '2-digit', 
               minute: '2-digit' 
