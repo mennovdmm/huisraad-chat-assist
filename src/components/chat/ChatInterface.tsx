@@ -193,7 +193,7 @@ export function ChatInterface() {
               <img 
                 src={HuisraadLogo} 
                 alt="HuisRaad" 
-                className="h-16 md:h-28 w-auto lg:hidden mr-2"
+                className="h-12 md:h-28 w-auto lg:hidden mr-2"
               />
               
               {/* Mobile menu button */}
