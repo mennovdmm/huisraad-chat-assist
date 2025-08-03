@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
 import { cn } from '@/lib/utils';
+import HuisraadLogo from '@/assets/huisraad-logo.svg';
 
 interface Message {
   id: string;
@@ -167,22 +168,50 @@ export function ChatInterface() {
         )}
       </div>
 
-      {/* Main Chat Area - Clean, no header */}
+      {/* Main Chat Area - Clean with sticky header */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Mobile menu button - only visible on mobile when sidebar is closed */}
-        {!isSidebarOpen && (
-          <div className="lg:hidden p-4 border-b border-border">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsSidebarOpen(true)}
+        {/* Sticky Header with Logo and New Chat */}
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4">
+          <div className="max-w-4xl mx-auto flex items-center justify-between">
+            {/* Logo and Branding */}
+            <div className="flex items-center gap-4">
+              {/* Mobile menu button */}
+              {!isSidebarOpen && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="lg:hidden"
+                >
+                  <Menu size={20} />
+                </Button>
+              )}
+              
+              <div className="flex items-center gap-4">
+                <img 
+                  src={HuisraadLogo} 
+                  alt="HuisRaad" 
+                  className="h-12 w-auto"
+                />
+                <div className="h-10 w-px bg-border" />
+                <div>
+                  <div className="text-xl font-semibold text-foreground">Makelaar Amsterdam</div>
+                  <div className="text-sm text-muted-foreground">Marktanalyse & Offertes</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* New Chat Button */}
+            <Button 
+              onClick={handleNewSession}
+              variant="outline"
               className="gap-2"
             >
-              <Menu size={20} />
-              Open Menu
+              <Plus size={16} />
+              Nieuwe Chat
             </Button>
           </div>
-        )}
+        </div>
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto">
