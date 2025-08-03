@@ -23,9 +23,9 @@ export function ChatHeader({
           variant="ghost"
           size="sm"
           onClick={onToggleSidebar}
-          className="lg:hidden"
+          className="lg:hidden p-2 mr-2"
         >
-          <Menu size={20} />
+          <Menu size={24} />
         </Button>
         
         <div className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export function ChatHeader({
           <img 
             src="https://www.keij-stefels.nl/layouts/main/images/logo.svg"
             alt="Client Logo" 
-            className="h-8 w-auto"
+            className="h-8 w-auto md:h-8 h-6"
             data-dynamic-content="CLIENT_LOGO_URL"
           />
           <div className="h-6 w-px bg-border" />
