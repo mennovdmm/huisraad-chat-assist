@@ -23,7 +23,7 @@ interface ChatSession {
 }
 
 export function ChatInterface() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sessions, setSessions] = useState<ChatSession[]>([
     {
       id: '1',
