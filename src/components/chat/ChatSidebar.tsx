@@ -1,0 +1,150 @@
+import React, { useState } from 'react';
+import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
+
+interface ChatSession {
+  id: string;
+  name: string;
+  lastMessage: string;
+  timestamp: Date;
+}
+
+interface ChatSidebarProps {
+  sessions: ChatSession[];
+  activeSessionId: string | null;
+  onSessionSelect: (sessionId: string) => void;
+  onNewSession: () => void;
+  onRenameSession: (sessionId: string, newName: string) => void;
+  onDeleteSession: (sessionId: string) => void;
+  className?: string;
+}
+
+export function ChatSidebar({
+  sessions,
+  activeSessionId,
+  onSessionSelect,
+  onNewSession,
+  onRenameSession,
+  onDeleteSession,
+  className
+}: ChatSidebarProps) {
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingName, setEditingName] = useState('');
+
+  const handleRename = (session: ChatSession) => {
+    setEditingId(session.id);
+    setEditingName(session.name);
+  };
+
+  const handleRenameSubmit = () => {
+    if (editingId && editingName.trim()) {
+      onRenameSession(editingId, editingName.trim());
+    }
+    setEditingId(null);
+    setEditingName('');
+  };
+
+  const handleRenameCancel = () => {
+    setEditingId(null);
+    setEditingName('');
+  };
+
+  return (
+    <div className={cn("w-64 bg-card border-r border-border flex flex-col h-full", className)}>
+      {/* Header */}
+      <div className="p-4 border-b border-border">
+        <Button 
+          onClick={onNewSession}
+          className="w-full justify-start gap-2"
+          variant="outline"
+        >
+          <Plus size={16} />
+          Nieuwe Chat
+        </Button>
+      </div>
+
+      {/* Sessions List */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="p-2 space-y-1">
+          {sessions.map((session) => (
+            <div
+              key={session.id}
+              className={cn(
+                "group relative rounded-lg p-3 cursor-pointer transition-colors",
+                "hover:bg-accent/50",
+                activeSessionId === session.id && "bg-accent"
+              )}
+              onClick={() => onSessionSelect(session.id)}
+            >
+              <div className="flex items-start justify-between">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <MessageSquare size={14} className="text-muted-foreground flex-shrink-0" />
+                    {editingId === session.id ? (
+                      <Input
+                        value={editingName}
+                        onChange={(e) => setEditingName(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleRenameSubmit();
+                          if (e.key === 'Escape') handleRenameCancel();
+                        }}
+                        onBlur={handleRenameSubmit}
+                        className="h-6 text-sm py-0 px-1"
+                        autoFocus
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    ) : (
+                      <span className="text-sm font-medium truncate">
+                        {session.name}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-muted-foreground truncate">
+                    {session.lastMessage}
+                  </p>
+                  <p className="text-xs text-muted-foreground/70 mt-1">
+                    {session.timestamp.toLocaleDateString('nl-NL')}
+                  </p>
+                </div>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="opacity-0 group-hover:opacity-100 h-6 w-6 p-0"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <MoreHorizontal size={12} />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem onClick={() => handleRename(session)}>
+                      <Edit2 size={14} className="mr-2" />
+                      Hernoemen
+                    </DropdownMenuItem>
+                    <DropdownMenuItem 
+                      onClick={() => onDeleteSession(session.id)}
+                      className="text-destructive"
+                    >
+                      <Trash2 size={14} className="mr-2" />
+                      Verwijderen
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
