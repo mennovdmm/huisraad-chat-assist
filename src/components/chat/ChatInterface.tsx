@@ -189,22 +189,22 @@ export function ChatInterface() {
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
-              {/* Logo eerst op mobile, hamburger menu op desktop verborgen */}
+              {/* Logo eerst op mobile */}
               <img 
                 src={HuisraadLogo} 
                 alt="HuisRaad" 
-                className="h-20 md:h-28 w-auto lg:hidden mr-3"
+                className="h-20 w-auto lg:hidden mr-3"
               />
               
-              {/* Mobile menu button */}
+              {/* Menu button - mobile en desktop */}
               {!isSidebarOpen && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden p-2"
+                  className="lg:mr-2 p-2"
                 >
-                  <Menu size={24} />
+                  <Menu size={24} className="lg:w-5 lg:h-5" />
                 </Button>
               )}
               
