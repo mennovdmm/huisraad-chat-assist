@@ -23,7 +23,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
 
   return (
     <div className={cn(
-      "relative bg-muted/30 border border-border/50 rounded-lg overflow-hidden my-4",
+      "relative bg-white/80 border border-border/30 rounded-lg overflow-hidden my-4",
       className
     )}>
       {/* Copy button */}
@@ -41,7 +41,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
 
       {/* Language label */}
       {language && (
-        <div className="px-4 py-2 border-b border-border/50 bg-muted/20 text-xs text-muted-foreground font-medium">
+        <div className="px-4 py-2 border-b border-border/30 bg-white/60 text-xs text-muted-foreground font-medium">
           {language}
         </div>
       )}
