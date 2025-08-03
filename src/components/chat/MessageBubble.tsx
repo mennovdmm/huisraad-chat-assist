@@ -88,9 +88,9 @@ export function MessageBubble({ message, isLatest = false }: MessageBubbleProps)
       isLatest && "animate-scale-in"
     )}>
       <div className="flex w-full max-w-none gap-3">
-        {/* Avatar */}
-        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/80 flex items-center justify-center mt-1">
-          <Bot size={16} className="text-secondary-foreground" />
+        {/* Avatar - HuisRaad logo style */}
+        <div className="flex-shrink-0 w-12 h-8 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mt-1 shadow-sm">
+          <Bot size={16} className="text-white font-medium" />
         </div>
         
         {/* Message Content - No bubble, flows with background */}
