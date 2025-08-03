@@ -33,7 +33,7 @@ export function ChatHeader({
           <img 
             src="https://www.keij-stefels.nl/layouts/main/images/logo.svg"
             alt="Client Logo" 
-            className="h-8 w-auto md:h-8 h-6"
+            className="h-6 md:h-8 w-auto"
             data-dynamic-content="CLIENT_LOGO_URL"
           />
           <div className="h-6 w-px bg-border" />
