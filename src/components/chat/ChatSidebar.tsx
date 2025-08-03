@@ -70,8 +70,8 @@ export function ChatSidebar({
 
       {/* Sessions List */}
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 py-2 border-b border-border">
-          <h3 className="text-sm font-medium" style={{ color: '#FBC27F' }}>Chats</h3>
+        <div className="px-4 py-2">
+          <h3 className="text-sm font-medium text-foreground">Chats</h3>
         </div>
         <div className="p-2 space-y-1">
           {sessions.map((session) => (
@@ -80,8 +80,9 @@ export function ChatSidebar({
               className={cn(
                 "group relative rounded-lg p-3 cursor-pointer transition-colors",
                 "hover:bg-accent/50",
-                activeSessionId === session.id && "bg-accent"
+                activeSessionId === session.id && "text-white"
               )}
+              style={activeSessionId === session.id ? { backgroundColor: '#FBC27F' } : {}}
               onClick={() => onSessionSelect(session.id)}
             >
               <div className="flex items-start justify-between">
