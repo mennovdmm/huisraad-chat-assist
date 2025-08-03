@@ -54,11 +54,12 @@ export function ChatInput({
               placeholder={placeholder}
               disabled={disabled}
               className={cn(
-                "min-h-[52px] max-h-[120px] resize-none rounded-xl border border-border/60",
-                "focus:ring-1 focus:ring-primary/30 focus:border-primary/50",
-                "pr-12 py-4 px-4 text-sm leading-normal font-medium",
-                "bg-background/80 backdrop-blur-sm shadow-sm",
-                "transition-all duration-200"
+                "min-h-[56px] max-h-[120px] resize-none rounded-lg border-2 border-border/40",
+                "focus:ring-0 focus:border-primary/60 focus:outline-none",
+                "pr-12 py-4 px-4 text-[15px] leading-normal font-normal",
+                "bg-background shadow-sm placeholder:text-muted-foreground/70",
+                "transition-all duration-150 ease-out",
+                "font-sans"
               )}
               rows={1}
             />
@@ -78,7 +79,7 @@ export function ChatInput({
             onClick={handleSubmit}
             disabled={disabled || !message.trim()}
             size="sm"
-            className="h-[52px] w-12 rounded-xl p-0 flex-shrink-0 shadow-sm transition-all duration-200"
+            className="h-[56px] w-12 rounded-lg p-0 flex-shrink-0 shadow-sm transition-all duration-150"
           >
             <Send size={18} />
           </Button>
