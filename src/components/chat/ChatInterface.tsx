@@ -168,17 +168,15 @@ export function ChatInterface() {
         isSidebarOpen ? "w-64" : "w-0",
         "lg:relative absolute lg:translate-x-0 z-20"
       )}>
-        {isSidebarOpen && (
-          <ChatSidebar
-            sessions={sessions}
-            activeSessionId={activeSessionId}
-            onSessionSelect={setActiveSessionId}
-            onNewSession={handleNewSession}
-            onRenameSession={handleRenameSession}
-            onDeleteSession={handleDeleteSession}
-            className="h-full"
-          />
-        )}
+        <ChatSidebar
+          sessions={sessions}
+          activeSessionId={activeSessionId}
+          onSessionSelect={setActiveSessionId}
+          onNewSession={handleNewSession}
+          onRenameSession={handleRenameSession}
+          onDeleteSession={handleDeleteSession}
+          className="h-full"
+        />
       </div>
 
       {/* Main Chat Area - Clean with sticky header */}
