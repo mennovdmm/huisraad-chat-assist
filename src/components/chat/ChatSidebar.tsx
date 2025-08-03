@@ -59,7 +59,7 @@ export function ChatSidebar({
   };
 
   return (
-    <div className={cn("w-64 bg-card border-r border-border flex flex-col h-full", className)}>
+    <div className={cn("w-64 bg-muted/30 border-r border-border flex flex-col h-full", className)}>
       {/* Branding Header */}
       <div className="p-4 border-b border-border">
         {/* Dynamic client logo - placeholder for CMS/Langflow */}
