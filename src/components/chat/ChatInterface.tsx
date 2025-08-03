@@ -173,15 +173,15 @@ export function ChatInterface() {
         {/* Sticky Header - Clean without border */}
         <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm p-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
-            {/* Logo alleen */}
-            <div className="flex items-center gap-4">
+            {/* Logo helemaal links en veel groter */}
+            <div className="flex items-center">
               {/* Mobile menu button */}
               {!isSidebarOpen && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden mr-2"
+                  className="lg:hidden mr-4"
                 >
                   <Menu size={20} />
                 </Button>
@@ -190,7 +190,7 @@ export function ChatInterface() {
               <img 
                 src={HuisraadLogo} 
                 alt="HuisRaad" 
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </div>
             
