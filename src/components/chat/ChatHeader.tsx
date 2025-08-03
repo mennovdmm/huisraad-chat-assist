@@ -29,16 +29,18 @@ export function ChatHeader({
         </Button>
         
         <div className="flex items-center gap-3">
+          {/* Dynamic client logo - placeholder for CMS/Langflow */}
           <img 
-            src={HuisraadLogo} 
-            alt="HuisRaad" 
+            src="https://www.keij-stefels.nl/layouts/main/images/logo.svg"
+            alt="Client Logo" 
             className="h-8 w-auto"
+            data-dynamic-content="CLIENT_LOGO_URL"
           />
           <div className="h-6 w-px bg-border" />
           <div className="text-sm">
-            <span className="font-medium text-foreground">{clientName}</span>
+            <span className="font-medium text-foreground" data-dynamic-content="COMPANY_NAME">{clientName}</span>
             <span className="text-muted-foreground mx-2">•</span>
-            <span className="text-muted-foreground">{flowName}</span>
+            <span className="text-muted-foreground" data-dynamic-content="FLOW_NAME">{flowName}</span>
           </div>
         </div>
       </div>
