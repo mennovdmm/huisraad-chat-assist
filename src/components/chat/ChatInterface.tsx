@@ -170,10 +170,10 @@ export function ChatInterface() {
 
       {/* Main Chat Area - Clean with sticky header */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Sticky Header with Logo and New Chat */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border p-4">
+        {/* Sticky Header - Clean without border */}
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm p-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
-            {/* Logo and Branding */}
+            {/* Logo alleen */}
             <div className="flex items-center gap-4">
               {/* Mobile menu button */}
               {!isSidebarOpen && (
@@ -181,24 +181,17 @@ export function ChatInterface() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden"
+                  className="lg:hidden mr-2"
                 >
                   <Menu size={20} />
                 </Button>
               )}
               
-              <div className="flex items-center gap-4">
-                <img 
-                  src={HuisraadLogo} 
-                  alt="HuisRaad" 
-                  className="h-12 w-auto"
-                />
-                <div className="h-10 w-px bg-border" />
-                <div>
-                  <div className="text-xl font-semibold text-foreground">Makelaar Amsterdam</div>
-                  <div className="text-sm text-muted-foreground">Marktanalyse & Offertes</div>
-                </div>
-              </div>
+              <img 
+                src={HuisraadLogo} 
+                alt="HuisRaad" 
+                className="h-16 w-auto"
+              />
             </div>
             
             {/* New Chat Button */}

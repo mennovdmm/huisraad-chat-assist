@@ -60,10 +60,11 @@ export function ChatSidebar({
 
   return (
     <div className={cn("w-64 bg-card border-r border-border flex flex-col h-full", className)}>
-      {/* Simple Header */}
+      {/* Branding Header */}
       <div className="p-4 border-b border-border">
-        <div className="text-xs text-muted-foreground mb-3 font-medium">
-          AI Marketing Assistent
+        <div className="mb-4">
+          <div className="text-xl font-semibold text-foreground mb-1">Makelaar Amsterdam</div>
+          <div className="text-sm text-muted-foreground">Marktanalyse & Offertes</div>
         </div>
       </div>
 
