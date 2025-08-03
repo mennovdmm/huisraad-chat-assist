@@ -29,7 +29,7 @@ export function ChatInterface() {
       id: '1',
       name: 'Marktanalyse Amsterdam Noord',
       lastMessage: 'Wat zijn de gemiddelde prijzen per m²?',
-      timestamp: new Date(),
+      timestamp: new Date(Date.now() - 60 * 60 * 1000), // 1 hour ago
       messages: [
         {
           id: '1',
@@ -44,6 +44,20 @@ export function ChatInterface() {
           timestamp: new Date()
         }
       ]
+    },
+    {
+      id: '2',
+      name: 'Offerte Vondelpark appartement',
+      lastMessage: 'Kun je een offerte maken voor een 3-kamer appartement?',
+      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+      messages: []
+    },
+    {
+      id: '3',
+      name: 'Verhuurstrategie Jordaan',
+      lastMessage: 'Wat is de beste verhuurstrategie voor deze buurt?',
+      timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
+      messages: []
     }
   ]);
   const [activeSessionId, setActiveSessionId] = useState<string>('1');

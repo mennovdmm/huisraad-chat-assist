@@ -70,6 +70,9 @@ export function ChatSidebar({
 
       {/* Sessions List */}
       <div className="flex-1 overflow-y-auto">
+        <div className="px-4 py-2 border-b border-border">
+          <h3 className="text-sm font-medium" style={{ color: '#FBC27F' }}>Chats</h3>
+        </div>
         <div className="p-2 space-y-1">
           {sessions.map((session) => (
             <div
