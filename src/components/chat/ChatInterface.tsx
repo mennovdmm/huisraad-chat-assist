@@ -202,9 +202,9 @@ export function ChatInterface() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden h-10 w-10 p-0"
+                  className="lg:hidden h-12 w-12 p-0"
                 >
-                  <Menu size={28} />
+                  <Menu size={32} />
                 </Button>
               )}
               
