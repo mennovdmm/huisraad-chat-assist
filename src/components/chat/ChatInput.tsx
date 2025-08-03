@@ -80,8 +80,9 @@ export function ChatInput({
             disabled={disabled || !message.trim()}
             size="sm"
             className="h-[56px] w-12 rounded-lg p-0 flex-shrink-0 shadow-sm transition-all duration-150"
+            style={{ backgroundColor: '#F74E06' }}
           >
-            <Send size={18} />
+            <Send size={18} style={{ color: '#FBC27F' }} />
           </Button>
         </div>
         
