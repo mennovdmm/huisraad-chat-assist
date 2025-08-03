@@ -208,6 +208,18 @@ export function ChatInterface() {
                 </Button>
               )}
               
+              {/* Desktop menu button when sidebar is closed */}
+              {!isSidebarOpen && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="hidden lg:block p-2 mr-4"
+                >
+                  <Menu size={24} />
+                </Button>
+              )}
+              
               {/* Desktop logo */}
               <img 
                 src={HuisraadLogo} 
