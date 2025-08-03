@@ -103,7 +103,10 @@ export function ChatSidebar({
                         onClick={(e) => e.stopPropagation()}
                       />
                     ) : (
-                      <span className="text-sm font-medium truncate">
+                      <span 
+                        className="text-sm font-medium truncate"
+                        style={activeSessionId === session.id ? { color: '#F74E06' } : {}}
+                      >
                         {session.name}
                       </span>
                     )}
