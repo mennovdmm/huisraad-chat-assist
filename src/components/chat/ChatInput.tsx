@@ -78,10 +78,14 @@ export function ChatInput({
           <button
             onClick={handleSubmit}
             disabled={disabled || !message.trim()}
-            className="h-[56px] w-12 rounded-lg p-0 flex-shrink-0 shadow-sm transition-all duration-150 border-0 flex items-center justify-center disabled:opacity-50"
-            style={{ backgroundColor: '#F74E06', borderColor: 'transparent' }}
+            className="huisraad-send-btn h-[56px] w-12 rounded-lg p-0 flex-shrink-0 shadow-sm transition-all duration-150 border-0 flex items-center justify-center disabled:opacity-50"
+            style={{ 
+              backgroundColor: '#F74E06 !important', 
+              borderColor: 'transparent !important',
+              border: 'none !important'
+            }}
           >
-            <Send size={18} style={{ color: '#FBC27F' }} />
+            <Send size={18} style={{ color: '#FBC27F !important' }} />
           </button>
         </div>
         

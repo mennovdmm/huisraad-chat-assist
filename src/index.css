@@ -110,4 +110,15 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* HuisRaad Send Button Styling */
+  .huisraad-send-btn {
+    background-color: #F74E06 !important;
+    border: none !important;
+    border-color: transparent !important;
+  }
+  
+  .huisraad-send-btn svg {
+    color: #FBC27F !important;
+  }
 }
