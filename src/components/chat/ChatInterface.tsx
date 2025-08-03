@@ -166,8 +166,7 @@ export function ChatInterface() {
       <div className={cn(
         "transition-all duration-300 ease-in-out",
         isSidebarOpen ? "w-64" : "w-0",
-        "lg:relative absolute lg:translate-x-0 z-20",
-        !isSidebarOpen && "lg:w-0"
+        "lg:relative absolute lg:translate-x-0 z-20"
       )}>
         {isSidebarOpen && (
           <ChatSidebar
