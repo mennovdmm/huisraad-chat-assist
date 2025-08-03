@@ -225,9 +225,17 @@ export function ChatInterface() {
           <div className="max-w-4xl mx-auto p-4">
             {activeSession?.messages.length === 0 ? (
               <div className="text-center py-12">
-                <div className="text-6xl mb-4">🏠</div>
-                <h2 className="text-xl font-semibold mb-2">Welkom bij HuisRaad AI</h2>
-                <p className="text-muted-foreground max-w-md mx-auto">
+                {/* Dynamic client logo - placeholder for CMS/Langflow */}
+                <div className="mb-6">
+                  <img 
+                    src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
+                    alt="Client Logo" 
+                    className="h-16 w-auto mx-auto"
+                    data-dynamic-content="CLIENT_LOGO_URL"
+                  />
+                </div>
+                <h2 className="text-xl font-semibold mb-2">Welkom bij ai.huisraad.com</h2>
+                <p className="text-muted-foreground max-w-md mx-auto" data-dynamic-content="WELCOME_MESSAGE">
                   Begin een gesprek door een vraag te stellen over offertes, marktanalyses of vastgoed content.
                 </p>
               </div>

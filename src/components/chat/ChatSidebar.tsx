@@ -63,8 +63,8 @@ export function ChatSidebar({
       {/* Branding Header */}
       <div className="p-4 border-b border-border">
         <div className="mb-4">
-          <div className="text-xl font-semibold text-foreground mb-1">Makelaar Amsterdam</div>
-          <div className="text-sm text-muted-foreground">Marktanalyse & Offertes</div>
+          <div className="text-xl font-semibold text-foreground mb-1" data-dynamic-content="COMPANY_NAME">Makelaar Amsterdam</div>
+          <div className="text-sm text-muted-foreground" data-dynamic-content="COMPANY_TAGLINE">Marktanalyse & Offertes</div>
         </div>
       </div>
 
