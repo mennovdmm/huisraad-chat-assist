@@ -89,7 +89,7 @@ export function MessageBubble({ message, isLatest = false }: MessageBubbleProps)
     )}>
       <div className="flex w-full max-w-none gap-3">
         {/* Avatar - HuisRaad logo style */}
-        <div className="flex-shrink-0 w-9 h-14 rounded-lg flex items-center justify-center mt-1 shadow-sm" style={{ backgroundColor: '#FBC27F' }}>
+        <div className="flex-shrink-0 w-9 h-14 rounded-lg flex items-center justify-center mt-1 shadow-sm border-0" style={{ backgroundColor: '#FBC27F', borderColor: 'transparent' }}>
           <Bot size={18} style={{ color: '#F74E06' }} />
         </div>
         
