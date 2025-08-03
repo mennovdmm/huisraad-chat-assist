@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChatHeader } from './ChatHeader';
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
 import { MessageBubble } from './MessageBubble';
 import { ChatInput } from './ChatInput';
@@ -166,14 +167,22 @@ export function ChatInterface() {
         )}
       </div>
 
-      {/* Main Chat Area */}
+      {/* Main Chat Area - Clean, no header */}
       <div className="flex-1 flex flex-col min-w-0">
-        <ChatHeader
-          clientName="Makelaar Amsterdam"
-          flowName="Marktanalyse & Offertes"
-          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-          isSidebarOpen={isSidebarOpen}
-        />
+        {/* Mobile menu button - only visible on mobile when sidebar is closed */}
+        {!isSidebarOpen && (
+          <div className="lg:hidden p-4 border-b border-border">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsSidebarOpen(true)}
+              className="gap-2"
+            >
+              <Menu size={20} />
+              Open Menu
+            </Button>
+          </div>
+        )}
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto">

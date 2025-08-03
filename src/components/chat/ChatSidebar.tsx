@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import HuisraadLogo from '@/assets/huisraad-logo.svg';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -59,8 +60,26 @@ export function ChatSidebar({
 
   return (
     <div className={cn("w-64 bg-card border-r border-border flex flex-col h-full", className)}>
-      {/* Header */}
+      {/* Branding Header */}
       <div className="p-4 border-b border-border">
+        <div className="flex items-center gap-3 mb-4">
+          <img 
+            src={HuisraadLogo} 
+            alt="HuisRaad" 
+            className="h-8 w-auto"
+          />
+          <div className="h-6 w-px bg-border" />
+          <div className="text-sm">
+            <span className="font-medium text-foreground">Makelaar Amsterdam</span>
+            <span className="text-muted-foreground mx-1">•</span>
+            <span className="text-muted-foreground text-xs">Marktanalyse & Offertes</span>
+          </div>
+        </div>
+        
+        <div className="text-xs text-muted-foreground mb-3 font-medium">
+          AI Marketing Assistent
+        </div>
+        
         <Button 
           onClick={onNewSession}
           className="w-full justify-start gap-2"
