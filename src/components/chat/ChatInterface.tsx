@@ -171,7 +171,7 @@ export function ChatInterface() {
       {/* Main Chat Area - Clean with sticky header */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-4 pr-4">
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-6 pr-4">
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
