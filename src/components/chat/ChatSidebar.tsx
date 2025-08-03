@@ -62,6 +62,15 @@ export function ChatSidebar({
     <div className={cn("w-64 bg-card border-r border-border flex flex-col h-full", className)}>
       {/* Branding Header */}
       <div className="p-4 border-b border-border">
+        {/* Dynamic client logo - placeholder for CMS/Langflow */}
+        <div className="mb-4">
+          <img 
+            src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
+            alt="Client Logo" 
+            className="h-12 w-auto mb-4"
+            data-dynamic-content="CLIENT_LOGO_URL"
+          />
+        </div>
         <div className="mb-4">
           <div className="text-xl font-semibold text-foreground mb-1" data-dynamic-content="COMPANY_NAME">Makelaar Amsterdam</div>
           <div className="text-sm text-muted-foreground" data-dynamic-content="COMPANY_TAGLINE">Marktanalyse & Offertes</div>
