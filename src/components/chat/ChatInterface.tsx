@@ -195,16 +195,16 @@ export function ChatInterface() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden mr-2"
+                  className="lg:hidden mr-3 p-2"
                 >
-                  <Menu size={20} />
+                  <Menu size={24} />
                 </Button>
               )}
               
               <img 
                 src={HuisraadLogo} 
                 alt="HuisRaad" 
-                className="h-28 w-auto"
+                className="h-20 md:h-28 w-auto"
               />
             </div>
             
