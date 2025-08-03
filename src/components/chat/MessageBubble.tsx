@@ -89,8 +89,8 @@ export function MessageBubble({ message, isLatest = false }: MessageBubbleProps)
     )}>
       <div className="flex w-full max-w-none gap-3">
         {/* Avatar - HuisRaad logo style */}
-        <div className="flex-shrink-0 w-10 h-16 rounded-lg flex items-center justify-center mt-1 shadow-sm" style={{ backgroundColor: '#FBC27F' }}>
-          <Bot size={20} style={{ color: '#F74E06' }} />
+        <div className="flex-shrink-0 w-9 h-14 rounded-lg flex items-center justify-center mt-1 shadow-sm" style={{ backgroundColor: '#FBC27F' }}>
+          <Bot size={18} style={{ color: '#F74E06' }} />
         </div>
         
         {/* Message Content - No bubble, flows with background */}
