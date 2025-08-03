@@ -171,9 +171,9 @@ export function ChatInterface() {
       {/* Main Chat Area - Clean with sticky header */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm p-4">
-          <div className="max-w-4xl mx-auto flex items-center justify-between">
-            {/* Logo helemaal links en veel groter */}
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-2 pr-4">
+          <div className="flex items-center justify-between">
+            {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
               {/* Mobile menu button */}
               {!isSidebarOpen && (
@@ -181,7 +181,7 @@ export function ChatInterface() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden mr-4"
+                  className="lg:hidden mr-2"
                 >
                   <Menu size={20} />
                 </Button>
@@ -190,7 +190,7 @@ export function ChatInterface() {
               <img 
                 src={HuisraadLogo} 
                 alt="HuisRaad" 
-                className="h-20 w-auto"
+                className="h-28 w-auto"
               />
             </div>
             
