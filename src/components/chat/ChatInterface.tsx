@@ -37,7 +37,7 @@ export function ChatInterface() {
         },
         {
           id: '2',
-          content: 'Hallo! Ik help je graag met een marktanalyse voor Amsterdam Noord. Op basis van de meest recente data kan ik je vertellen dat de gemiddelde prijzen per m² in Amsterdam Noord momenteel liggen tussen de €4.500 en €6.800, afhankelijk van de specifieke buurt en het type woning.\n\nWil je dat ik een gedetailleerde analyse maak voor een specifiek gebied of woningtype?',
+          content: 'Hallo! Ik help je graag met een marktanalyse voor Amsterdam Noord. Op basis van de meest recente data kan ik je vertellen dat de gemiddelde prijzen per m² in Amsterdam Noord momenteel liggen tussen de €4.500 en €6.800, afhankelijk van de specifieke buurt en het type woning.\n\nHier is een voorbeeld van een gestructureerde offerte die ik kan genereren:\n\n```offerte\nOFFERTE MARKTANALYSE\n===================\nAdres: Voorbeeldstraat 123, Amsterdam Noord\nDatum: ' + new Date().toLocaleDateString('nl-NL') + '\n\nDiensten:\n- Marktwaarde bepaling: €495\n- Comparatieve marktanalyse: €295  \n- Fotografie en presentatie: €195\n\nTotaal: €985 (excl. BTW)\n```\n\nWil je dat ik een gedetailleerde analyse maak voor een specifiek adres?',
           sender: 'ai',
           timestamp: new Date()
         }
