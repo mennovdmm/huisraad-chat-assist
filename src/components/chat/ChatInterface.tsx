@@ -193,7 +193,7 @@ export function ChatInterface() {
               <img 
                 src={HuisraadLogo} 
                 alt="HuisRaad" 
-                className="h-20 md:h-28 w-auto lg:hidden mr-3"
+                className="h-10 md:h-28 w-auto lg:hidden mr-3"
               />
               
               {/* Mobile menu button */}
@@ -202,9 +202,9 @@ export function ChatInterface() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden p-2"
+                  className="lg:hidden h-10 w-10 p-0"
                 >
-                  <Menu size={24} />
+                  <Menu size={28} />
                 </Button>
               )}
               
