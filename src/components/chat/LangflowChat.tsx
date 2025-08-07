@@ -82,51 +82,117 @@ const LangflowChat: React.FC = () => {
     display: "none"
   });
 
-  // Show placeholder until widget is properly configured
+  // Show preview/demo of configured styling
   if (loadError) {
     return (
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="text-center max-w-lg">
-          <div className="mb-6">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z" />
-              </svg>
+      <div className="flex-1 flex flex-col h-full">
+        {/* Demo Chat Messages */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="text-center py-4">
+            <div className="inline-block bg-muted/50 rounded-lg px-3 py-1 text-sm text-muted-foreground">
+              Langflow Widget Preview - Configured Styling
             </div>
           </div>
-          <h2 className="text-xl font-semibold mb-3">Langflow Integration Ready</h2>
-          <p className="text-muted-foreground mb-6">
-            De chat interface is geconfigureerd en klaar om te verbinden met je Langflow instance.
-          </p>
           
-          <div className="bg-muted/30 rounded-lg p-4 mb-6">
-            <h3 className="font-medium mb-3">Implementatie opties:</h3>
-            
-            <div className="space-y-4 text-sm text-left">
-              <div className="bg-background rounded-lg p-3">
-                <p className="font-medium mb-2">Option 1: CDN Script (Recommended)</p>
-                <code className="text-xs bg-muted p-2 rounded block text-muted-foreground">
-                  {`<script src="https://cdn.jsdelivr.net/npm/langflow-embedded-chat@1.0.0/dist/build/static/js/bundle.min.js"></script>`}
-                </code>
-              </div>
-              
-              <div className="bg-background rounded-lg p-3">
-                <p className="font-medium mb-2">Option 2: Self-hosted</p>
-                <p className="text-muted-foreground text-xs">
-                  Download van GitHub en host lokaal
-                </p>
-              </div>
+          {/* Bot Message */}
+          <div className="flex justify-start">
+            <div 
+              className="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-3 border"
+              style={{
+                backgroundColor: "hsl(var(--card))",
+                color: "hsl(var(--foreground))",
+                borderColor: "hsl(var(--border))"
+              }}
+            >
+              <p className="text-sm">
+                Hallo! Ik ben je AI assistent geïntegreerd via Langflow. Ik kan je helpen met vragen over makelaardij, marktanalyses en offertes. Wat kan ik voor je doen?
+              </p>
             </div>
           </div>
 
-          <div className="bg-muted/30 rounded-lg p-4 text-sm">
-            <p className="font-medium mb-2">Configuratie klaar:</p>
-            <ul className="text-left space-y-1 text-muted-foreground">
-              <li>• Host URL: YOUR_LANGFLOW_HOST</li>
-              <li>• Flow ID: YOUR_FLOW_ID</li>
-              <li>• API Key: YOUR_API_KEY</li>
-              <li>• Styling: Volledig geconfigureerd</li>
-            </ul>
+          {/* User Message */}
+          <div className="flex justify-end">
+            <div 
+              className="max-w-[80%] rounded-2xl rounded-br-md px-4 py-3"
+              style={{
+                backgroundColor: "hsl(var(--primary))",
+                color: "hsl(var(--primary-foreground))"
+              }}
+            >
+              <p className="text-sm">
+                Kun je me helpen met een marktanalyse voor Amsterdam Noord?
+              </p>
+            </div>
+          </div>
+
+          {/* Bot Response */}
+          <div className="flex justify-start">
+            <div 
+              className="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-3 border"
+              style={{
+                backgroundColor: "hsl(var(--card))",
+                color: "hsl(var(--foreground))",
+                borderColor: "hsl(var(--border))"
+              }}
+            >
+              <p className="text-sm mb-2">
+                Natuurlijk! Voor een marktanalyse van Amsterdam Noord verzamel ik de volgende informatie:
+              </p>
+              <ul className="text-sm space-y-1 ml-4">
+                <li>• Recente verkopen in de buurt</li>
+                <li>• Gemiddelde prijzen per m²</li>
+                <li>• Markttrends en vooruitzichten</li>
+                <li>• Vergelijkbare objecten</li>
+              </ul>
+              <p className="text-sm mt-2">
+                Heb je een specifiek adres in gedachten?
+              </p>
+            </div>
+          </div>
+
+          {/* Configuration Notice */}
+          <div className="text-center py-4">
+            <div className="bg-muted/30 rounded-lg p-4 max-w-md mx-auto">
+              <h3 className="font-medium mb-2 text-sm">Widget Configuratie</h3>
+              <div className="text-xs text-muted-foreground space-y-1">
+                <div>✓ Styling geconfigureerd met design system</div>
+                <div>✓ Shadow DOM compatible</div>
+                <div>✓ Responsive layout</div>
+                <div>⚠️ Host URL, Flow ID & API Key nodig</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Demo Input Field */}
+        <div className="border-t border-border p-4">
+          <div className="flex gap-2">
+            <div 
+              className="flex-1 rounded-lg px-4 py-3 border text-sm"
+              style={{
+                backgroundColor: "hsl(var(--background))",
+                borderColor: "hsl(var(--border))",
+                color: "hsl(var(--muted-foreground))"
+              }}
+            >
+              Type je vraag hier... (demo styling)
+            </div>
+            <button 
+              className="px-4 py-3 rounded-lg text-sm font-medium"
+              style={{
+                backgroundColor: "hsl(var(--primary))",
+                color: "hsl(var(--primary-foreground))"
+              }}
+              disabled
+            >
+              Verstuur
+            </button>
+          </div>
+          
+          <div className="mt-2 text-center">
+            <span className="text-xs text-muted-foreground">
+              Preview van Langflow widget styling - Ready for configuration
+            </span>
           </div>
         </div>
       </div>
