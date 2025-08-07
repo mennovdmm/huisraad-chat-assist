@@ -175,7 +175,7 @@ export function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-4 pr-4">
+        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4" style={{ backgroundColor: '#F9FAFB' }}>
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -245,8 +245,8 @@ export function ChatInterface() {
                   tweaks="{}"
                   online_message="Online"
                   chat_window_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "background": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
+                    "background": "#F9FAFB",
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
@@ -287,9 +287,9 @@ export function ChatInterface() {
                     "fontFamily": "Inter, sans-serif"
                   }'
                   input_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
                     "color": "#1f2937",
-                    "border": "2px solid #FDF6F0",
+                    "border": "2px solid #F9FAFB",
                     "borderRadius": "12px",
                     "padding": "18px 16px",
                     "fontSize": "16px",
@@ -306,8 +306,8 @@ export function ChatInterface() {
                     "width": "100%"
                   }'
                   send_button_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "border": "2px solid #FDF6F0",
+                    "backgroundColor": "#F9FAFB",
+                    "border": "2px solid #F9FAFB",
                     "borderRadius": "8px",
                     "color": "#F74E06",
                     "cursor": "pointer",
@@ -318,12 +318,12 @@ export function ChatInterface() {
                     "color": "#F74E06"
                   }'
                   input_container_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
                     "border": "none",
                     "padding": "10px"
                   }'
                   error_message_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
                     "color": "#1f2937",
                     "border": "1px solid #e5e7eb"
                   }'
