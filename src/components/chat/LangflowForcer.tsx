@@ -1,63 +1,74 @@
 import { useEffect } from 'react';
 
-// Aggressive background color forcer for Langflow widget
+// DOM Inspector + Background forcer for Langflow widget
 export const LangflowForcer = () => {
   useEffect(() => {
-    const forceBackgroundColor = () => {
-      // Find all langflow-chat elements
+    const inspectAndForce = () => {
       const widgets = document.querySelectorAll('langflow-chat');
       
-      widgets.forEach(widget => {
+      console.log('🔍 LANGFLOW DOM INSPECTOR:', widgets.length, 'widgets found');
+      
+      widgets.forEach((widget, index) => {
+        console.log(`\n📋 Widget ${index + 1} DOM Structure:`);
+        
+        // Log main widget
+        console.log('Main widget:', widget.tagName, widget.className, widget.id);
+        
         // Force background on main widget
         if (widget instanceof HTMLElement) {
           widget.style.setProperty('background', '#FDF6F0', 'important');
           widget.style.setProperty('background-color', '#FDF6F0', 'important');
+          console.log('✅ Forced main widget background');
         }
         
-        // Force background on ALL child elements - no exceptions
+        // Inspect and force ALL child elements
         const allChildren = widget.querySelectorAll('*');
-        allChildren.forEach(child => {
+        console.log(`📊 Found ${allChildren.length} child elements`);
+        
+        allChildren.forEach((child, childIndex) => {
           if (child instanceof HTMLElement) {
-            // Force background on EVERY element
+            // Log first 20 elements to see structure
+            if (childIndex < 20) {
+              const computedBg = window.getComputedStyle(child).backgroundColor;
+              console.log(`Child ${childIndex}:`, {
+                tag: child.tagName,
+                classes: child.className,
+                id: child.id,
+                text: child.textContent?.substring(0, 50),
+                currentBg: computedBg,
+                hasBackground: computedBg !== 'rgba(0, 0, 0, 0)' && computedBg !== 'transparent'
+              });
+            }
+            
+            // Force background on EVERY element regardless
             child.style.setProperty('background', '#FDF6F0', 'important');
             child.style.setProperty('background-color', '#FDF6F0', 'important');
             child.style.setProperty('background-image', 'none', 'important');
             
-            // Special targeting for text elements that might be headers
-            const text = child.textContent?.toLowerCase() || '';
-            if (text.includes('reply') || text.includes('soon') || text.includes('can') || 
-                text.includes('help') || text.includes('message') || text.includes('chat')) {
+            // Also try targeting potential problem elements
+            if (child.tagName === 'DIV' || child.tagName === 'SECTION' || 
+                child.tagName === 'MAIN' || child.tagName === 'ARTICLE') {
               child.style.setProperty('background', '#FDF6F0', 'important');
-              child.style.setProperty('background-color', '#FDF6F0', 'important');
-              child.style.setProperty('color', '#1f2937', 'important');
             }
           }
         });
+        
+        console.log('✅ Forced all child backgrounds');
       });
     };
 
-    // Force immediately
-    forceBackgroundColor();
+    // Inspect multiple times to catch dynamic loading
+    console.log('🔍 Starting Langflow DOM inspection...');
+    inspectAndForce();
     
-    // Force after widget loads
-    const intervals = [100, 500, 1000, 2000];
-    const timeouts = intervals.map(delay => 
-      setTimeout(forceBackgroundColor, delay)
+    const timeouts = [500, 1000, 2000, 3000].map(delay => 
+      setTimeout(() => {
+        console.log(`🔍 Re-inspecting after ${delay}ms...`);
+        inspectAndForce();
+      }, delay)
     );
-    
-    // Also watch for DOM changes
-    const observer = new MutationObserver(forceBackgroundColor);
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['style', 'class']
-    });
 
-    return () => {
-      timeouts.forEach(clearTimeout);
-      observer.disconnect();
-    };
+    return () => timeouts.forEach(clearTimeout);
   }, []);
 
   return null;
