@@ -1,13 +1,12 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
-import { MessageBubble } from './MessageBubble';
-import { ChatInput } from './ChatInput';
+import LangflowLoader from './LangflowLoader';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
+import './langflow-widget.css';
 
 interface Message {
   id: string;
@@ -123,6 +122,7 @@ export function ChatInterface() {
     return 'Dank je voor je vraag! Ik ben gespecialiseerd in het helpen van makelaars met offertes, marktanalyses en vastgoed content. Kun je me meer vertellen over wat je precies nodig hebt?';
   };
 
+
   const handleNewSession = () => {
     const newSession: ChatSession = {
       id: Date.now().toString(),
@@ -171,6 +171,7 @@ export function ChatInterface() {
         )}
       </div>
 
+      <LangflowLoader />
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
@@ -229,36 +230,110 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Messages Container */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
-          {activeSession?.messages.map((message, index) => (
-            <MessageBubble
-              key={message.id}
-              message={message}
-              isLatest={index === activeSession.messages.length - 1}
-            />
-          ))}
-          
-          {isTyping && (
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              </div>
-              <div className="bg-muted rounded-2xl px-4 py-3">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                </div>
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Chat Input */}
-        <div className="p-4 border-t border-border">
-          <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} />
+        {/* Langflow Widget - Terug naar originele sizing */}
+        <div className="flex-1 relative overflow-hidden">
+          <div 
+            dangerouslySetInnerHTML={{
+              __html: `
+                <langflow-chat
+                  host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+                  flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+                  api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgYYpIc"
+                  start_open="true"
+                  window_title=""
+                  placeholder="Hoe kan ik je helpen vandaag?"
+                  tweaks="{}"
+                  online_message="Online"
+                  chat_window_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "background": "#FDF6F0",
+                    "border": "none",
+                    "borderRadius": "0px",
+                    "color": "#1f2937",
+                    "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    "padding": "20px",
+                    "paddingTop": "0px",
+                    "paddingBottom": "80px",
+                    "margin": "0px",
+                    "boxShadow": "none",
+                    "width": "100%",
+                    "height": "calc(100vh - 160px)",
+                    "minWidth": "100vw",
+                    "minHeight": "calc(100vh - 160px)",
+                    "maxWidth": "100vw",
+                    "maxHeight": "calc(100vh - 160px)",
+                    "position": "fixed",
+                    "top": "80px",
+                    "left": "0",
+                    "right": "0",
+                    "bottom": "80px",
+                    "zIndex": "1"
+                  }'
+                  bot_message_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937",
+                    "borderRadius": "12px",
+                    "padding": "12px 16px",
+                    "marginBottom": "8px",
+                    "fontFamily": "Inter, sans-serif",
+                    "border": "1px solid #e5e7eb"
+                  }'
+                  user_message_style='{
+                    "backgroundColor": "#FBC27F",
+                    "color": "#1f2937",
+                    "borderRadius": "12px",
+                    "padding": "12px 16px",
+                    "marginBottom": "8px",
+                    "fontFamily": "Inter, sans-serif"
+                  }'
+                  input_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937",
+                    "border": "2px solid #FDF6F0",
+                    "borderRadius": "12px",
+                    "padding": "18px 16px",
+                    "fontSize": "16px",
+                    "lineHeight": "1.5",
+                    "fontFamily": "Inter, sans-serif",
+                    "minHeight": "80px",
+                    "height": "80px",
+                    "maxHeight": "200px",
+                    "resize": "vertical",
+                    "boxShadow": "0 2px 8px rgba(0,0,0,0.1)",
+                    "transition": "all 0.2s ease",
+                    "position": "relative",
+                    "zIndex": "10",
+                    "width": "100%"
+                  }'
+                  send_button_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "border": "2px solid #FDF6F0",
+                    "borderRadius": "8px",
+                    "color": "#F74E06",
+                    "cursor": "pointer",
+                    "padding": "8px 12px"
+                  }'
+                  send_icon_style='{
+                    "backgroundColor": "transparent",
+                    "color": "#F74E06"
+                  }'
+                  input_container_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "border": "none",
+                    "padding": "10px"
+                  }'
+                  error_message_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937",
+                    "border": "1px solid #e5e7eb"
+                  }'
+                  chat_trigger_style='{"display":"none"}'
+                  show_close_button="false"
+                  hide_close_button="true"
+                />
+              `
+            }}
+          />
         </div>
 
         {/* Back Button - Links onder */}
@@ -270,6 +345,11 @@ export function ChatInterface() {
         >
           <ArrowLeft size={20} className="text-muted-foreground" />
         </Button>
+      </div>
+
+      {/* Footer */}
+      <div className="chat-footer">
+        HuisRaad Chat Assistant - Powered by AI
       </div>
 
       {/* Overlay for mobile */}
