@@ -247,6 +247,9 @@ export function ChatInterface() {
                   hide_header="true"
                   hide_status="true"
                   hide_title="true"
+                  status_text="Online"
+                  header_text="Online"
+                  subtitle="Online"
                   chat_window_style='{
                     "backgroundColor": "#FDF6F0",
                     "background": "#FDF6F0",
