@@ -236,7 +236,7 @@ export function ChatInterface() {
             flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
             api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
             start_open="true"
-            chat_window_style={{
+            chat_window_style={JSON.stringify({
               backgroundColor: "#FDF6F0",
               background: "#FDF6F0",
               color: "hsl(222.2 84% 4.9%)",
@@ -260,7 +260,7 @@ export function ChatInterface() {
               right: "0",
               bottom: "80px", // Footer space
               zIndex: "1"
-            }}
+            })}
             bot_message_style={JSON.stringify({
               backgroundColor: "hsl(0 0% 100%)", // --card
               color: "hsl(222.2 84% 4.9%)", // --foreground
