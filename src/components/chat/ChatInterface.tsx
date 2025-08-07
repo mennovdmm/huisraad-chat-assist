@@ -244,7 +244,6 @@ export function ChatInterface() {
                   tweaks="{}"
                   chat_window_style='{
                     "backgroundColor": "#FDF6F0",
-                    "background": "#FDF6F0",
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
@@ -256,10 +255,6 @@ export function ChatInterface() {
                     "boxShadow": "none",
                     "width": "100%",
                     "height": "calc(100vh - 160px)",
-                    "minWidth": "100vw",
-                    "minHeight": "calc(100vh - 160px)",
-                    "maxWidth": "100vw",
-                    "maxHeight": "calc(100vh - 160px)",
                     "position": "fixed",
                     "top": "80px",
                     "left": "0",
@@ -268,13 +263,14 @@ export function ChatInterface() {
                     "zIndex": "1"
                   }'
                   bot_message_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#FFFFFF",
                     "color": "#1f2937",
                     "borderRadius": "12px",
                     "padding": "12px 16px",
                     "marginBottom": "8px",
                     "fontFamily": "Inter, sans-serif",
-                    "border": "1px solid #e5e7eb"
+                    "border": "1px solid #e5e7eb",
+                    "boxShadow": "0 1px 3px rgba(0,0,0,0.1)"
                   }'
                   user_message_style='{
                     "backgroundColor": "#FBC27F",
