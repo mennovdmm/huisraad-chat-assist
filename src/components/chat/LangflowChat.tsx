@@ -231,48 +231,28 @@ const LangflowChat: React.FC = () => {
     );
   }
 
-  // Render widget when loaded and configured
+  // Render clean widget
   return (
-    <div className="langflow-container h-full w-full bg-red-100">
-      <div className="p-4 text-center bg-yellow-100">
-        <p>Debug: widgetLoaded={String(widgetLoaded)}, loadError={loadError}</p>
-      </div>
-      
+    <div className="langflow-container h-full w-full">
       {widgetLoaded ? (
-        <div className="bg-green-100 p-2 h-full">
-          <p className="text-xs mb-2">🔴 TESTING met tijdelijke credentials:</p>
-          <div className="border-2 border-red-500 h-96 relative">
-            <langflow-chat
-              host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
-              flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
-              api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
-              start_open="true"
-              chat_window_style={chatWindowStyle}
-              bot_message_style={botMessageStyle}
-              user_message_style={userMessageStyle}
-              input_style={inputStyle}
-              chat_trigger_style={chatTriggerStyle}
-              window_title=""
-              tweaks="{}"
-              style={{
-                width: '100%',
-                height: '100%',
-                display: 'block',
-                border: '2px solid blue'
-              }}
-            />
-          </div>
-          <div className="mt-2 text-xs">
-            <p>⚠️ Met echte credentials - zou nu moeten werken!</p>
-            <p>🔒 In productie: gebruik Supabase secrets</p>
-          </div>
-        </div>
+        <langflow-chat
+          host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+          flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+          api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
+          start_open="true"
+          chat_window_style={chatWindowStyle}
+          bot_message_style={botMessageStyle}
+          user_message_style={userMessageStyle}
+          input_style={inputStyle}
+          chat_trigger_style={chatTriggerStyle}
+          window_title=""
+          tweaks="{}"
+        />
       ) : (
-        <div className="flex-1 flex items-center justify-center bg-blue-100">
+        <div className="flex-1 flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-            <p>Loading Langflow widget...</p>
-            <p className="text-xs text-muted-foreground mt-2">State: {loadError || "initializing"}</p>
+            <p className="text-sm">Loading Langflow widget...</p>
           </div>
         </div>
       )}
