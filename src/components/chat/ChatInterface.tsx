@@ -306,16 +306,16 @@ export function ChatInterface() {
                     "width": "100%"
                   }'
                   send_button_style='{
-                    "backgroundColor": "#FBC27F",
+                    "backgroundColor": "#F74E06",
                     "border": "none",
                     "borderRadius": "8px",
-                    "color": "#1f2937",
+                    "color": "#ffffff",
                     "cursor": "pointer",
                     "padding": "8px 12px"
                   }'
                   send_icon_style='{
-                    "backgroundColor": "#FBC27F",
-                    "color": "#1f2937"
+                    "backgroundColor": "#F74E06",
+                    "color": "#ffffff"
                   }'
                   input_container_style='{
                     "backgroundColor": "#FDF6F0",
