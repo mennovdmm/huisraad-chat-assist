@@ -238,7 +238,7 @@ export function ChatInterface() {
                 <langflow-chat
                   host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
                   flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
-                  api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgYYpIc"
+                  api_key="sk-sQ5DPd1gkq91Uf_gVFMV4bNBL0YzhuxM_DGAsdfGRGw"
                   start_open="true"
                   window_title=""
                   placeholder="Hoe kan ik je helpen vandaag?"
