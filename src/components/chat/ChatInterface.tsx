@@ -229,8 +229,8 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - Inline JSON styling */}
-        <div className="flex-1 relative overflow-hidden">
+        {/* Langflow Widget - Force reload */}
+        <div className="flex-1 relative overflow-hidden" key="langflow-refresh">
           <div 
             dangerouslySetInnerHTML={{
               __html: `
@@ -254,13 +254,8 @@ export function ChatInterface() {
                     "margin": "0px",
                     "boxShadow": "none",
                     "width": "100%",
-                    "height": "calc(100vh - 160px)",
-                    "position": "fixed",
-                    "top": "80px",
-                    "left": "0",
-                    "right": "0",
-                    "bottom": "80px",
-                    "zIndex": "1"
+                    "height": "100%",
+                    "position": "relative"
                   }'
                   bot_message_style='{
                     "backgroundColor": "#FFFFFF",
@@ -281,7 +276,7 @@ export function ChatInterface() {
                     "fontFamily": "Inter, sans-serif"
                   }'
                   input_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#FFFFFF",
                     "color": "#1f2937",
                     "border": "2px solid #e5e7eb",
                     "borderRadius": "12px",
@@ -289,37 +284,34 @@ export function ChatInterface() {
                     "fontSize": "16px",
                     "lineHeight": "1.5",
                     "fontFamily": "Inter, sans-serif",
-                    "minHeight": "80px",
-                    "height": "80px",
-                    "maxHeight": "200px",
-                    "resize": "vertical",
+                    "minHeight": "60px",
+                    "height": "60px",
                     "boxShadow": "0 2px 8px rgba(0,0,0,0.1)",
                     "transition": "all 0.2s ease",
-                    "position": "relative",
-                    "zIndex": "10",
                     "width": "100%"
                   }'
                   send_button_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "border": "2px solid #e5e7eb",
+                    "backgroundColor": "#FBC27F",
+                    "border": "none",
                     "borderRadius": "8px",
                     "color": "#1f2937",
                     "cursor": "pointer",
-                    "padding": "8px 12px"
+                    "padding": "12px 16px"
                   }'
                   send_icon_style='{
-                    "backgroundColor": "#FDF6F0",
                     "color": "#1f2937"
                   }'
                   input_container_style='{
                     "backgroundColor": "#FDF6F0",
                     "border": "none",
-                    "padding": "10px"
+                    "padding": "15px"
                   }'
                   error_message_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "color": "#1f2937",
-                    "border": "1px solid #e5e7eb"
+                    "backgroundColor": "#FEF2F2",
+                    "color": "#DC2626",
+                    "border": "1px solid #FECACA",
+                    "borderRadius": "8px",
+                    "padding": "12px"
                   }'
                   chat_trigger_style='{"display":"none"}'
                   show_close_button="false"
