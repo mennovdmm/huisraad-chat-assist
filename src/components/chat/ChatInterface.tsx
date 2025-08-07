@@ -241,14 +241,15 @@ export function ChatInterface() {
               color: "#1f2937",
               fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
               width: "100%",
-              height: "calc(100vh - 80px)",
+              height: "calc(100vh - 160px)", // 80px header + 80px footer
               minWidth: "100vw",
-              minHeight: "calc(100vh - 80px)",
+              minHeight: "calc(100vh - 160px)",
               maxWidth: "100vw",
-              maxHeight: "calc(100vh - 80px)",
+              maxHeight: "calc(100vh - 160px)",
               borderRadius: "0px",
               padding: "20px",
               paddingTop: "0px",
+              paddingBottom: "80px", // Extra space for input
               margin: "0px",
               boxShadow: "none",
               border: "none",
@@ -256,7 +257,7 @@ export function ChatInterface() {
               top: "80px",
               left: "0",
               right: "0",
-              bottom: "0",
+              bottom: "80px", // Footer space
               zIndex: "1"
             })}
             bot_message_style={JSON.stringify({
@@ -302,6 +303,11 @@ export function ChatInterface() {
             tweaks="{}"
           />
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="chat-footer">
+        HuisRaad Chat Assistant - Powered by AI
       </div>
 
       {/* Overlay for mobile */}
