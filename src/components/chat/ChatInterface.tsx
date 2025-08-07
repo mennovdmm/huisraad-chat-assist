@@ -229,8 +229,8 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - Force reload */}
-        <div className="flex-1 relative overflow-hidden" key="langflow-refresh">
+        {/* Langflow Widget - Terug naar originele sizing */}
+        <div className="flex-1 relative overflow-hidden">
           <div 
             dangerouslySetInnerHTML={{
               __html: `
@@ -244,6 +244,7 @@ export function ChatInterface() {
                   tweaks="{}"
                   chat_window_style='{
                     "backgroundColor": "#FDF6F0",
+                    "background": "#FDF6F0",
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
@@ -254,18 +255,26 @@ export function ChatInterface() {
                     "margin": "0px",
                     "boxShadow": "none",
                     "width": "100%",
-                    "height": "100%",
-                    "position": "relative"
+                    "height": "calc(100vh - 160px)",
+                    "minWidth": "100vw",
+                    "minHeight": "calc(100vh - 160px)",
+                    "maxWidth": "100vw",
+                    "maxHeight": "calc(100vh - 160px)",
+                    "position": "fixed",
+                    "top": "80px",
+                    "left": "0",
+                    "right": "0",
+                    "bottom": "80px",
+                    "zIndex": "1"
                   }'
                   bot_message_style='{
-                    "backgroundColor": "#FFFFFF",
+                    "backgroundColor": "#FDF6F0",
                     "color": "#1f2937",
                     "borderRadius": "12px",
                     "padding": "12px 16px",
                     "marginBottom": "8px",
                     "fontFamily": "Inter, sans-serif",
-                    "border": "1px solid #e5e7eb",
-                    "boxShadow": "0 1px 3px rgba(0,0,0,0.1)"
+                    "border": "1px solid #e5e7eb"
                   }'
                   user_message_style='{
                     "backgroundColor": "#FBC27F",
@@ -276,7 +285,7 @@ export function ChatInterface() {
                     "fontFamily": "Inter, sans-serif"
                   }'
                   input_style='{
-                    "backgroundColor": "#FFFFFF",
+                    "backgroundColor": "#FDF6F0",
                     "color": "#1f2937",
                     "border": "2px solid #e5e7eb",
                     "borderRadius": "12px",
@@ -284,10 +293,14 @@ export function ChatInterface() {
                     "fontSize": "16px",
                     "lineHeight": "1.5",
                     "fontFamily": "Inter, sans-serif",
-                    "minHeight": "60px",
-                    "height": "60px",
+                    "minHeight": "80px",
+                    "height": "80px",
+                    "maxHeight": "200px",
+                    "resize": "vertical",
                     "boxShadow": "0 2px 8px rgba(0,0,0,0.1)",
                     "transition": "all 0.2s ease",
+                    "position": "relative",
+                    "zIndex": "10",
                     "width": "100%"
                   }'
                   send_button_style='{
@@ -296,22 +309,21 @@ export function ChatInterface() {
                     "borderRadius": "8px",
                     "color": "#1f2937",
                     "cursor": "pointer",
-                    "padding": "12px 16px"
+                    "padding": "8px 12px"
                   }'
                   send_icon_style='{
+                    "backgroundColor": "#FBC27F",
                     "color": "#1f2937"
                   }'
                   input_container_style='{
                     "backgroundColor": "#FDF6F0",
                     "border": "none",
-                    "padding": "15px"
+                    "padding": "10px"
                   }'
                   error_message_style='{
-                    "backgroundColor": "#FEF2F2",
-                    "color": "#DC2626",
-                    "border": "1px solid #FECACA",
-                    "borderRadius": "8px",
-                    "padding": "12px"
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937",
+                    "border": "1px solid #e5e7eb"
                   }'
                   chat_trigger_style='{"display":"none"}'
                   show_close_button="false"
