@@ -1,31 +1,48 @@
-/* Langflow widget styling - Aggressive background override */
+/* Langflow widget styling - Maximum override approach */
 
-/* Core widget positioning - Multiple selectors for maximum coverage */
+/* CSS Custom Properties for fallback */
+:root {
+  --langflow-bg: #FDF6F0;
+  --langflow-text: hsl(222.2 84% 4.9%);
+}
+
+/* Multiple aggressive selectors - everything gets #FDF6F0 */
 langflow-chat,
 langflow-chat *,
+langflow-chat::before,
+langflow-chat::after,
+langflow-chat *::before,
+langflow-chat *::after,
 langflow-chat .chat-container,
 langflow-chat .chat-window,
 langflow-chat .chat-messages,
 langflow-chat .messages-container,
 langflow-chat .chat-interface,
+langflow-chat .chat-wrapper,
+langflow-chat .widget-container,
 langflow-chat div,
-langflow-chat section {
-  background: #FDF6F0 !important;
-  background-color: #FDF6F0 !important;
+langflow-chat section,
+langflow-chat main,
+langflow-chat article,
+langflow-chat aside {
+  background: var(--langflow-bg) !important;
+  background-color: var(--langflow-bg) !important;
+  background-image: none !important;
 }
 
+/* Core widget positioning */
 langflow-chat {
   width: 100vw !important;
-  height: calc(100vh - 160px) !important; /* 80px header + 80px footer */
+  height: calc(100vh - 160px) !important;
   position: fixed !important;
   top: 80px !important;
   left: 0 !important;
   right: 0 !important;
-  bottom: 80px !important; /* Footer space */
+  bottom: 80px !important;
   z-index: 1 !important;
   display: block !important;
-  background: #FDF6F0 !important; /* Exact background match */
-  padding-bottom: 80px !important; /* Extra space for input field */
+  background: var(--langflow-bg) !important;
+  padding-bottom: 80px !important;
 }
 
 langflow-chat * {
