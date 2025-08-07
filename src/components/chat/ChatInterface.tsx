@@ -3,7 +3,7 @@ import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
 import LangflowLoader from './LangflowLoader';
-import { LangflowForcer } from './LangflowForcer';
+
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
 import './langflow-widget.css';
@@ -171,8 +171,6 @@ export function ChatInterface() {
       </div>
 
       <LangflowLoader />
-      <LangflowForcer />
-      
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
@@ -303,8 +301,8 @@ export function ChatInterface() {
                     "transition": "all 0.2s ease",
                     "position": "relative",
                     "zIndex": "10",
-                    "width": "100%"
-                  }'
+                     "width": "100%"
+                   }'
                   send_button_style='{
                     "backgroundColor": "#FDF6F0",
                     "border": "2px solid #e5e7eb",
@@ -313,10 +311,19 @@ export function ChatInterface() {
                     "cursor": "pointer",
                     "padding": "8px 12px"
                   }'
+                  send_icon_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937"
+                  }'
                   input_container_style='{
                     "backgroundColor": "#FDF6F0",
                     "border": "none",
                     "padding": "10px"
+                  }'
+                  error_message_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937",
+                    "border": "1px solid #e5e7eb"
                   }'
                   chat_trigger_style='{"display":"none"}'
                   show_close_button="false"
