@@ -176,7 +176,7 @@ export function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4 bg-[#F9FAFB]">
+        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4 bg-background">
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -229,7 +229,7 @@ export function ChatInterface() {
             <Button 
               onClick={handleNewSession}
               variant="outline"
-              className="gap-2 bg-[#F9FAFB] border-[#e5e7eb]"
+              className="gap-2 bg-background border-border"
             >
               <Plus size={16} />
               Nieuwe Chat
@@ -252,8 +252,8 @@ export function ChatInterface() {
                   tweaks="{}"
                   online_message="Online"
                   chat_window_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "background": "#F9FAFB",
+                    "backgroundColor": "#FDF6F0",
+                    "background": "#FDF6F0",
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
@@ -298,9 +298,9 @@ export function ChatInterface() {
                     "lineHeight": "1.5"
                   }'
                   input_style='{
-                    "backgroundColor": "#F9FAFB",
+                    "backgroundColor": "#FDF6F0",
                     "color": "#1f2937",
-                    "border": "2px solid #F9FAFB",
+                    "border": "2px solid #FDF6F0",
                     "borderRadius": "12px",
                     "padding": "18px 16px",
                     "fontSize": "14px",
@@ -317,8 +317,8 @@ export function ChatInterface() {
                     "width": "100%"
                   }'
                   send_button_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "border": "2px solid #F9FAFB",
+                    "backgroundColor": "#FDF6F0",
+                    "border": "2px solid #FDF6F0",
                     "borderRadius": "8px",
                     "color": "#F74E06",
                     "cursor": "pointer",
@@ -329,12 +329,12 @@ export function ChatInterface() {
                     "color": "#F74E06"
                   }'
                   input_container_style='{
-                    "backgroundColor": "#F9FAFB",
+                    "backgroundColor": "#FDF6F0",
                     "border": "none",
                     "padding": "10px"
                   }'
                   error_message_style='{
-                    "backgroundColor": "#F9FAFB",
+                    "backgroundColor": "#FDF6F0",
                     "color": "#1f2937",
                     "border": "1px solid #e5e7eb"
                   }'
