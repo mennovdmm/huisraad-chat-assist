@@ -13,20 +13,20 @@ const LangflowChat: React.FC = () => {
   const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Only attempt to load if in browser environment
+    // Load widget via CDN script tag approach
     if (typeof window !== 'undefined') {
-      // Dynamic import with proper error handling
-      const loadWidget = async () => {
-        try {
-          await import("langflow-chat");
+      const checkForWidget = () => {
+        // Check if langflow-chat web component is available
+        if (window.customElements && window.customElements.get('langflow-chat')) {
           setWidgetLoaded(true);
-        } catch (error) {
-          console.warn("Langflow widget not available:", error);
-          setLoadError("Widget package not found - ready for configuration");
+          return;
         }
+        
+        // If not available, show placeholder (ready for manual script loading)
+        setLoadError("Widget ready for script loading");
       };
 
-      loadWidget();
+      checkForWidget();
     }
   }, []);
 
@@ -35,7 +35,7 @@ const LangflowChat: React.FC = () => {
     position: "fixed",
     top: "80px",
     left: "0",
-    right: "0",
+    right: "0", 
     bottom: "0",
     width: "100%",
     height: "calc(100vh - 80px)",
@@ -60,7 +60,7 @@ const LangflowChat: React.FC = () => {
     backgroundColor: "hsl(var(--primary))",
     color: "hsl(var(--primary-foreground))",
     borderRadius: "1rem",
-    borderBottomRightRadius: "0.375rem",
+    borderBottomRightRadius: "0.375rem", 
     padding: "0.75rem 1rem",
     marginBottom: "1rem",
     maxWidth: "80%",
@@ -86,7 +86,7 @@ const LangflowChat: React.FC = () => {
   if (loadError) {
     return (
       <div className="flex-1 flex items-center justify-center p-8">
-        <div className="text-center max-w-md">
+        <div className="text-center max-w-lg">
           <div className="mb-6">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,15 +95,37 @@ const LangflowChat: React.FC = () => {
             </div>
           </div>
           <h2 className="text-xl font-semibold mb-3">Langflow Integration Ready</h2>
-          <p className="text-muted-foreground mb-4">
-            The chat interface is configured and ready to connect to your Langflow instance.
+          <p className="text-muted-foreground mb-6">
+            De chat interface is geconfigureerd en klaar om te verbinden met je Langflow instance.
           </p>
+          
+          <div className="bg-muted/30 rounded-lg p-4 mb-6">
+            <h3 className="font-medium mb-3">Implementatie opties:</h3>
+            
+            <div className="space-y-4 text-sm text-left">
+              <div className="bg-background rounded-lg p-3">
+                <p className="font-medium mb-2">Option 1: CDN Script (Recommended)</p>
+                <code className="text-xs bg-muted p-2 rounded block text-muted-foreground">
+                  {`<script src="https://cdn.jsdelivr.net/npm/langflow-embedded-chat@1.0.0/dist/build/static/js/bundle.min.js"></script>`}
+                </code>
+              </div>
+              
+              <div className="bg-background rounded-lg p-3">
+                <p className="font-medium mb-2">Option 2: Self-hosted</p>
+                <p className="text-muted-foreground text-xs">
+                  Download van GitHub en host lokaal
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="bg-muted/30 rounded-lg p-4 text-sm">
-            <p className="font-medium mb-2">Next steps:</p>
+            <p className="font-medium mb-2">Configuratie klaar:</p>
             <ul className="text-left space-y-1 text-muted-foreground">
-              <li>• Configure host_url</li>
-              <li>• Add flow_id</li>
-              <li>• Set api_key</li>
+              <li>• Host URL: YOUR_LANGFLOW_HOST</li>
+              <li>• Flow ID: YOUR_FLOW_ID</li>
+              <li>• API Key: YOUR_API_KEY</li>
+              <li>• Styling: Volledig geconfigureerd</li>
             </ul>
           </div>
         </div>
