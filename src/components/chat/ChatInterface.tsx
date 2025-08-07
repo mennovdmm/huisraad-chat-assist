@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
+import LangflowLoader from './LangflowLoader';
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
 import './langflow-widget.css';
@@ -168,7 +169,9 @@ export function ChatInterface() {
         )}
       </div>
 
-      {/* Main Chat Area - Clean with sticky header */}
+      <LangflowLoader />
+      
+      {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
         <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-4 pr-4">
@@ -226,23 +229,16 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - No Shadow DOM approach */}
-        <div className="flex-1 relative">
-          <div className="langflow-container h-full w-full">
-            <langflow-chat
-              host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
-              flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
-              api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
-              start_open="true"
-              window_title=""
-              tweaks="{}"
-              style={{
-                width: '100%',
-                height: '100%',
-                display: 'block'
-              }}
-            />
-          </div>
+        {/* Langflow Widget - Clean version */}
+        <div className="flex-1 relative overflow-hidden">
+          <langflow-chat
+            host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+            flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+            api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
+            start_open="true"
+            window_title=""
+            tweaks="{}"
+          />
         </div>
       </div>
 
