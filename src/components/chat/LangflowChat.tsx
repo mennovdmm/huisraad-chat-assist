@@ -239,12 +239,12 @@ const LangflowChat: React.FC = () => {
       
       {widgetLoaded ? (
         <div className="bg-green-100 p-2 h-full">
-          <p className="text-xs mb-2">Widget should render here:</p>
+          <p className="text-xs mb-2">🔴 TESTING met tijdelijke credentials:</p>
           <div className="border-2 border-red-500 h-96 relative">
             <langflow-chat
-              host_url="https://demo.langflow.org"
-              flow_id="demo-flow"
-              api_key="demo-key"
+              host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+              flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+              api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
               start_open="true"
               chat_window_style={chatWindowStyle}
               bot_message_style={botMessageStyle}
@@ -262,8 +262,8 @@ const LangflowChat: React.FC = () => {
             />
           </div>
           <div className="mt-2 text-xs">
-            <p>Widget element toegevoegd. Check inspector voor shadow DOM content.</p>
-            <p>Als leeg: widget heeft waarschijnlijk echte Langflow server nodig.</p>
+            <p>⚠️ Met echte credentials - zou nu moeten werken!</p>
+            <p>🔒 In productie: gebruik Supabase secrets</p>
           </div>
         </div>
       ) : (
