@@ -52,30 +52,44 @@ const LangflowStyleLogger: React.FC = () => {
         console.log('- Shadow Root:', widget.shadowRoot);
         console.log('- Style attribute:', widget.getAttribute('style'));
         console.log('- Computed style background:', getComputedStyle(widget).backgroundColor);
+        console.log('- innerHTML length:', widget.innerHTML.length);
+        console.log('- Widget dimensions:', {
+          width: (widget as HTMLElement).clientWidth,
+          height: (widget as HTMLElement).clientHeight,
+          offsetWidth: (widget as HTMLElement).offsetWidth,
+          offsetHeight: (widget as HTMLElement).offsetHeight
+        });
         
         // Deep inspect ALL child elements
         console.log('\n🔬 DEEP CHILD ELEMENT INSPECTION:');
         const allChildren = widget.querySelectorAll('*');
         console.log(`- Total child elements: ${allChildren.length}`);
         
-        allChildren.forEach((child, i) => {
-          const computedStyle = getComputedStyle(child);
-          const hasBackground = computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' && computedStyle.backgroundColor !== 'transparent';
-          
-          if (hasBackground || (child as HTMLElement).style?.backgroundColor || i < 5) { // Show first 5 + any with backgrounds
-            console.log(`  🎯 Child ${i}:`, {
-              tag: child.tagName,
-              classes: child.className,
-              id: child.id,
-              computedBg: computedStyle.backgroundColor,
-              inlineBg: (child as HTMLElement).style?.backgroundColor,
-              textContent: child.textContent?.slice(0, 50) + '...'
-            });
+        if (allChildren.length === 0) {
+          console.log('⚠️ NO CHILD ELEMENTS FOUND - Content may load asynchronously');
+          console.log('- innerHTML preview:', widget.innerHTML.slice(0, 200));
+        } else {
+          allChildren.forEach((child, i) => {
+            const computedStyle = getComputedStyle(child);
+            const hasBackground = computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' && computedStyle.backgroundColor !== 'transparent';
             
-            // Force background on this specific element
-            (child as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
-          }
-        });
+            if (hasBackground || (child as HTMLElement).style?.backgroundColor || i < 10) { // Show first 10 + any with backgrounds
+              console.log(`  🎯 Child ${i}:`, {
+                tag: child.tagName,
+                classes: child.className,
+                id: child.id,
+                computedBg: computedStyle.backgroundColor,
+                inlineBg: (child as HTMLElement).style?.backgroundColor,
+                textContent: child.textContent?.slice(0, 50) + '...',
+                offsetParent: (child as HTMLElement).offsetParent?.tagName
+              });
+              
+              // Force background on this specific element
+              (child as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
+              (child as HTMLElement).style.setProperty('background', '#FDF6F0', 'important');
+            }
+          });
+        }
         
         // Also force background on the widget itself
         (widget as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
