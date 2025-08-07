@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -176,7 +175,7 @@ export function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4 bg-background">
+        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4" style={{ backgroundColor: '#F9FAFB' }}>
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -229,7 +228,8 @@ export function ChatInterface() {
             <Button 
               onClick={handleNewSession}
               variant="outline"
-              className="gap-2 bg-background border-border"
+              className="gap-2"
+              style={{ backgroundColor: '#F9FAFB', borderColor: '#e5e7eb' }}
             >
               <Plus size={16} />
               Nieuwe Chat
@@ -252,8 +252,8 @@ export function ChatInterface() {
                   tweaks="{}"
                   online_message="Online"
                   chat_window_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "background": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
+                    "background": "#F9FAFB",
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
@@ -298,9 +298,9 @@ export function ChatInterface() {
                     "lineHeight": "1.5"
                   }'
                   input_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
                     "color": "#1f2937",
-                    "border": "2px solid #FDF6F0",
+                    "border": "2px solid #F9FAFB",
                     "borderRadius": "12px",
                     "padding": "18px 16px",
                     "fontSize": "14px",
@@ -317,8 +317,8 @@ export function ChatInterface() {
                     "width": "100%"
                   }'
                   send_button_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "border": "2px solid #FDF6F0",
+                    "backgroundColor": "#F9FAFB",
+                    "border": "2px solid #F9FAFB",
                     "borderRadius": "8px",
                     "color": "#F74E06",
                     "cursor": "pointer",
@@ -329,12 +329,12 @@ export function ChatInterface() {
                     "color": "#F74E06"
                   }'
                   input_container_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
                     "border": "none",
                     "padding": "10px"
                   }'
                   error_message_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#F9FAFB",
                     "color": "#1f2937",
                     "border": "1px solid #e5e7eb"
                   }'
@@ -347,20 +347,15 @@ export function ChatInterface() {
           />
         </div>
 
-        {/* Back Button - Only when sidebar is closed */}
-        {!isSidebarOpen && (
-          <div className="fixed bottom-20 left-4 z-30">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-auto w-auto p-2 bg-white/90 hover:bg-white border border-border/20 rounded-lg flex items-center gap-2 shadow-lg"
-              onClick={() => window.history.back()}
-            >
-              <ArrowLeft size={16} className="text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Terug naar menu</span>
-            </Button>
-          </div>
-        )}
+        {/* Back Button - Links onder */}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="fixed bottom-20 left-4 z-20 h-10 w-10 p-0 bg-background/80 hover:bg-background border border-border/20 rounded-full"
+          onClick={() => window.history.back()}
+        >
+          <ArrowLeft size={20} className="text-muted-foreground" />
+        </Button>
       </div>
 
       {/* Footer */}
