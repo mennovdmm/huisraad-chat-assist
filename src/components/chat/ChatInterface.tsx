@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -175,7 +176,7 @@ export function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4" style={{ backgroundColor: '#F9FAFB' }}>
+        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4 bg-[#F9FAFB]">
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -228,8 +229,7 @@ export function ChatInterface() {
             <Button 
               onClick={handleNewSession}
               variant="outline"
-              className="gap-2"
-              style={{ backgroundColor: '#F9FAFB', borderColor: '#e5e7eb' }}
+              className="gap-2 bg-[#F9FAFB] border-[#e5e7eb]"
             >
               <Plus size={16} />
               Nieuwe Chat
@@ -349,11 +349,11 @@ export function ChatInterface() {
 
         {/* Back Button - Only when sidebar is closed */}
         {!isSidebarOpen && (
-          <div className="fixed bottom-20 left-4 z-20">
+          <div className="fixed bottom-20 left-4 z-30">
             <Button
               variant="ghost"
               size="sm"
-              className="h-auto w-auto p-2 bg-background/80 hover:bg-background border border-border/20 rounded-lg flex items-center gap-2"
+              className="h-auto w-auto p-2 bg-white/90 hover:bg-white border border-border/20 rounded-lg flex items-center gap-2 shadow-lg"
               onClick={() => window.history.back()}
             >
               <ArrowLeft size={16} className="text-muted-foreground" />
