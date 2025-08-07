@@ -37,6 +37,28 @@ const LangflowStyleLogger: React.FC = () => {
           background: #FDF6F0 !important;
           background-color: #FDF6F0 !important;
         }
+
+        /* HIDE STATUS/HEADER BAR - "We'll reply as soon as we can" */
+        langflow-chat .chat-header,
+        langflow-chat .widget-header,
+        langflow-chat .status-bar,
+        langflow-chat .header-message,
+        langflow-chat .status-text,
+        langflow-chat .subtitle,
+        langflow-chat .description,
+        langflow-chat .welcome-message,
+        langflow-chat [class*="header"],
+        langflow-chat [class*="status"],
+        langflow-chat [class*="subtitle"],
+        langflow-chat p:contains("We'll reply"),
+        langflow-chat div:contains("We'll reply"),
+        langflow-chat span:contains("We'll reply") {
+          display: none !important;
+          visibility: hidden !important;
+          height: 0 !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
       `;
       document.head.appendChild(style);
       console.log('🎨 CSS OVERRIDE INJECTED!');
