@@ -1,4 +1,4 @@
-declare module 'langflow-chat-widget' {
-  const LangflowChatWidget: any;
-  export default LangflowChatWidget;
+declare module 'langflow-chat' {
+  const LangflowChat: any;
+  export default LangflowChat;
 }

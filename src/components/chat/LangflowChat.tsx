@@ -18,7 +18,7 @@ const LangflowChat: React.FC = () => {
       // Dynamic import with proper error handling
       const loadWidget = async () => {
         try {
-          await import("langflow-chat-widget");
+          await import("langflow-chat");
           setWidgetLoaded(true);
         } catch (error) {
           console.warn("Langflow widget not available:", error);
