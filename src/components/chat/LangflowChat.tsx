@@ -238,21 +238,33 @@ const LangflowChat: React.FC = () => {
       </div>
       
       {widgetLoaded ? (
-        <div className="bg-green-100 p-2">
-          <p className="text-xs">Widget should render here:</p>
-          <langflow-chat
-            host_url="https://demo.langflow.org"
-            flow_id="demo-flow"
-            api_key="demo-key"
-            start_open="true"
-            chat_window_style={chatWindowStyle}
-            bot_message_style={botMessageStyle}
-            user_message_style={userMessageStyle}
-            input_style={inputStyle}
-            chat_trigger_style={chatTriggerStyle}
-            window_title=""
-            tweaks="{}"
-          />
+        <div className="bg-green-100 p-2 h-full">
+          <p className="text-xs mb-2">Widget should render here:</p>
+          <div className="border-2 border-red-500 h-96 relative">
+            <langflow-chat
+              host_url="https://demo.langflow.org"
+              flow_id="demo-flow"
+              api_key="demo-key"
+              start_open="true"
+              chat_window_style={chatWindowStyle}
+              bot_message_style={botMessageStyle}
+              user_message_style={userMessageStyle}
+              input_style={inputStyle}
+              chat_trigger_style={chatTriggerStyle}
+              window_title=""
+              tweaks="{}"
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'block',
+                border: '2px solid blue'
+              }}
+            />
+          </div>
+          <div className="mt-2 text-xs">
+            <p>Widget element toegevoegd. Check inspector voor shadow DOM content.</p>
+            <p>Als leeg: widget heeft waarschijnlijk echte Langflow server nodig.</p>
+          </div>
         </div>
       ) : (
         <div className="flex-1 flex items-center justify-center bg-blue-100">
