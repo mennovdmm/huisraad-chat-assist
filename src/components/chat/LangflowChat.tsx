@@ -13,20 +13,45 @@ const LangflowChat: React.FC = () => {
   const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Load widget via CDN script tag approach
+    // Load widget via CDN script tag
     if (typeof window !== 'undefined') {
-      const checkForWidget = () => {
-        // Check if langflow-chat web component is available
-        if (window.customElements && window.customElements.get('langflow-chat')) {
-          setWidgetLoaded(true);
+      const loadLangflowScript = () => {
+        // Check if script already exists
+        if (document.querySelector('script[src*="langflow"]')) {
+          console.log("Langflow script already loaded");
+          checkForWidget();
           return;
         }
+
+        // Create and load script
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/langflow-embedded-chat@1.0.7/dist/build/static/js/bundle.min.js';
+        script.onload = () => {
+          console.log("Langflow script loaded");
+          checkForWidget();
+        };
+        script.onerror = () => {
+          console.warn("Failed to load Langflow script");
+          setLoadError("Script loading failed - showing preview");
+        };
         
-        // If not available, show placeholder (ready for manual script loading)
-        setLoadError("Widget ready for script loading");
+        document.head.appendChild(script);
       };
 
-      checkForWidget();
+      const checkForWidget = () => {
+        // Check if langflow-chat web component is available
+        setTimeout(() => {
+          if (window.customElements && window.customElements.get('langflow-chat')) {
+            console.log("Langflow widget ready");
+            setWidgetLoaded(true);
+          } else {
+            console.log("Widget not ready yet, showing preview");
+            setLoadError("Loading widget...");
+          }
+        }, 100);
+      };
+
+      loadLangflowScript();
     }
   }, []);
 
