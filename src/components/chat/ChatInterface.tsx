@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
-import LangflowDebugger from '../debug/LangflowDebugger';
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
+import './langflow-widget.css';
 
 interface Message {
   id: string;
@@ -226,9 +226,23 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Debug Section */}
-        <div className="flex-1 overflow-y-auto p-4">
-          <LangflowDebugger />
+        {/* Langflow Widget - No Shadow DOM approach */}
+        <div className="flex-1 relative">
+          <div className="langflow-container h-full w-full">
+            <langflow-chat
+              host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+              flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+              api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
+              start_open="true"
+              window_title=""
+              tweaks="{}"
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'block'
+              }}
+            />
+          </div>
         </div>
       </div>
 
