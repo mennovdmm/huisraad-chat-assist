@@ -1,6 +1,19 @@
-/* Langflow widget styling - JSON Props + CSS backup */
+/* Langflow widget styling - Aggressive background override */
 
-/* Core widget positioning */
+/* Core widget positioning - Multiple selectors for maximum coverage */
+langflow-chat,
+langflow-chat *,
+langflow-chat .chat-container,
+langflow-chat .chat-window,
+langflow-chat .chat-messages,
+langflow-chat .messages-container,
+langflow-chat .chat-interface,
+langflow-chat div,
+langflow-chat section {
+  background: #FDF6F0 !important;
+  background-color: #FDF6F0 !important;
+}
+
 langflow-chat {
   width: 100vw !important;
   height: calc(100vh - 160px) !important; /* 80px header + 80px footer */
