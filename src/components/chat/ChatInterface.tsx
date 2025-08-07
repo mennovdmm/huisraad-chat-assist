@@ -229,109 +229,24 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - Inline JSON styling zoals in issue #39 */}
+        {/* Langflow Widget - Configuratie via Supabase secrets */}
         <div className="flex-1 relative overflow-hidden">
-          <div 
-            dangerouslySetInnerHTML={{
-              __html: `
-                <langflow-chat
-                  host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
-                  flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
-                  api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgYYpIc"
-                  start_open="true"
-                  window_title=""
-                  placeholder="Hoe kan ik je helpen vandaag?"
-                  tweaks="{}"
-                  chat_window_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "background": "#FDF6F0",
-                    "border": "none",
-                    "borderRadius": "0px",
-                    "color": "#1f2937",
-                    "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    "padding": "20px",
-                    "paddingTop": "0px",
-                    "paddingBottom": "80px",
-                    "margin": "0px",
-                    "boxShadow": "none",
-                    "width": "100%",
-                    "height": "calc(100vh - 160px)",
-                    "minWidth": "100vw",
-                    "minHeight": "calc(100vh - 160px)",
-                    "maxWidth": "100vw",
-                    "maxHeight": "calc(100vh - 160px)",
-                    "position": "fixed",
-                    "top": "80px",
-                    "left": "0",
-                    "right": "0",
-                    "bottom": "80px",
-                    "zIndex": "1"
-                  }'
-                  bot_message_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "color": "#1f2937",
-                    "borderRadius": "12px",
-                    "padding": "12px 16px",
-                    "marginBottom": "8px",
-                    "fontFamily": "Inter, sans-serif",
-                    "border": "1px solid #e5e7eb"
-                  }'
-                  user_message_style='{
-                    "backgroundColor": "#FBC27F",
-                    "color": "#1f2937",
-                    "borderRadius": "12px",
-                    "padding": "12px 16px",
-                    "marginBottom": "8px",
-                    "fontFamily": "Inter, sans-serif"
-                  }'
-                  input_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "color": "#1f2937",
-                    "border": "2px solid #e5e7eb",
-                    "borderRadius": "12px",
-                    "padding": "18px 16px",
-                    "fontSize": "16px",
-                    "lineHeight": "1.5",
-                    "fontFamily": "Inter, sans-serif",
-                    "minHeight": "80px",
-                    "height": "80px",
-                    "maxHeight": "200px",
-                    "resize": "vertical",
-                    "boxShadow": "0 2px 8px rgba(0,0,0,0.1)",
-                    "transition": "all 0.2s ease",
-                    "position": "relative",
-                    "zIndex": "10",
-                     "width": "100%"
-                   }'
-                  send_button_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "border": "2px solid #e5e7eb",
-                    "borderRadius": "8px",
-                    "color": "#1f2937",
-                    "cursor": "pointer",
-                    "padding": "8px 12px"
-                  }'
-                  send_icon_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "color": "#1f2937"
-                  }'
-                  input_container_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "border": "none",
-                    "padding": "10px"
-                  }'
-                  error_message_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "color": "#1f2937",
-                    "border": "1px solid #e5e7eb"
-                  }'
-                  chat_trigger_style='{"display":"none"}'
-                  show_close_button="false"
-                  hide_close_button="true"
-                />
-              `
-            }}
-          />
+          <div className="h-full w-full flex items-center justify-center bg-background">
+            <div className="text-center space-y-4">
+              <h2 className="text-xl font-semibold text-foreground">Langflow Chat configuratie</h2>
+              <p className="text-muted-foreground">
+                De Langflow API key moet worden geconfigureerd via Supabase secrets voor veiligheid.
+              </p>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>Benodigde secrets:</p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>LANGFLOW_HOST_URL</li>
+                  <li>LANGFLOW_FLOW_ID</li>
+                  <li>LANGFLOW_API_KEY</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
