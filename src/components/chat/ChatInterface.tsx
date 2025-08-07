@@ -277,6 +277,7 @@ export function ChatInterface() {
                     "padding": "12px 16px",
                     "marginBottom": "8px",
                     "fontFamily": "Inter, sans-serif",
+                    "fontSize": "14px",
                     "border": "1px solid #e5e7eb"
                   }'
                   user_message_style='{
@@ -285,7 +286,8 @@ export function ChatInterface() {
                     "borderRadius": "12px",
                     "padding": "12px 16px",
                     "marginBottom": "8px",
-                    "fontFamily": "Inter, sans-serif"
+                    "fontFamily": "Inter, sans-serif",
+                    "fontSize": "14px"
                   }'
                   input_style='{
                     "backgroundColor": "#F9FAFB",
@@ -293,7 +295,7 @@ export function ChatInterface() {
                     "border": "2px solid #F9FAFB",
                     "borderRadius": "12px",
                     "padding": "18px 16px",
-                    "fontSize": "16px",
+                    "fontSize": "14px",
                     "lineHeight": "1.5",
                     "fontFamily": "Inter, sans-serif",
                     "minHeight": "80px",
