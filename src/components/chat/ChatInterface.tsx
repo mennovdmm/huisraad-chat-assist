@@ -242,7 +242,7 @@ export function ChatInterface() {
                   window_title=""
                   placeholder="Hoe kan ik je helpen vandaag?"
                   tweaks="{}"
-                  online_message=""
+                  online_message="Online"
                   chat_window_style='{
                     "backgroundColor": "#FDF6F0",
                     "background": "#FDF6F0",
