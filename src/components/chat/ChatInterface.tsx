@@ -270,7 +270,7 @@ export function ChatInterface() {
                     "zIndex": "1"
                   }'
                   bot_message_style='{
-                    "backgroundColor": "#ffffff",
+                    "backgroundColor": "#FDF6F0",
                     "color": "#1f2937",
                     "borderRadius": "12px",
                     "padding": "12px 16px",
@@ -304,6 +304,19 @@ export function ChatInterface() {
                     "position": "relative",
                     "zIndex": "10",
                     "width": "100%"
+                  }'
+                  send_button_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "border": "2px solid #e5e7eb",
+                    "borderRadius": "8px",
+                    "color": "#1f2937",
+                    "cursor": "pointer",
+                    "padding": "8px 12px"
+                  }'
+                  input_container_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "border": "none",
+                    "padding": "10px"
                   }'
                   chat_trigger_style='{"display":"none"}'
                   show_close_button="false"
