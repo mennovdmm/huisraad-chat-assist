@@ -175,7 +175,7 @@ export function ChatInterface() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4 bg-background">
+        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4" style={{ backgroundColor: '#F9FAFB' }}>
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -253,27 +253,26 @@ export function ChatInterface() {
                   online_message="Online"
                   chat_window_style='{
                     "backgroundColor": "#F9FAFB",
-                    "background": "#F9FAFB",
+                    "background": "#F9FAFB", 
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
                     "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    "padding": "60px",
-                    "paddingTop": "20px",
+                    "padding": "20px",
                     "paddingBottom": "100px",
                     "margin": "0px",
                     "boxShadow": "none",
                     "width": "100%",
-                    "height": "calc(100vh - 120px)",
-                    "minWidth": "100vw",
-                    "minHeight": "calc(100vh - 120px)",
-                    "maxWidth": "100vw",
-                    "maxHeight": "calc(100vh - 120px)",
-                    "position": "fixed",
-                    "top": "60px",
+                    "height": "100%",
+                    "minWidth": "100%",
+                    "minHeight": "100%",
+                    "maxWidth": "100%",
+                    "maxHeight": "100%",
+                    "position": "relative",
+                    "top": "0",
                     "left": "0",
                     "right": "0",
-                    "bottom": "60px",
+                    "bottom": "0",
                     "zIndex": "1"
                   }'
                   bot_message_style='{
