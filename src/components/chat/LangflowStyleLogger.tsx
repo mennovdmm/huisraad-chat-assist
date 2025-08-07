@@ -53,6 +53,34 @@ const LangflowStyleLogger: React.FC = () => {
         console.log('- Style attribute:', widget.getAttribute('style'));
         console.log('- Computed style background:', getComputedStyle(widget).backgroundColor);
         
+        // Deep inspect ALL child elements
+        console.log('\n🔬 DEEP CHILD ELEMENT INSPECTION:');
+        const allChildren = widget.querySelectorAll('*');
+        console.log(`- Total child elements: ${allChildren.length}`);
+        
+        allChildren.forEach((child, i) => {
+          const computedStyle = getComputedStyle(child);
+          const hasBackground = computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' && computedStyle.backgroundColor !== 'transparent';
+          
+          if (hasBackground || (child as HTMLElement).style?.backgroundColor || i < 5) { // Show first 5 + any with backgrounds
+            console.log(`  🎯 Child ${i}:`, {
+              tag: child.tagName,
+              classes: child.className,
+              id: child.id,
+              computedBg: computedStyle.backgroundColor,
+              inlineBg: (child as HTMLElement).style?.backgroundColor,
+              textContent: child.textContent?.slice(0, 50) + '...'
+            });
+            
+            // Force background on this specific element
+            (child as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
+          }
+        });
+        
+        // Also force background on the widget itself
+        (widget as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
+        (widget as HTMLElement).style.setProperty('background', '#FDF6F0', 'important');
+        
         // Check if shadow DOM exists
         if (widget.shadowRoot) {
           console.log('🌟 SHADOW DOM FOUND!');
