@@ -218,6 +218,12 @@ export function ChatInterface() {
               />
             </div>
             
+            {/* Centered Title and User Info */}
+            <div className="flex-1 flex flex-col items-center justify-center text-center">
+              <h1 className="text-lg font-bold text-foreground">Agent Title</h1>
+              <p className="text-sm text-muted-foreground">Ingelogd als: Gebruiker Naam</p>
+            </div>
+            
             {/* New Chat Button */}
             <Button 
               onClick={handleNewSession}

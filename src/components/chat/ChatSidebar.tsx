@@ -69,7 +69,7 @@ export function ChatSidebar({
           <img 
             src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
             alt="Client Logo" 
-            className="h-12 w-auto"
+            className="h-8 w-auto"
             data-dynamic-content="CLIENT_LOGO_URL"
           />
           {onCloseSidebar && (
