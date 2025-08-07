@@ -171,7 +171,7 @@ export function ChatInterface() {
         )}
       </div>
 
-      <LangflowLoader />
+      <LangflowLoader key={Date.now()} />
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
