@@ -289,7 +289,7 @@ export function ChatInterface() {
                   input_style='{
                     "backgroundColor": "#FDF6F0",
                     "color": "#1f2937",
-                    "border": "2px solid #F74E06",
+                    "border": "2px solid #FBC27F",
                     "borderRadius": "12px",
                     "padding": "18px 16px",
                     "fontSize": "16px",
@@ -299,7 +299,7 @@ export function ChatInterface() {
                     "height": "80px",
                     "maxHeight": "200px",
                     "resize": "vertical",
-                    "boxShadow": "0 2px 8px rgba(247,78,6,0.2)",
+                    "boxShadow": "0 2px 8px rgba(251,194,127,0.2)",
                     "transition": "all 0.2s ease",
                     "position": "relative",
                     "zIndex": "10",
@@ -307,7 +307,7 @@ export function ChatInterface() {
                   }'
                   send_button_style='{
                     "backgroundColor": "#FDF6F0",
-                    "border": "2px solid #e5e7eb",
+                    "border": "2px solid #FDF6F0",
                     "borderRadius": "8px",
                     "color": "#F74E06",
                     "cursor": "pointer",
