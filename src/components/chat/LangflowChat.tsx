@@ -27,12 +27,13 @@ const LangflowChat: React.FC = () => {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/langflow-embedded-chat@0.1.1/dist/build/static/js/bundle.min.js';
         script.onload = () => {
-          console.log("Langflow script loaded");
+          console.log("✅ Langflow script loaded successfully");
           checkForWidget();
         };
-        script.onerror = () => {
-          console.warn("Failed to load Langflow script");
-          setLoadError("Script loading failed - showing preview");
+        script.onerror = (error) => {
+          console.error("❌ Langflow script BLOCKED or failed:", error);
+          console.log("🛡️ Mogelijk adblocker probleem - probeer adblocker uit te zetten");
+          setLoadError("Script blocked by adblocker - try disabling extensions");
         };
         
         document.head.appendChild(script);
