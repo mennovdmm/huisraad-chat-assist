@@ -1,130 +1,129 @@
 import { useEffect } from 'react';
 
-// Persistent DOM watcher for Langflow widget
+// Ultimate DOM detective - search EVERYWHERE for chat elements
 export const LangflowForcer = () => {
   useEffect(() => {
-    let observerCount = 0;
-    
-    const inspectAndForce = () => {
-      const widgets = document.querySelectorAll('langflow-chat');
+    const fullDOMScan = () => {
+      console.log('🕵️ ULTIMATE DOM SCAN - Looking for chat elements ANYWHERE...');
       
+      // 1. Look for ANY element that might contain chat content
+      const allElements = document.querySelectorAll('*');
+      console.log(`📊 Scanning ${allElements.length} total elements on page...`);
+      
+      const chatCandidates: Element[] = [];
+      
+      allElements.forEach((element, index) => {
+        const text = element.textContent?.toLowerCase() || '';
+        const classes = element.className.toLowerCase();
+        const tag = element.tagName.toLowerCase();
+        
+        // Look for elements that might be chat-related
+        if (
+          text.includes('message') || text.includes('chat') || text.includes('reply') ||
+          text.includes('help') || text.includes('send') || text.includes('input') ||
+          classes.includes('chat') || classes.includes('message') || classes.includes('widget') ||
+          tag.includes('chat') || element.hasAttribute('placeholder')
+        ) {
+          chatCandidates.push(element);
+        }
+      });
+      
+      console.log(`🎯 Found ${chatCandidates.length} potential chat elements:`);
+      
+      chatCandidates.slice(0, 20).forEach((element, index) => {
+        const computedStyle = window.getComputedStyle(element);
+        console.log(`Candidate ${index}:`, {
+          tag: element.tagName,
+          classes: element.className,
+          text: element.textContent?.substring(0, 80),
+          bg: computedStyle.backgroundColor,
+          display: computedStyle.display,
+          position: computedStyle.position,
+          zIndex: computedStyle.zIndex,
+          parent: element.parentElement?.tagName
+        });
+        
+        // Force background on potential chat elements
+        if (element instanceof HTMLElement) {
+          element.style.setProperty('background', '#FDF6F0', 'important');
+          element.style.setProperty('background-color', '#FDF6F0', 'important');
+        }
+      });
+      
+      // 2. Look specifically for form elements (input, textarea, button)
+      const inputs = document.querySelectorAll('input, textarea, button');
+      console.log(`🔤 Found ${inputs.length} input elements:`);
+      
+      inputs.forEach((input, index) => {
+        if (index < 10) {
+          const computedStyle = window.getComputedStyle(input);
+          console.log(`Input ${index}:`, {
+            type: input.getAttribute('type'),
+            placeholder: input.getAttribute('placeholder'),
+            value: (input as HTMLInputElement).value,
+            classes: input.className,
+            bg: computedStyle.backgroundColor,
+            parent: input.parentElement?.tagName
+          });
+        }
+        
+        // Force background on inputs
+        if (input instanceof HTMLElement) {
+          input.style.setProperty('background', '#FDF6F0', 'important');
+          input.style.setProperty('background-color', '#FDF6F0', 'important');
+        }
+      });
+      
+      // 3. Look for elements with specific styles that might be chat UI
+      const styledElements = document.querySelectorAll('[style*="background"], [style*="position"]');
+      console.log(`🎨 Found ${styledElements.length} styled elements`);
+      
+      Array.from(styledElements).slice(0, 10).forEach((element, index) => {
+        console.log(`Styled ${index}:`, {
+          tag: element.tagName,
+          style: element.getAttribute('style'),
+          classes: element.className,
+          text: element.textContent?.substring(0, 50)
+        });
+        
+        if (element instanceof HTMLElement) {
+          element.style.setProperty('background', '#FDF6F0', 'important');
+          element.style.setProperty('background-color', '#FDF6F0', 'important');
+        }
+      });
+      
+      // 4. Check langflow-chat again but differently
+      const widgets = document.querySelectorAll('langflow-chat');
       widgets.forEach((widget, index) => {
-        // Force background on main widget always
+        console.log(`🔍 Widget ${index} detailed check:`);
+        console.log('- innerHTML:', widget.innerHTML.substring(0, 200));
+        console.log('- outerHTML:', widget.outerHTML.substring(0, 300));
+        console.log('- computedStyle:', {
+          display: getComputedStyle(widget).display,
+          position: getComputedStyle(widget).position,
+          background: getComputedStyle(widget).backgroundColor
+        });
+        
+        // Force styles on the widget itself
         if (widget instanceof HTMLElement) {
           widget.style.setProperty('background', '#FDF6F0', 'important');
           widget.style.setProperty('background-color', '#FDF6F0', 'important');
         }
-        
-        // Check for any children that might have appeared
-        const allChildren = widget.querySelectorAll('*');
-        if (allChildren.length > 0) {
-          console.log(`🎯 FOUND ${allChildren.length} elements in widget ${index}!`);
-          
-          allChildren.forEach((child, childIndex) => {
-            if (child instanceof HTMLElement) {
-              if (childIndex < 15) {
-                console.log(`Element ${childIndex}:`, {
-                  tag: child.tagName,
-                  classes: child.className,
-                  text: child.textContent?.substring(0, 60),
-                  bg: window.getComputedStyle(child).backgroundColor,
-                  display: window.getComputedStyle(child).display
-                });
-              }
-              
-              // Force background on ALL elements
-              child.style.setProperty('background', '#FDF6F0', 'important');
-              child.style.setProperty('background-color', '#FDF6F0', 'important');
-              child.style.setProperty('background-image', 'none', 'important');
-            }
-          });
-        }
       });
     };
 
-    // Immediate check
-    inspectAndForce();
-
-    // Create a mutation observer to watch for ANY DOM changes
-    const observer = new MutationObserver((mutations) => {
-      observerCount++;
-      let hasChanges = false;
-      
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-          mutation.addedNodes.forEach((node) => {
-            if (node.nodeType === Node.ELEMENT_NODE) {
-              const element = node as Element;
-              
-              // Check if it's inside a langflow-chat element
-              const parentWidget = element.closest('langflow-chat');
-              if (parentWidget) {
-                hasChanges = true;
-                console.log(`🔥 NEW ELEMENT ADDED (${observerCount}):`, {
-                  tag: element.tagName,
-                  classes: element.className,
-                  text: element.textContent?.substring(0, 60),
-                  parent: element.parentElement?.tagName
-                });
-                
-                // Force background immediately
-                if (element instanceof HTMLElement) {
-                  element.style.setProperty('background', '#FDF6F0', 'important');
-                  element.style.setProperty('background-color', '#FDF6F0', 'important');
-                  
-                  // Also force all children
-                  const children = element.querySelectorAll('*');
-                  children.forEach(child => {
-                    if (child instanceof HTMLElement) {
-                      child.style.setProperty('background', '#FDF6F0', 'important');
-                      child.style.setProperty('background-color', '#FDF6F0', 'important');
-                    }
-                  });
-                }
-              }
-            }
-          });
-        }
-        
-        // Also watch for style changes
-        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-          const target = mutation.target as Element;
-          const parentWidget = target.closest('langflow-chat');
-          if (parentWidget && target instanceof HTMLElement) {
-            target.style.setProperty('background', '#FDF6F0', 'important');
-            target.style.setProperty('background-color', '#FDF6F0', 'important');
-          }
-        }
-      });
-      
-      if (hasChanges) {
-        // Run full inspection after new elements are added
-        setTimeout(inspectAndForce, 100);
-      }
-    });
-
-    // Observe the entire document for changes
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['style', 'class']
-    });
-
-    // Also run periodic checks
-    const intervals = [1000, 3000, 5000, 10000].map(delay => 
+    console.log('🔍 Starting ultimate DOM scan...');
+    fullDOMScan();
+    
+    // Run scan multiple times
+    const timeouts = [2000, 4000, 6000].map(delay => 
       setTimeout(() => {
-        console.log(`🔄 Periodic check after ${delay}ms...`);
-        inspectAndForce();
+        console.log(`🔄 Re-scanning after ${delay}ms...`);
+        fullDOMScan();
       }, delay)
     );
 
-    console.log('🔍 Persistent Langflow watcher active');
-
-    return () => {
-      observer.disconnect();
-      intervals.forEach(clearTimeout);
-    };
+    return () => timeouts.forEach(clearTimeout);
   }, []);
 
   return null;
