@@ -25,7 +25,7 @@ const LangflowChat: React.FC = () => {
 
         // Create and load script
         const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/langflow-embedded-chat@1.0.7/dist/build/static/js/bundle.min.js';
+        script.src = 'https://cdn.jsdelivr.net/npm/langflow-embedded-chat@0.1.1/dist/build/static/js/bundle.min.js';
         script.onload = () => {
           console.log("Langflow script loaded");
           checkForWidget();
