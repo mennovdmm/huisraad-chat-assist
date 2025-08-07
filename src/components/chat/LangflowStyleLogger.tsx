@@ -150,11 +150,24 @@ const LangflowStyleLogger: React.FC = () => {
       injectCSSOverride(); // Re-inject after widget loads
     }, 100);
     
-    // Check periodically
+    // Check periodically with longer delays for async content
     const interval = setInterval(() => {
       checkWidget();
       injectCSSOverride(); // Keep injecting
     }, 2000);
+    
+    // Additional checks at longer intervals for async content
+    setTimeout(() => {
+      console.log('🕐 5-second delayed check for async content...');
+      checkWidget();
+      injectCSSOverride();
+    }, 5000);
+    
+    setTimeout(() => {
+      console.log('🕐 10-second delayed check for async content...');
+      checkWidget();
+      injectCSSOverride();
+    }, 10000);
     
     // Watch for DOM changes
     const observer = new MutationObserver((mutations) => {
