@@ -245,38 +245,38 @@ export function ChatInterface() {
                   tweaks="{}"
                   online_message="Online"
                   chat_window_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "background": "#FDF6F0",
+                    "backgroundColor": "#ffffff",
+                    "background": "#ffffff",
                     "border": "none",
                     "borderRadius": "0px",
                     "color": "#1f2937",
                     "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    "padding": "20px",
-                    "paddingTop": "0px",
-                    "paddingBottom": "80px",
+                    "padding": "40px",
+                    "paddingTop": "20px",
+                    "paddingBottom": "100px",
                     "margin": "0px",
                     "boxShadow": "none",
                     "width": "100%",
-                    "height": "calc(100vh - 160px)",
+                    "height": "calc(100vh - 120px)",
                     "minWidth": "100vw",
-                    "minHeight": "calc(100vh - 160px)",
+                    "minHeight": "calc(100vh - 120px)",
                     "maxWidth": "100vw",
-                    "maxHeight": "calc(100vh - 160px)",
+                    "maxHeight": "calc(100vh - 120px)",
                     "position": "fixed",
-                    "top": "80px",
+                    "top": "60px",
                     "left": "0",
                     "right": "0",
-                    "bottom": "80px",
+                    "bottom": "60px",
                     "zIndex": "1"
                   }'
                   bot_message_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#f8f9fa",
                     "color": "#1f2937",
                     "borderRadius": "12px",
                     "padding": "12px 16px",
                     "marginBottom": "8px",
                     "fontFamily": "Inter, sans-serif",
-                    "border": "1px solid #e5e7eb"
+                    "border": "1px solid #e9ecef"
                   }'
                   user_message_style='{
                     "backgroundColor": "#FBC27F",
@@ -287,9 +287,9 @@ export function ChatInterface() {
                     "fontFamily": "Inter, sans-serif"
                   }'
                   input_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#ffffff",
                     "color": "#1f2937",
-                    "border": "2px solid #FDF6F0",
+                    "border": "2px solid #e9ecef",
                     "borderRadius": "12px",
                     "padding": "18px 16px",
                     "fontSize": "16px",
@@ -306,8 +306,8 @@ export function ChatInterface() {
                     "width": "100%"
                   }'
                   send_button_style='{
-                    "backgroundColor": "#FDF6F0",
-                    "border": "2px solid #FDF6F0",
+                    "backgroundColor": "#ffffff",
+                    "border": "2px solid #e9ecef",
                     "borderRadius": "8px",
                     "color": "#F74E06",
                     "cursor": "pointer",
@@ -318,14 +318,14 @@ export function ChatInterface() {
                     "color": "#F74E06"
                   }'
                   input_container_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#ffffff",
                     "border": "none",
                     "padding": "10px"
                   }'
                   error_message_style='{
-                    "backgroundColor": "#FDF6F0",
+                    "backgroundColor": "#ffffff",
                     "color": "#1f2937",
-                    "border": "1px solid #e5e7eb"
+                    "border": "1px solid #e9ecef"
                   }'
                   chat_trigger_style='{"display":"none"}'
                   show_close_button="false"
