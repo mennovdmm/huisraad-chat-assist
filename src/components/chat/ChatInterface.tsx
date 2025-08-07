@@ -278,6 +278,7 @@ export function ChatInterface() {
                     "marginBottom": "8px",
                     "fontFamily": "Inter, sans-serif",
                     "fontSize": "14px",
+                    "lineHeight": "1.5",
                     "border": "1px solid #e5e7eb"
                   }'
                   user_message_style='{
@@ -287,7 +288,8 @@ export function ChatInterface() {
                     "padding": "12px 16px",
                     "marginBottom": "8px",
                     "fontFamily": "Inter, sans-serif",
-                    "fontSize": "14px"
+                    "fontSize": "14px",
+                    "lineHeight": "1.5"
                   }'
                   input_style='{
                     "backgroundColor": "#F9FAFB",
