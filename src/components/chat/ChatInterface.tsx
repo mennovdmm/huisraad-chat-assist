@@ -347,15 +347,20 @@ export function ChatInterface() {
           />
         </div>
 
-        {/* Back Button - Links onder */}
-        <Button
-          variant="ghost"
-          size="sm"
-          className="fixed bottom-20 left-4 z-20 h-10 w-10 p-0 bg-background/80 hover:bg-background border border-border/20 rounded-full"
-          onClick={() => window.history.back()}
-        >
-          <ArrowLeft size={20} className="text-muted-foreground" />
-        </Button>
+        {/* Back Button - Only when sidebar is closed */}
+        {!isSidebarOpen && (
+          <div className="fixed bottom-20 left-4 z-20">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-auto w-auto p-2 bg-background/80 hover:bg-background border border-border/20 rounded-lg flex items-center gap-2"
+              onClick={() => window.history.back()}
+            >
+              <ArrowLeft size={16} className="text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">Terug naar menu</span>
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Footer */}

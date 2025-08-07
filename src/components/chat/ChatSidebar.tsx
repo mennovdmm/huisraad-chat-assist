@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2, X } from 'lucide-react';
+import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2, X, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
@@ -169,6 +169,19 @@ export function ChatSidebar({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Back Button in Sidebar */}
+      <div className="p-4 border-t border-border">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="w-full justify-start gap-2 text-muted-foreground hover:text-foreground"
+          onClick={() => window.history.back()}
+        >
+          <ArrowLeft size={16} />
+          <span className="text-sm">Terug naar menu</span>
+        </Button>
       </div>
     </div>
   );
