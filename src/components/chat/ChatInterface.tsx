@@ -223,6 +223,7 @@ export function ChatInterface() {
               onClick={handleNewSession}
               variant="outline"
               className="gap-2"
+              style={{ backgroundColor: '#F9FAFB', borderColor: '#e5e7eb' }}
             >
               <Plus size={16} />
               Nieuwe Chat
