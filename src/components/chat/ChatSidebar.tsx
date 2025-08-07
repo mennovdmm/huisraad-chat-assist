@@ -1,14 +1,9 @@
+
 import React, { useState } from 'react';
 import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 
 interface ChatSession {
@@ -16,11 +11,12 @@ interface ChatSession {
   name: string;
   lastMessage: string;
   timestamp: Date;
+  messages: any[];
 }
 
 interface ChatSidebarProps {
   sessions: ChatSession[];
-  activeSessionId: string | null;
+  activeSessionId: string;
   onSessionSelect: (sessionId: string) => void;
   onNewSession: () => void;
   onRenameSession: (sessionId: string, newName: string) => void;
@@ -29,10 +25,10 @@ interface ChatSidebarProps {
   className?: string;
 }
 
-export function ChatSidebar({
-  sessions,
-  activeSessionId,
-  onSessionSelect,
+export function ChatSidebar({ 
+  sessions, 
+  activeSessionId, 
+  onSessionSelect, 
   onNewSession,
   onRenameSession,
   onDeleteSession,
@@ -42,20 +38,18 @@ export function ChatSidebar({
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState('');
 
-  const handleRename = (session: ChatSession) => {
-    setEditingId(session.id);
-    setEditingName(session.name);
+  const handleRename = (sessionId: string, currentName: string) => {
+    setEditingId(sessionId);
+    setEditingName(currentName);
   };
 
-  const handleRenameSubmit = () => {
-    if (editingId && editingName.trim()) {
-      onRenameSession(editingId, editingName.trim());
-    }
+  const handleSaveRename = (sessionId: string) => {
+    onRenameSession(sessionId, editingName);
     setEditingId(null);
     setEditingName('');
   };
 
-  const handleRenameCancel = () => {
+  const handleCancelRename = () => {
     setEditingId(null);
     setEditingName('');
   };
@@ -65,11 +59,11 @@ export function ChatSidebar({
       {/* Branding Header */}
       <div className="p-4 border-b border-border">
         <div className="flex items-center justify-between mb-4">
-          {/* Dynamic client logo - placeholder for CMS/Langflow */}
+          {/* Dynamic client logo - placeholder for CMS/Langflow - Now smaller */}
           <img 
             src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
             alt="Client Logo" 
-            className="h-12 w-auto"
+            className="h-6 w-auto"
             data-dynamic-content="CLIENT_LOGO_URL"
           />
           {onCloseSidebar && (
@@ -85,89 +79,143 @@ export function ChatSidebar({
         </div>
         <div className="mb-4">
           <div className="text-xl font-semibold text-foreground mb-1" data-dynamic-content="COMPANY_NAME">Makelaar Amsterdam</div>
-          <div className="text-sm text-muted-foreground" data-dynamic-content="COMPANY_TAGLINE">Marktanalyse & Offertes</div>
+          <div className="text-sm text-muted-foreground" data-dynamic-content="FLOW_NAME">Marketing Assistent</div>
         </div>
+
+        {/* New Chat Button */}
+        <Button 
+          onClick={onNewSession}
+          className="w-full gap-2 bg-primary hover:bg-primary/90"
+        >
+          <Plus size={16} />
+          Nieuwe Chat
+        </Button>
       </div>
 
-      {/* Sessions List */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="px-4 py-2">
-          <h3 className="text-sm font-medium text-foreground">Chats</h3>
-        </div>
-        <div className="p-2 space-y-1">
+      {/* Chat Sessions List */}
+      <div className="flex-1 overflow-y-auto p-2">
+        <div className="space-y-1">
           {sessions.map((session) => (
-            <div
+            <div 
               key={session.id}
               className={cn(
                 "group relative rounded-lg p-3 cursor-pointer transition-colors",
-                "hover:bg-accent/50",
-                activeSessionId === session.id && "text-white"
+                activeSessionId === session.id 
+                  ? "bg-primary/10 border border-primary/20" 
+                  : "hover:bg-muted/50"
               )}
-              style={activeSessionId === session.id ? { backgroundColor: '#FBC27F' } : {}}
               onClick={() => onSessionSelect(session.id)}
             >
               <div className="flex items-start justify-between">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <MessageSquare size={14} className="text-muted-foreground flex-shrink-0" />
-                    {editingId === session.id ? (
+                <div className="flex-1 min-w-0 mr-2">
+                  {editingId === session.id ? (
+                    <div className="flex flex-col gap-2" onClick={(e) => e.stopPropagation()}>
                       <Input
                         value={editingName}
                         onChange={(e) => setEditingName(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') handleRenameSubmit();
-                          if (e.key === 'Escape') handleRenameCancel();
-                        }}
-                        onBlur={handleRenameSubmit}
-                        className="h-6 text-sm py-0 px-1"
+                        className="h-8 text-sm"
                         autoFocus
-                        onClick={(e) => e.stopPropagation()}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleSaveRename(session.id);
+                          if (e.key === 'Escape') handleCancelRename();
+                        }}
                       />
-                    ) : (
-                      <span 
-                        className="text-sm font-medium truncate"
-                        style={activeSessionId === session.id ? { color: '#F74E06' } : {}}
-                      >
-                        {session.name}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-xs text-muted-foreground truncate">
-                    {session.lastMessage}
-                  </p>
-                  <p className="text-xs text-muted-foreground/70 mt-1">
-                    {session.timestamp.toLocaleDateString('nl-NL')}
-                  </p>
+                      <div className="flex gap-1">
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          className="h-6 px-2 text-xs"
+                          onClick={() => handleSaveRename(session.id)}
+                        >
+                          Save
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="ghost" 
+                          className="h-6 px-2 text-xs"
+                          onClick={handleCancelRename}
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2 mb-1">
+                        <MessageSquare size={14} className="text-primary flex-shrink-0" />
+                        <h3 className="font-medium text-sm truncate text-foreground">
+                          {session.name}
+                        </h3>
+                      </div>
+                      <p className="text-xs text-muted-foreground truncate mb-1">
+                        {session.lastMessage || 'No messages yet'}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {session.timestamp.toLocaleDateString('nl-NL', { 
+                          day: 'numeric', 
+                          month: 'short',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
+                    </>
+                  )}
                 </div>
-                
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
+
+                {editingId !== session.id && (
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="opacity-0 group-hover:opacity-100 h-6 w-6 p-0"
-                      onClick={(e) => e.stopPropagation()}
+                      className="h-6 w-6 p-0"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Show dropdown menu or actions
+                      }}
                     >
-                      <MoreHorizontal size={12} />
+                      <MoreHorizontal size={14} />
                     </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => handleRename(session)}>
-                      <Edit2 size={14} className="mr-2" />
-                      Hernoemen
-                    </DropdownMenuItem>
-                    <DropdownMenuItem 
-                      onClick={() => onDeleteSession(session.id)}
-                      className="text-destructive"
-                    >
-                      <Trash2 size={14} className="mr-2" />
-                      Verwijderen
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                    
+                    {/* Quick action buttons */}
+                    <div className="absolute right-2 top-8 bg-popover border rounded-md shadow-md p-1 z-10 opacity-0 group-hover:opacity-100">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 mb-1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRename(session.id, session.name);
+                        }}
+                      >
+                        <Edit2 size={12} />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-destructive hover:bg-destructive/10"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDeleteSession(session.id);
+                        }}
+                      >
+                        <Trash2 size={12} />
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="p-4 border-t border-border">
+        <div className="flex items-center gap-2">
+          <img src={HuisraadLogo} alt="HuisRaad" className="h-6 w-auto" />
+          <div className="text-xs text-muted-foreground">
+            Powered by HuisRaad
+          </div>
         </div>
       </div>
     </div>
