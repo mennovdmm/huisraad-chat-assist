@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
-import { MessageBubble } from './MessageBubble';
-import { ChatInput } from './ChatInput';
+import LangflowDebugger from '../debug/LangflowDebugger';
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
 
@@ -227,60 +226,10 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="max-w-4xl mx-auto p-4">
-            {activeSession?.messages.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="mb-6">
-                  <img 
-                    src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
-                    alt="Client Logo" 
-                    className="h-16 w-auto mx-auto"
-                    data-dynamic-content="CLIENT_LOGO_URL"
-                  />
-                </div>
-                <h2 className="text-xl font-semibold mb-2" data-dynamic-content="WELCOME_TITLE">Welkom bij ai.huisraad.com</h2>
-                <p className="text-muted-foreground max-w-md mx-auto" data-dynamic-content="WELCOME_MESSAGE">
-                  Begin een gesprek door een vraag te stellen over offertes, marktanalyses of vastgoed content.
-                </p>
-                <div className="mt-4 p-3 bg-green-100 rounded-lg text-sm">
-                  <p className="font-medium text-green-800">🚀 Langflow integratie gereed!</p>
-                  <p className="text-green-700">Script laadt succesvol - klaar voor configuratie</p>
-                </div>
-              </div>
-            ) : (
-              <>
-                {activeSession?.messages.map((message, index) => (
-                  <MessageBubble
-                    key={message.id}
-                    message={message}
-                    isLatest={index === activeSession.messages.length - 1}
-                  />
-                ))}
-                
-                {isTyping && (
-                  <div className="flex justify-start mb-4">
-                    <div className="bg-card border border-border rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
-                      <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                        <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                        <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
+        {/* Debug Section */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <LangflowDebugger />
         </div>
-
-        {/* Input */}
-        <ChatInput
-          onSendMessage={handleSendMessage}
-          disabled={isTyping}
-        />
       </div>
 
       {/* Overlay for mobile */}
