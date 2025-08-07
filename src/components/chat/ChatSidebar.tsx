@@ -74,10 +74,10 @@ export function ChatSidebar({
           />
           {onCloseSidebar && (
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               onClick={onCloseSidebar}
-              className="h-8 w-8 p-0 hover:bg-accent"
+              className="h-8 w-8 p-0 ml-2 border border-border bg-background hover:bg-accent"
             >
               <X size={16} className="text-muted-foreground" />
             </Button>
