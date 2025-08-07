@@ -244,6 +244,9 @@ export function ChatInterface() {
                   window_title=""
                   placeholder="Hoe kan ik je helpen vandaag?"
                   tweaks="{}"
+                  hide_header="true"
+                  hide_status="true"
+                  hide_title="true"
                   chat_window_style='{
                     "backgroundColor": "#FDF6F0",
                     "background": "#FDF6F0",
