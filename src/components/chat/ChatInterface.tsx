@@ -237,8 +237,8 @@ export function ChatInterface() {
             api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
             start_open="true"
             chat_window_style={JSON.stringify({
-              backgroundColor: "#ffffff",
-              color: "#1f2937",
+              backgroundColor: "hsl(35 20% 97%)", // --background
+              color: "hsl(222.2 84% 4.9%)", // --foreground
               fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
               width: "100%",
               height: "calc(100vh - 160px)", // 80px header + 80px footer
@@ -261,25 +261,26 @@ export function ChatInterface() {
               zIndex: "1"
             })}
             bot_message_style={JSON.stringify({
-              backgroundColor: "#f3f4f6",
-              color: "#1f2937",
+              backgroundColor: "hsl(0 0% 100%)", // --card
+              color: "hsl(222.2 84% 4.9%)", // --foreground
               borderRadius: "12px",
               padding: "12px 16px",
               marginBottom: "8px",
-              fontFamily: "Inter, sans-serif"
+              fontFamily: "Inter, sans-serif",
+              border: "1px solid hsl(214.3 31.8% 91.4%)" // --border
             })}
             user_message_style={JSON.stringify({
-              backgroundColor: "#FBC27F",
-              color: "#1f2937",
+              backgroundColor: "hsl(12 100% 60%)", // --primary
+              color: "hsl(0 0% 100%)", // --primary-foreground
               borderRadius: "12px",
               padding: "12px 16px",
               marginBottom: "8px",
               fontFamily: "Inter, sans-serif"
             })}
             input_style={JSON.stringify({
-              backgroundColor: "#ffffff !important",
-              color: "#1f2937 !important",
-              border: "2px solid #e5e7eb !important",
+              backgroundColor: "hsl(35 20% 97%) !important", // --background
+              color: "hsl(222.2 84% 4.9%) !important", // --foreground
+              border: "2px solid hsl(214.3 31.8% 91.4%) !important", // --border
               borderRadius: "12px !important",
               padding: "18px 16px !important",
               fontSize: "16px !important",
