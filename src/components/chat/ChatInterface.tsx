@@ -237,7 +237,7 @@ export function ChatInterface() {
             api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
             start_open="true"
             chat_window_style={JSON.stringify({
-              backgroundColor: "hsl(35 20% 97%)", // --background
+              backgroundColor: "#FDF6F0", // Exact match
               color: "hsl(222.2 84% 4.9%)", // --foreground
               fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
               width: "100%",
@@ -270,15 +270,15 @@ export function ChatInterface() {
               border: "1px solid hsl(214.3 31.8% 91.4%)" // --border
             })}
             user_message_style={JSON.stringify({
-              backgroundColor: "hsl(12 100% 60%)", // --primary
-              color: "hsl(0 0% 100%)", // --primary-foreground
+              backgroundColor: "#FBC27F", // Back to original color
+              color: "hsl(222.2 84% 4.9%)", // --foreground (dark text)
               borderRadius: "12px",
               padding: "12px 16px",
               marginBottom: "8px",
               fontFamily: "Inter, sans-serif"
             })}
             input_style={JSON.stringify({
-              backgroundColor: "hsl(35 20% 97%) !important", // --background
+              backgroundColor: "#FDF6F0 !important", // Exact match
               color: "hsl(222.2 84% 4.9%) !important", // --foreground
               border: "2px solid hsl(214.3 31.8% 91.4%) !important", // --border
               borderRadius: "12px !important",
