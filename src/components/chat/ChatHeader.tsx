@@ -17,7 +17,7 @@ export function ChatHeader({
   isSidebarOpen 
 }: ChatHeaderProps) {
   return (
-    <header className="h-16 border-b border-border bg-card/50 backdrop-blur-sm flex items-center justify-between px-4">
+    <header className="h-16 border-b border-border bg-background backdrop-blur-sm flex items-center justify-between px-4">
       <div className="flex items-center gap-4">
         <Button
           variant="ghost"
