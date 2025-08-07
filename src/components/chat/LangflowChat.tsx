@@ -41,14 +41,20 @@ const LangflowChat: React.FC = () => {
       const checkForWidget = () => {
         // Check if langflow-chat web component is available
         setTimeout(() => {
+          console.log("Checking for widget...", {
+            customElements: !!window.customElements,
+            langflowChat: window.customElements?.get('langflow-chat'),
+            widgetInDOM: document.querySelector('langflow-chat')
+          });
+          
           if (window.customElements && window.customElements.get('langflow-chat')) {
             console.log("Langflow widget ready");
             setWidgetLoaded(true);
           } else {
-            console.log("Widget not ready yet, showing preview");
-            setLoadError("Loading widget...");
+            console.log("Widget not ready, showing preview");
+            setLoadError("Widget preview - script might have failed");
           }
-        }, 100);
+        }, 1000); // Longer timeout
       };
 
       loadLangflowScript();
@@ -226,24 +232,35 @@ const LangflowChat: React.FC = () => {
 
   // Render widget when loaded and configured
   return (
-    <div className="langflow-container h-full w-full">
+    <div className="langflow-container h-full w-full bg-red-100">
+      <div className="p-4 text-center bg-yellow-100">
+        <p>Debug: widgetLoaded={String(widgetLoaded)}, loadError={loadError}</p>
+      </div>
+      
       {widgetLoaded ? (
-        <langflow-chat
-          host_url="YOUR_LANGFLOW_HOST"
-          flow_id="YOUR_FLOW_ID"
-          api_key="YOUR_API_KEY"
-          start_open="true"
-          chat_window_style={chatWindowStyle}
-          bot_message_style={botMessageStyle}
-          user_message_style={userMessageStyle}
-          input_style={inputStyle}
-          chat_trigger_style={chatTriggerStyle}
-          window_title=""
-          tweaks="{}"
-        />
+        <div className="bg-green-100 p-2">
+          <p className="text-xs">Widget should render here:</p>
+          <langflow-chat
+            host_url="https://demo.langflow.org"
+            flow_id="demo-flow"
+            api_key="demo-key"
+            start_open="true"
+            chat_window_style={chatWindowStyle}
+            bot_message_style={botMessageStyle}
+            user_message_style={userMessageStyle}
+            input_style={inputStyle}
+            chat_trigger_style={chatTriggerStyle}
+            window_title=""
+            tweaks="{}"
+          />
+        </div>
       ) : (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        <div className="flex-1 flex items-center justify-center bg-blue-100">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <p>Loading Langflow widget...</p>
+            <p className="text-xs text-muted-foreground mt-2">State: {loadError || "initializing"}</p>
+          </div>
         </div>
       )}
     </div>
