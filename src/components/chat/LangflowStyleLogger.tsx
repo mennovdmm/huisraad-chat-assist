@@ -4,6 +4,44 @@ const LangflowStyleLogger: React.FC = () => {
   useEffect(() => {
     console.log('🎨 LANGFLOW STYLE LOGGER ACTIVE');
     
+    const injectCSSOverride = () => {
+      // Remove existing style if present
+      const existingStyle = document.getElementById('langflow-force-bg');
+      if (existingStyle) {
+        existingStyle.remove();
+      }
+
+      const style = document.createElement('style');
+      style.id = 'langflow-force-bg';
+      style.innerHTML = `
+        /* FORCE LANGFLOW BACKGROUND - MAXIMUM PRIORITY */
+        langflow-chat,
+        langflow-chat *,
+        langflow-chat div,
+        langflow-chat section,
+        langflow-chat [class*="container"],
+        langflow-chat [class*="chat"],
+        langflow-chat [class*="message"],
+        langflow-chat [class*="window"],
+        langflow-chat [class*="content"],
+        langflow-chat [class*="wrapper"],
+        langflow-chat [class*="area"],
+        langflow-chat [class*="interface"] {
+          background: #FDF6F0 !important;
+          background-color: #FDF6F0 !important;
+          background-image: none !important;
+        }
+        
+        /* Override any white/transparent backgrounds */
+        langflow-chat *[style*="background"] {
+          background: #FDF6F0 !important;
+          background-color: #FDF6F0 !important;
+        }
+      `;
+      document.head.appendChild(style);
+      console.log('🎨 CSS OVERRIDE INJECTED!');
+    };
+
     const checkWidget = () => {
       const widgets = document.querySelectorAll('langflow-chat');
       console.log(`📋 Found ${widgets.length} langflow-chat elements`);
@@ -61,11 +99,20 @@ const LangflowStyleLogger: React.FC = () => {
       });
     };
 
+    // Inject CSS immediately and on widget detection
+    injectCSSOverride();
+    
     // Check immediately
-    setTimeout(checkWidget, 100);
+    setTimeout(() => {
+      checkWidget();
+      injectCSSOverride(); // Re-inject after widget loads
+    }, 100);
     
     // Check periodically
-    const interval = setInterval(checkWidget, 2000);
+    const interval = setInterval(() => {
+      checkWidget();
+      injectCSSOverride(); // Keep injecting
+    }, 2000);
     
     // Watch for DOM changes
     const observer = new MutationObserver((mutations) => {
