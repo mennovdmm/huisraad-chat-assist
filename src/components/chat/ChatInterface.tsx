@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
-import { MessageBubble } from './MessageBubble';
-import { ChatInput } from './ChatInput';
+import LangflowChat from './LangflowChat';
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
 
@@ -29,110 +28,26 @@ export function ChatInterface() {
       id: '1',
       name: 'Marktanalyse Amsterdam Noord',
       lastMessage: 'Wat zijn de gemiddelde prijzen per m²?',
-      timestamp: new Date(Date.now() - 60 * 60 * 1000), // 1 hour ago
-      messages: [
-        {
-          id: '1',
-          content: 'Hallo! Ik zou graag een marktanalyse willen voor Amsterdam Noord. Wat zijn de gemiddelde prijzen per m²?',
-          sender: 'user',
-          timestamp: new Date()
-        },
-        {
-          id: '2',
-          content: 'Hallo! Ik help je graag met een marktanalyse voor Amsterdam Noord. Op basis van de meest recente data kan ik je vertellen dat de gemiddelde prijzen per m² in Amsterdam Noord momenteel liggen tussen de €4.500 en €6.800, afhankelijk van de specifieke buurt en het type woning.\n\nHier is een voorbeeld van een gestructureerde offerte die ik kan genereren:\n\n```offerte\nOFFERTE MARKTANALYSE\n===================\nAdres: Voorbeeldstraat 123, Amsterdam Noord\nDatum: ' + new Date().toLocaleDateString('nl-NL') + '\n\nDiensten:\n- Marktwaarde bepaling: €495\n- Comparatieve marktanalyse: €295  \n- Fotografie en presentatie: €195\n\nTotaal: €985 (excl. BTW)\n```\n\nWil je dat ik een gedetailleerde analyse maak voor een specifiek adres?',
-          sender: 'ai',
-          timestamp: new Date()
-        }
-      ]
+      timestamp: new Date(Date.now() - 60 * 60 * 1000),
+      messages: []
     },
     {
       id: '2',
       name: 'Offerte Vondelpark appartement',
       lastMessage: 'Kun je een offerte maken voor een 3-kamer appartement?',
-      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
+      timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
       messages: []
     },
     {
       id: '3',
       name: 'Verhuurstrategie Jordaan',
       lastMessage: 'Wat is de beste verhuurstrategie voor deze buurt?',
-      timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
+      timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000),
       messages: []
     }
   ]);
   const [activeSessionId, setActiveSessionId] = useState<string>('1');
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const activeSession = sessions.find(s => s.id === activeSessionId);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [activeSession?.messages]);
-
-  const handleSendMessage = async (content: string) => {
-    if (!activeSession) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      content,
-      sender: 'user',
-      timestamp: new Date()
-    };
-
-    // Add user message
-    setSessions(prev => prev.map(session => 
-      session.id === activeSessionId 
-        ? { 
-            ...session, 
-            messages: [...session.messages, userMessage],
-            lastMessage: content,
-            timestamp: new Date()
-          }
-        : session
-    ));
-
-    setIsTyping(true);
-
-    // Simulate AI response
-    setTimeout(() => {
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: getAIResponse(content),
-        sender: 'ai',
-        timestamp: new Date()
-      };
-
-      setSessions(prev => prev.map(session => 
-        session.id === activeSessionId 
-          ? { 
-              ...session, 
-              messages: [...session.messages, aiMessage],
-              lastMessage: 'AI heeft geantwoord...'
-            }
-          : session
-      ));
-
-      setIsTyping(false);
-    }, 1500);
-  };
-
-  const getAIResponse = (userMessage: string): string => {
-    // Simple AI response simulation
-    if (userMessage.toLowerCase().includes('offerte')) {
-      return 'Ik help je graag met het maken van een offerte! Voor welk adres wil je een offerte opstellen? Ik heb de volgende informatie nodig:\n\n• Het volledige adres\n• Type dienstverlening (verkoop/verhuur/taxatie)\n• Gewenste startdatum\n\nMet deze gegevens kan ik een professionele offerte voor je genereren.';
-    }
-    
-    if (userMessage.toLowerCase().includes('marktanalyse')) {
-      return 'Voor een grondige marktanalyse verzamel ik de volgende informatie:\n\n• Recente verkopen in de buurt\n• Gemiddelde prijzen per m²\n• Markttrends en vooruitzichten\n• Vergelijkbare objecten\n\nWelke specifieke locatie wil je analyseren?';
-    }
-
-    return 'Dank je voor je vraag! Ik ben gespecialiseerd in het helpen van makelaars met offertes, marktanalyses en vastgoed content. Kun je me meer vertellen over wat je precies nodig hebt?';
-  };
 
   const handleNewSession = () => {
     const newSession: ChatSession = {
@@ -239,57 +154,10 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="max-w-4xl mx-auto p-4">
-            {activeSession?.messages.length === 0 ? (
-              <div className="text-center py-12">
-                {/* Dynamic client logo - placeholder for CMS/Langflow */}
-                <div className="mb-6">
-                  <img 
-                    src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
-                    alt="Client Logo" 
-                    className="h-16 w-auto mx-auto"
-                    data-dynamic-content="CLIENT_LOGO_URL"
-                  />
-                </div>
-                <h2 className="text-xl font-semibold mb-2" data-dynamic-content="WELCOME_TITLE">Welkom bij ai.huisraad.com</h2>
-                <p className="text-muted-foreground max-w-md mx-auto" data-dynamic-content="WELCOME_MESSAGE">
-                  Begin een gesprek door een vraag te stellen over offertes, marktanalyses of vastgoed content.
-                </p>
-              </div>
-            ) : (
-              <>
-                {activeSession?.messages.map((message, index) => (
-                  <MessageBubble
-                    key={message.id}
-                    message={message}
-                    isLatest={index === activeSession.messages.length - 1}
-                  />
-                ))}
-                
-                {isTyping && (
-                  <div className="flex justify-start mb-4">
-                    <div className="bg-card border border-border rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
-                      <div className="flex gap-1">
-                        <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                        <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                        <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-            <div ref={messagesEndRef} />
-          </div>
+        {/* Langflow Chat Widget */}
+        <div className="flex-1 relative">
+          <LangflowChat />
         </div>
-
-        {/* Input */}
-        <ChatInput
-          onSendMessage={handleSendMessage}
-          disabled={isTyping}
-        />
       </div>
 
       {/* Overlay for mobile */}
