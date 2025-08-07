@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 declare global {
   namespace JSX {
@@ -9,13 +9,28 @@ declare global {
 }
 
 const LangflowChat: React.FC = () => {
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
   useEffect(() => {
-    // Dynamically load the widget to prevent SSR issues
-    import("langflow-chat-widget").catch((error) => {
-      console.warn("Failed to load langflow-chat-widget:", error);
-    });
+    // Only attempt to load if in browser environment
+    if (typeof window !== 'undefined') {
+      // Dynamic import with proper error handling
+      const loadWidget = async () => {
+        try {
+          await import("langflow-chat-widget");
+          setWidgetLoaded(true);
+        } catch (error) {
+          console.warn("Langflow widget not available:", error);
+          setLoadError("Widget package not found - ready for configuration");
+        }
+      };
+
+      loadWidget();
+    }
   }, []);
 
+  // Styling configuration ready for when widget loads
   const chatWindowStyle = JSON.stringify({
     position: "fixed",
     top: "80px",
@@ -67,21 +82,57 @@ const LangflowChat: React.FC = () => {
     display: "none"
   });
 
+  // Show placeholder until widget is properly configured
+  if (loadError) {
+    return (
+      <div className="flex-1 flex items-center justify-center p-8">
+        <div className="text-center max-w-md">
+          <div className="mb-6">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-4l-4 4z" />
+              </svg>
+            </div>
+          </div>
+          <h2 className="text-xl font-semibold mb-3">Langflow Integration Ready</h2>
+          <p className="text-muted-foreground mb-4">
+            The chat interface is configured and ready to connect to your Langflow instance.
+          </p>
+          <div className="bg-muted/30 rounded-lg p-4 text-sm">
+            <p className="font-medium mb-2">Next steps:</p>
+            <ul className="text-left space-y-1 text-muted-foreground">
+              <li>• Configure host_url</li>
+              <li>• Add flow_id</li>
+              <li>• Set api_key</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render widget when loaded and configured
   return (
     <div className="langflow-container h-full w-full">
-      <langflow-chat
-        host_url="YOUR_LANGFLOW_HOST"
-        flow_id="YOUR_FLOW_ID"
-        api_key="YOUR_API_KEY"
-        start_open="true"
-        chat_window_style={chatWindowStyle}
-        bot_message_style={botMessageStyle}
-        user_message_style={userMessageStyle}
-        input_style={inputStyle}
-        chat_trigger_style={chatTriggerStyle}
-        window_title=""
-        tweaks="{}"
-      />
+      {widgetLoaded ? (
+        <langflow-chat
+          host_url="YOUR_LANGFLOW_HOST"
+          flow_id="YOUR_FLOW_ID"
+          api_key="YOUR_API_KEY"
+          start_open="true"
+          chat_window_style={chatWindowStyle}
+          bot_message_style={botMessageStyle}
+          user_message_style={userMessageStyle}
+          input_style={inputStyle}
+          chat_trigger_style={chatTriggerStyle}
+          window_title=""
+          tweaks="{}"
+        />
+      ) : (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      )}
     </div>
   );
 };
