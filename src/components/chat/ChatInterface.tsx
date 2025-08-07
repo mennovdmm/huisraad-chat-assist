@@ -3,6 +3,7 @@ import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
 import LangflowLoader from './LangflowLoader';
+import LangflowStyleLogger from './LangflowStyleLogger';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
@@ -171,6 +172,7 @@ export function ChatInterface() {
       </div>
 
       <LangflowLoader />
+      <LangflowStyleLogger />
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
