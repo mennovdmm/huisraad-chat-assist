@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
-import { LangflowConfig } from './LangflowConfig';
 import LangflowLoader from './LangflowLoader';
 
 import { cn } from '@/lib/utils';
@@ -26,11 +25,6 @@ interface ChatSession {
 
 export function ChatInterface() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [langflowConfig, setLangflowConfig] = useState<{
-    apiKey: string;
-    flowId: string;
-    hostUrl: string;
-  } | null>(null);
   const [sessions, setSessions] = useState<ChatSession[]>([
     {
       id: '1',
@@ -59,14 +53,6 @@ export function ChatInterface() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const activeSession = sessions.find(s => s.id === activeSessionId);
-
-  // Check for saved config on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('langflow-config');
-    if (saved) {
-      setLangflowConfig(JSON.parse(saved));
-    }
-  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -163,11 +149,6 @@ export function ChatInterface() {
     }
   };
 
-  // Show config screen if no valid config
-  if (!langflowConfig?.apiKey) {
-    return <LangflowConfig onConfigUpdate={setLangflowConfig} />;
-  }
-
   return (
     <div className="h-screen flex bg-background">
       {/* Sidebar */}
@@ -255,9 +236,9 @@ export function ChatInterface() {
             dangerouslySetInnerHTML={{
               __html: `
                 <langflow-chat
-                  host_url="${langflowConfig.hostUrl}"
-                  flow_id="${langflowConfig.flowId}"
-                  api_key="${langflowConfig.apiKey}"
+                  host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+                  flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+                  api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgYYpIc"
                   start_open="true"
                   window_title=""
                   placeholder="Hoe kan ik je helpen vandaag?"
