@@ -6,30 +6,6 @@
   --langflow-text: hsl(222.2 84% 4.9%);
 }
 
-/* Multiple aggressive selectors - everything gets #FDF6F0 */
-langflow-chat,
-langflow-chat *,
-langflow-chat::before,
-langflow-chat::after,
-langflow-chat *::before,
-langflow-chat *::after,
-langflow-chat .chat-container,
-langflow-chat .chat-window,
-langflow-chat .chat-messages,
-langflow-chat .messages-container,
-langflow-chat .chat-interface,
-langflow-chat .chat-wrapper,
-langflow-chat .widget-container,
-langflow-chat div,
-langflow-chat section,
-langflow-chat main,
-langflow-chat article,
-langflow-chat aside {
-  background: var(--langflow-bg) !important;
-  background-color: var(--langflow-bg) !important;
-  background-image: none !important;
-}
-
 /* Core widget positioning */
 langflow-chat {
   width: 100vw !important;
@@ -45,11 +21,13 @@ langflow-chat {
   padding-bottom: 80px !important;
 }
 
-langflow-chat * {
-  box-sizing: border-box;
-}
-
-/* Chat container en messages achtergrond */
+/* Multiple aggressive selectors - everything gets #FDF6F0 */
+langflow-chat,
+langflow-chat *,
+langflow-chat::before,
+langflow-chat::after,
+langflow-chat *::before,
+langflow-chat *::after,
 langflow-chat .chat-container,
 langflow-chat .chat-window,
 langflow-chat .chat-messages,
@@ -58,12 +36,19 @@ langflow-chat .chat-interface,
 langflow-chat .chat-wrapper,
 langflow-chat .widget-container,
 langflow-chat .message-container,
-langflow-chat .messages-wrapper {
+langflow-chat .messages-wrapper,
+langflow-chat div,
+langflow-chat section,
+langflow-chat main,
+langflow-chat article,
+langflow-chat aside {
   background: var(--langflow-bg) !important;
   background-color: var(--langflow-bg) !important;
-  color: var(--langflow-text) !important;
-  border: none !important;
-  height: 100% !important;
+  background-image: none !important;
+}
+
+langflow-chat * {
+  box-sizing: border-box;
 }
 
 /* Chat header styling - "We'll reply as soon as we can" */
@@ -124,88 +109,19 @@ langflow-chat .user-message {
   max-width: 80% !important;
   margin-left: auto !important;
 }
-  font-size: 0.875rem !important;
-  width: 100% !important;
-  margin-bottom: 1rem !important;
-}
 
-langflow-chat .chat-send-button,
-langflow-chat button {
-  background: hsl(12 100% 60%) !important; /* --primary */
-  color: hsl(0 0% 100%) !important; /* --primary-foreground */
-  border: none !important;
-  border-radius: 0.75rem !important;
-  padding: 0.75rem 1rem !important;
-  cursor: pointer !important;
-}
-
-langflow-chat * {
-  box-sizing: border-box;
-}
-
-/* If the widget creates standard elements, style them */
-langflow-chat .chat-container,
-langflow-chat .chat-window {
-  background: hsl(var(--background)) !important;
-  color: hsl(var(--foreground)) !important;
-  border: none !important;
-  height: 100% !important;
-}
-
-langflow-chat .chat-messages {
-  background: hsl(var(--background)) !important;
-  padding: 1rem !important;
-}
-
-langflow-chat .message.bot {
-  background: hsl(var(--card)) !important;
-  color: hsl(var(--foreground)) !important;
-  border: 1px solid hsl(var(--border)) !important;
-  border-radius: 1rem !important;
-  border-bottom-left-radius: 0.375rem !important;
-  padding: 0.75rem 1rem !important;
-  margin-bottom: 1rem !important;
-  max-width: 80% !important;
-}
-
-langflow-chat .message.user {
-  background: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
-  border-radius: 1rem !important;
-  border-bottom-right-radius: 0.375rem !important;
-  padding: 0.75rem 1rem !important;
-  margin-bottom: 1rem !important;
-  max-width: 80% !important;
-  margin-left: auto !important;
-}
-
+/* Input field styling */
 langflow-chat .chat-input,
 langflow-chat input[type="text"],
 langflow-chat textarea {
-  background: hsl(var(--background)) !important;
-  border: 1px solid hsl(var(--border)) !important;
-  border-radius: 0.5rem !important;
-  color: hsl(var(--foreground)) !important;
+  background: var(--langflow-bg) !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 0.75rem !important;
+  color: var(--langflow-text) !important;
   padding: 0.75rem 1rem !important;
   font-size: 0.875rem !important;
   width: 100% !important;
   margin-bottom: 1rem !important;
-}
-
-langflow-chat .chat-send-button,
-langflow-chat button {
-  background: hsl(var(--primary)) !important;
-  color: hsl(var(--primary-foreground)) !important;
-  border: none !important;
-  border-radius: 0.5rem !important;
-  padding: 0.75rem 1rem !important;
-  cursor: pointer !important;
-}
-
-/* Hide trigger button if it exists */
-langflow-chat .chat-trigger,
-langflow-chat .trigger-button {
-  display: none !important;
 }
 
 /* Input field positioning - must stay visible */
@@ -220,6 +136,12 @@ langflow-chat textarea {
   z-index: 100 !important;
 }
 
+/* Hide trigger button if it exists */
+langflow-chat .chat-trigger,
+langflow-chat .trigger-button {
+  display: none !important;
+}
+
 /* Footer space */
 .chat-footer {
   position: fixed;
@@ -227,14 +149,14 @@ langflow-chat textarea {
   left: 0;
   right: 0;
   height: 80px;
-  background: #FDF6F0; /* Exact background match */
-  border-top: 1px solid hsl(214.3 31.8% 91.4%); /* --border */
+  background: var(--langflow-bg);
+  border-top: 1px solid #e5e7eb;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  color: hsl(215.4 16.3% 46.9%); /* --muted-foreground */
+  color: hsl(215.4 16.3% 46.9%);
 }
 
 /* Responsive styling */
