@@ -37,11 +37,24 @@ langflow-chat .chat-wrapper,
 langflow-chat .widget-container,
 langflow-chat .message-container,
 langflow-chat .messages-wrapper,
+langflow-chat .messages-area,
+langflow-chat .chat-area,
+langflow-chat .conversation-area,
+langflow-chat .conversation,
+langflow-chat .messages,
+langflow-chat .chat-content,
+langflow-chat .widget-content,
 langflow-chat div,
 langflow-chat section,
 langflow-chat main,
 langflow-chat article,
-langflow-chat aside {
+langflow-chat aside,
+langflow-chat .MuiBox-root,
+langflow-chat [class*="css-"],
+langflow-chat [class*="mui-"],
+langflow-chat [data-testid],
+langflow-chat [role="main"],
+langflow-chat [role="region"] {
   background: var(--langflow-bg) !important;
   background-color: var(--langflow-bg) !important;
   background-image: none !important;
@@ -57,10 +70,26 @@ langflow-chat .widget-header,
 langflow-chat .chat-title,
 langflow-chat .header-text,
 langflow-chat .chat-window-header,
+langflow-chat .title-bar,
+langflow-chat .status-text,
+langflow-chat .subtitle,
+langflow-chat .description,
+langflow-chat .welcome-message,
+langflow-chat .header-message,
+langflow-chat .info-text,
 langflow-chat h1,
 langflow-chat h2,
 langflow-chat h3,
-langflow-chat .title {
+langflow-chat h4,
+langflow-chat h5,
+langflow-chat h6,
+langflow-chat .title,
+langflow-chat p:first-child,
+langflow-chat span:first-child,
+langflow-chat [class*="header"],
+langflow-chat [class*="title"],
+langflow-chat [class*="subtitle"],
+langflow-chat [class*="status"] {
   background: var(--langflow-bg) !important;
   background-color: var(--langflow-bg) !important;
   color: var(--langflow-text) !important;

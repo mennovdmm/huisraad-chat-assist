@@ -14,16 +14,22 @@ export const LangflowForcer = () => {
           widget.style.setProperty('background-color', '#FDF6F0', 'important');
         }
         
-        // Force background on all child elements
+        // Force background on ALL child elements - no exceptions
         const allChildren = widget.querySelectorAll('*');
         allChildren.forEach(child => {
           if (child instanceof HTMLElement) {
-            const computedStyle = window.getComputedStyle(child);
-            // Only override if element has a background
-            if (computedStyle.backgroundColor !== 'rgba(0, 0, 0, 0)' && 
-                computedStyle.backgroundColor !== 'transparent') {
+            // Force background on EVERY element
+            child.style.setProperty('background', '#FDF6F0', 'important');
+            child.style.setProperty('background-color', '#FDF6F0', 'important');
+            child.style.setProperty('background-image', 'none', 'important');
+            
+            // Special targeting for text elements that might be headers
+            const text = child.textContent?.toLowerCase() || '';
+            if (text.includes('reply') || text.includes('soon') || text.includes('can') || 
+                text.includes('help') || text.includes('message') || text.includes('chat')) {
               child.style.setProperty('background', '#FDF6F0', 'important');
               child.style.setProperty('background-color', '#FDF6F0', 'important');
+              child.style.setProperty('color', '#1f2937', 'important');
             }
           }
         });
