@@ -3,6 +3,29 @@ import React, { useEffect } from 'react';
 const LangflowStyleLogger: React.FC = () => {
   useEffect(() => {
     console.log('🎨 LANGFLOW STYLE LOGGER ACTIVE');
+
+    // STATUSBALK HACK - Force hide or change text
+    const hideStatusBar = () => {
+      const lw = document.querySelector('langflow-chat');
+      if (lw && lw.shadowRoot) {
+        // Shadow DOM approach
+        const status = lw.shadowRoot.querySelector('.status-bar, .waiting-message, .lf-status, .subtitle, .description, .welcome-message');
+        if (status) {
+          status.textContent = "Online";
+          // Or hide completely: status.style.display = 'none';
+          console.log('✅ Status text changed to "Online" via shadowRoot');
+        }
+      } else if (lw) {
+        // Regular DOM approach
+        const statuses = lw.querySelectorAll('.status-bar, .waiting-message, .lf-status, .subtitle, .description, .welcome-message, p, span, div');
+        statuses.forEach(status => {
+          if (status.textContent?.includes("We'll reply") || status.textContent?.includes("soon")) {
+            status.textContent = "Online";
+            console.log('✅ Status text changed to "Online" via regular DOM');
+          }
+        });
+      }
+    };
     
     const injectCSSOverride = () => {
       // Remove existing style if present
@@ -176,6 +199,7 @@ const LangflowStyleLogger: React.FC = () => {
     const interval = setInterval(() => {
       checkWidget();
       injectCSSOverride(); // Keep injecting
+      hideStatusBar(); // Keep trying to change status text
     }, 2000);
     
     // Additional checks at longer intervals for async content
