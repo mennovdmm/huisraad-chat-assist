@@ -169,14 +169,47 @@ const LangflowStyleLogger: React.FC = () => {
       injectCSSOverride();
     }, 10000);
     
-    // Watch for DOM changes
+    // Watch for DOM changes specifically inside langflow-chat elements
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') {
           mutation.addedNodes.forEach((node) => {
-            if (node.nodeType === 1 && (node as Element).tagName === 'LANGFLOW-CHAT') {
-              console.log('🆕 New langflow-chat element detected!');
-              setTimeout(checkWidget, 500);
+            if (node.nodeType === 1) {
+              const element = node as Element;
+              
+              // Check if this is a new langflow-chat element
+              if (element.tagName === 'LANGFLOW-CHAT') {
+                console.log('🆕 New langflow-chat element detected!');
+                setTimeout(() => {
+                  checkWidget();
+                  injectCSSOverride();
+                }, 500);
+              }
+              
+              // Check if content was added inside an existing langflow-chat element
+              if (element.closest('langflow-chat')) {
+                console.log('🔄 Content added to langflow-chat element!', {
+                  tag: element.tagName,
+                  classes: element.className,
+                  textContent: element.textContent?.slice(0, 100)
+                });
+                
+                // Force background on new element
+                (element as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
+                (element as HTMLElement).style.setProperty('background', '#FDF6F0', 'important');
+                
+                // Check for child elements too
+                const children = element.querySelectorAll('*');
+                children.forEach(child => {
+                  (child as HTMLElement).style.setProperty('background-color', '#FDF6F0', 'important');
+                  (child as HTMLElement).style.setProperty('background', '#FDF6F0', 'important');
+                });
+                
+                console.log(`🎨 Applied background to ${children.length + 1} elements!`);
+                
+                // Re-run full check after content changes
+                setTimeout(checkWidget, 100);
+              }
             }
           });
         }
