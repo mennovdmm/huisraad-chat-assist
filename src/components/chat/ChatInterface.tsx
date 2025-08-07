@@ -231,80 +231,86 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - Met JSON styling props */}
+        {/* Langflow Widget - Inline JSON styling zoals in issue #39 */}
         <div className="flex-1 relative overflow-hidden">
-          <langflow-chat
-            host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
-            flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
-            api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
-            start_open="true"
-            chat_window_style={JSON.stringify({
-              backgroundColor: "#FDF6F0",
-              background: "#FDF6F0",
-              color: "hsl(222.2 84% 4.9%)",
-              fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-              width: "100%",
-              height: "calc(100vh - 160px)", // 80px header + 80px footer
-              minWidth: "100vw",
-              minHeight: "calc(100vh - 160px)",
-              maxWidth: "100vw",
-              maxHeight: "calc(100vh - 160px)",
-              borderRadius: "0px",
-              padding: "20px",
-              paddingTop: "0px",
-              paddingBottom: "80px", // Extra space for input
-              margin: "0px",
-              boxShadow: "none",
-              border: "none",
-              position: "fixed",
-              top: "80px",
-              left: "0",
-              right: "0",
-              bottom: "80px", // Footer space
-              zIndex: "1"
-            })}
-            bot_message_style={JSON.stringify({
-              backgroundColor: "hsl(0 0% 100%)", // --card
-              color: "hsl(222.2 84% 4.9%)", // --foreground
-              borderRadius: "12px",
-              padding: "12px 16px",
-              marginBottom: "8px",
-              fontFamily: "Inter, sans-serif",
-              border: "1px solid hsl(214.3 31.8% 91.4%)" // --border
-            })}
-            user_message_style={JSON.stringify({
-              backgroundColor: "#FBC27F", // Back to original color
-              color: "hsl(222.2 84% 4.9%)", // --foreground (dark text)
-              borderRadius: "12px",
-              padding: "12px 16px",
-              marginBottom: "8px",
-              fontFamily: "Inter, sans-serif"
-            })}
-            input_style={JSON.stringify({
-              backgroundColor: "#FDF6F0 !important", // Exact match
-              color: "hsl(222.2 84% 4.9%) !important", // --foreground
-              border: "2px solid hsl(214.3 31.8% 91.4%) !important", // --border
-              borderRadius: "12px !important",
-              padding: "18px 16px !important",
-              fontSize: "16px !important",
-              lineHeight: "1.5 !important",
-              fontFamily: "Inter, sans-serif !important",
-              minHeight: "80px !important",
-              height: "80px !important",
-              maxHeight: "200px !important",
-              resize: "vertical !important",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1) !important",
-              transition: "all 0.2s ease !important",
-              position: "relative !important",
-              zIndex: "10 !important",
-              width: "100% !important"
-            })}
-            chat_trigger_style='{"display":"none"}'
-            window_title=""
-            placeholder="Hoe kan ik je helpen vandaag?"
-            show_close_button="false"
-            hide_close_button="true"
-            tweaks="{}"
+          <div 
+            dangerouslySetInnerHTML={{
+              __html: `
+                <langflow-chat
+                  host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
+                  flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
+                  api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgYYpIc"
+                  start_open="true"
+                  window_title=""
+                  placeholder="Hoe kan ik je helpen vandaag?"
+                  tweaks="{}"
+                  chat_window_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "background": "#FDF6F0",
+                    "border": "none",
+                    "borderRadius": "0px",
+                    "color": "#1f2937",
+                    "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+                    "padding": "20px",
+                    "paddingTop": "0px",
+                    "paddingBottom": "80px",
+                    "margin": "0px",
+                    "boxShadow": "none",
+                    "width": "100%",
+                    "height": "calc(100vh - 160px)",
+                    "minWidth": "100vw",
+                    "minHeight": "calc(100vh - 160px)",
+                    "maxWidth": "100vw",
+                    "maxHeight": "calc(100vh - 160px)",
+                    "position": "fixed",
+                    "top": "80px",
+                    "left": "0",
+                    "right": "0",
+                    "bottom": "80px",
+                    "zIndex": "1"
+                  }'
+                  bot_message_style='{
+                    "backgroundColor": "#ffffff",
+                    "color": "#1f2937",
+                    "borderRadius": "12px",
+                    "padding": "12px 16px",
+                    "marginBottom": "8px",
+                    "fontFamily": "Inter, sans-serif",
+                    "border": "1px solid #e5e7eb"
+                  }'
+                  user_message_style='{
+                    "backgroundColor": "#FBC27F",
+                    "color": "#1f2937",
+                    "borderRadius": "12px",
+                    "padding": "12px 16px",
+                    "marginBottom": "8px",
+                    "fontFamily": "Inter, sans-serif"
+                  }'
+                  input_style='{
+                    "backgroundColor": "#FDF6F0",
+                    "color": "#1f2937",
+                    "border": "2px solid #e5e7eb",
+                    "borderRadius": "12px",
+                    "padding": "18px 16px",
+                    "fontSize": "16px",
+                    "lineHeight": "1.5",
+                    "fontFamily": "Inter, sans-serif",
+                    "minHeight": "80px",
+                    "height": "80px",
+                    "maxHeight": "200px",
+                    "resize": "vertical",
+                    "boxShadow": "0 2px 8px rgba(0,0,0,0.1)",
+                    "transition": "all 0.2s ease",
+                    "position": "relative",
+                    "zIndex": "10",
+                    "width": "100%"
+                  }'
+                  chat_trigger_style='{"display":"none"}'
+                  show_close_button="false"
+                  hide_close_button="true"
+                />
+              `
+            }}
           />
         </div>
       </div>
