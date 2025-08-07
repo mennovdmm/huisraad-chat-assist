@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Plus } from 'lucide-react';
+import { Menu, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
 import LangflowLoader from './LangflowLoader';
@@ -334,6 +334,16 @@ export function ChatInterface() {
             }}
           />
         </div>
+
+        {/* Back Button - Links onder */}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="fixed bottom-20 left-4 z-20 h-10 w-10 p-0 bg-background/80 hover:bg-background border border-border/20 rounded-full"
+          onClick={() => window.history.back()}
+        >
+          <ArrowLeft size={20} className="text-muted-foreground" />
+        </Button>
       </div>
 
       {/* Footer */}
