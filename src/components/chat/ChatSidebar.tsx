@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2 } from 'lucide-react';
+import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
@@ -25,6 +25,7 @@ interface ChatSidebarProps {
   onNewSession: () => void;
   onRenameSession: (sessionId: string, newName: string) => void;
   onDeleteSession: (sessionId: string) => void;
+  onCloseSidebar?: () => void;
   className?: string;
 }
 
@@ -35,6 +36,7 @@ export function ChatSidebar({
   onNewSession,
   onRenameSession,
   onDeleteSession,
+  onCloseSidebar,
   className
 }: ChatSidebarProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -62,14 +64,24 @@ export function ChatSidebar({
     <div className={cn("w-64 bg-muted/30 border-r border-border flex flex-col h-full", className)}>
       {/* Branding Header */}
       <div className="p-4 border-b border-border">
-        {/* Dynamic client logo - placeholder for CMS/Langflow */}
-        <div className="mb-4">
+        <div className="flex items-center justify-between mb-4">
+          {/* Dynamic client logo - placeholder for CMS/Langflow */}
           <img 
             src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" 
             alt="Client Logo" 
-            className="h-12 w-auto mb-4"
+            className="h-12 w-auto"
             data-dynamic-content="CLIENT_LOGO_URL"
           />
+          {onCloseSidebar && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onCloseSidebar}
+              className="h-8 w-8 p-0 hover:bg-accent"
+            >
+              <X size={16} className="text-muted-foreground" />
+            </Button>
+          )}
         </div>
         <div className="mb-4">
           <div className="text-xl font-semibold text-foreground mb-1" data-dynamic-content="COMPANY_NAME">Makelaar Amsterdam</div>

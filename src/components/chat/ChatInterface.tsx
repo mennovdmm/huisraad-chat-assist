@@ -165,6 +165,7 @@ export function ChatInterface() {
             onNewSession={handleNewSession}
             onRenameSession={handleRenameSession}
             onDeleteSession={handleDeleteSession}
+            onCloseSidebar={() => setIsSidebarOpen(false)}
             className="h-full"
           />
         )}
