@@ -1,11 +1,21 @@
-/* Langflow widget styling - NO Shadow DOM */
+/* Langflow widget styling - JSON Props + CSS backup */
 
-/* Basic langflow-chat element styling */
+/* Core widget positioning */
 langflow-chat {
-  width: 100% !important;
-  height: 100% !important;
+  width: 100vw !important;
+  height: calc(100vh - 80px) !important;
+  position: fixed !important;
+  top: 80px !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 1 !important;
   display: block !important;
-  background: hsl(var(--background)) !important;
+  background: #ffffff !important;
+}
+
+langflow-chat * {
+  box-sizing: border-box;
 }
 
 /* If the widget creates standard elements, style them */

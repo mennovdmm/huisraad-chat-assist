@@ -229,14 +229,76 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - Clean version */}
+        {/* Langflow Widget - Met JSON styling props */}
         <div className="flex-1 relative overflow-hidden">
           <langflow-chat
             host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
             flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
             api_key="sk-bjc2tlJcQqNE4YmnzotJfsdM35q_OjgT_U_SUgYYpIc"
             start_open="true"
+            chat_window_style={JSON.stringify({
+              backgroundColor: "#ffffff",
+              color: "#1f2937",
+              fontFamily: "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+              width: "100%",
+              height: "calc(100vh - 80px)",
+              minWidth: "100vw",
+              minHeight: "calc(100vh - 80px)",
+              maxWidth: "100vw",
+              maxHeight: "calc(100vh - 80px)",
+              borderRadius: "0px",
+              padding: "20px",
+              paddingTop: "0px",
+              margin: "0px",
+              boxShadow: "none",
+              border: "none",
+              position: "fixed",
+              top: "80px",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              zIndex: "1"
+            })}
+            bot_message_style={JSON.stringify({
+              backgroundColor: "#f3f4f6",
+              color: "#1f2937",
+              borderRadius: "12px",
+              padding: "12px 16px",
+              marginBottom: "8px",
+              fontFamily: "Inter, sans-serif"
+            })}
+            user_message_style={JSON.stringify({
+              backgroundColor: "#FBC27F",
+              color: "#1f2937",
+              borderRadius: "12px",
+              padding: "12px 16px",
+              marginBottom: "8px",
+              fontFamily: "Inter, sans-serif"
+            })}
+            input_style={JSON.stringify({
+              backgroundColor: "#ffffff !important",
+              color: "#1f2937 !important",
+              border: "2px solid #e5e7eb !important",
+              borderRadius: "12px !important",
+              padding: "18px 16px !important",
+              fontSize: "16px !important",
+              lineHeight: "1.5 !important",
+              fontFamily: "Inter, sans-serif !important",
+              minHeight: "80px !important",
+              height: "80px !important",
+              maxHeight: "200px !important",
+              resize: "vertical !important",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1) !important",
+              transition: "all 0.2s ease !important",
+              position: "relative !important",
+              zIndex: "10 !important",
+              width: "100% !important"
+            })}
+            chat_trigger_style='{"display":"none"}'
             window_title=""
+            placeholder="Hoe kan ik je helpen vandaag?"
+            show_close_button="false"
+            hide_close_button="true"
             tweaks="{}"
           />
         </div>
