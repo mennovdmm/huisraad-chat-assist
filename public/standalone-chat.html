@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Standalone Chat Assistant | Huisraad</title>
+    <meta name="description" content="Standalone chatpagina met sessies, typ-indicator en professionele UI voor de Huisraad AI-assistent." />
+    <meta name="author" content="Huisraad" />
+    <link rel="canonical" href="" id="canonicalLink" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="Standalone Chat Assistant | Huisraad" />
+    <meta property="og:description" content="Chat met de Huisraad AI-assistent. Sessies, typ-indicator en historie in een professionele interface." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.ico" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      /* Design tokens - afgestemd op bestaande app (HSL) */
+      :root {
+        --background: 210 40% 98%; /* #F9FAFB */
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 210 40% 98%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --muted: 210 40% 96%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --border: 214.3 31.8% 91.4%;
+        --ring: 215 20.2% 65.1%;
+
+        --primary: 12 100% 60%;
+        --primary-foreground: 0 0% 100%;
+
+        --success: 142 71% 45%;
+        --warning: 38 92% 50%;
+        --destructive: 0 84% 60%;
+        --radius: 12px;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Layout */
+      .app {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        border-right: 1px solid hsl(var(--border));
+        background: hsl(var(--card));
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 12px;
+        border-bottom: 1px solid hsl(var(--border));
+        background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+      .sidebar-header button {
+        appearance: none;
+        border: 1px solid hsl(var(--border));
+        background: white;
+        color: hsl(var(--foreground));
+        padding: 8px 12px;
+        border-radius: calc(var(--radius) - 6px);
+        cursor: pointer;
+        transition: all .2s ease;
+        font-weight: 500;
+      }
+      .sidebar-header button#newChatBtn {
+        background: hsl(var(--primary));
+        color: hsl(var(--primary-foreground));
+        border-color: transparent;
+      }
+      .sidebar-header button:hover { box-shadow: 0 2px 10px hsl(var(--ring) / 0.25); transform: translateY(-1px); }
+
+      .sessions-list {
+        padding: 8px;
+        overflow-y: auto;
+        flex: 1;
+      }
+      .session-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px 12px;
+        border: 1px solid hsl(var(--border));
+        border-radius: calc(var(--radius) - 6px);
+        background: white;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: background .2s ease, border-color .2s ease;
+      }
+      .session-item:hover { background: hsl(var(--muted)); }
+      .session-title { font-weight: 600; font-size: 14px; }
+      .session-meta { color: hsl(var(--muted-foreground)); font-size: 12px; }
+
+      /* Main Chat Area */
+      .chat-container {
+        display: grid;
+        grid-template-rows: auto 1fr auto auto; /* header, messages, input, status */
+        height: 100vh;
+        min-width: 0;
+      }
+      .chat-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid hsl(var(--border));
+        backdrop-filter: blur(6px);
+        background: linear-gradient(180deg, white 0%, hsl(var(--card)) 100%);
+        position: sticky;
+        top: 0;
+        z-index: 2;
+      }
+      .agent-logo {
+        width: 36px; height: 36px;
+        display: grid; place-items: center;
+        border-radius: 10px;
+        background: hsl(var(--muted));
+        border: 1px solid hsl(var(--border));
+      }
+      .agent-info h1 { font-size: 16px; margin: 0; }
+      .agent-info p { margin: 2px 0 0 0; color: hsl(var(--muted-foreground)); font-size: 13px; }
+
+      .messages-container {
+        overflow-y: auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 60%);
+      }
+
+      .msg { max-width: 72%; padding: 10px 12px; border-radius: 14px; border: 1px solid hsl(var(--border)); font-size: 14px; line-height: 1.4; }
+      .msg.assistant { align-self: flex-start; background: white; }
+      .msg.user { align-self: flex-end; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border-color: transparent; }
+      .msg time { display: block; margin-top: 6px; font-size: 11px; opacity: .7; }
+
+      /* Typing indicator */
+      .typing-indicator { display: flex; align-items: center; gap: 8px; padding: 0 16px 8px; }
+      .typing-dots { display: inline-flex; gap: 6px; align-items: center; }
+      .typing-dots span { width: 6px; height: 6px; background: hsl(var(--muted-foreground)); border-radius: 50%; display: inline-block; animation: blink 1.2s infinite ease-in-out; }
+      .typing-dots span:nth-child(2) { animation-delay: .2s; }
+      .typing-dots span:nth-child(3) { animation-delay: .4s; }
+      @keyframes blink { 0%, 80%, 100% { opacity: .2; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-2px); } }
+
+      /* Input */
+      .input-container { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px 16px; border-top: 1px solid hsl(var(--border)); background: white; }
+      .input-container textarea {
+        width: 100%;
+        min-height: 40px; max-height: 160px;
+        padding: 10px 12px; border-radius: 12px; resize: none;
+        border: 1px solid hsl(var(--border)); outline: none; font-size: 14px; background: hsl(var(--card));
+      }
+      .input-container textarea:focus { border-color: hsl(var(--ring)); box-shadow: 0 0 0 3px hsl(var(--ring) / .25); background: white; }
+      .input-container button {
+        appearance: none; border: none; cursor: pointer; padding: 0 16px; border-radius: 12px; font-weight: 600; font-size: 14px;
+        background: hsl(var(--foreground)); color: white; transition: transform .15s ease, box-shadow .15s ease;
+      }
+      .input-container button:hover { transform: translateY(-1px); box-shadow: 0 6px 18px hsl(var(--foreground) / .25); }
+
+      /* Status bar */
+      .status-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 16px; font-size: 12px; color: hsl(var(--muted-foreground)); border-top: 1px solid hsl(var(--border)); background: hsl(var(--card)); }
+      .metrics { display: flex; gap: 12px; white-space: nowrap; }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+        .sidebar { height: 240px; }
+        .messages-container { padding-bottom: 8px; }
+        .msg { max-width: 85%; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app" role="main">
+      <!-- Sidebar Component -->
+      <aside id="sidebar" class="sidebar" aria-label="Chat sessies">
+        <div class="sidebar-header">
+          <button id="backBtn" onclick="goBackToDashboard()" aria-label="Terug naar dashboard">← Dashboard</button>
+          <button id="newChatBtn" onclick="createNewSession()" aria-label="Nieuwe chat starten">+ New Chat</button>
+        </div>
+        <div id="sessionsList" class="sessions-list" aria-live="polite">
+          <!-- Dynamic sessions via JS -->
+          <!-- Voorbeeld (optioneel verwijderen):
+          <div class="session-item" onclick="loadSession('demo')">
+            <div class="session-title">Voorbeeldsessie</div>
+            <div class="session-meta">Laatst: zojuist</div>
+          </div> -->
+        </div>
+      </aside>
+
+      <!-- Main Chat Area -->
+      <section id="chatContainer" class="chat-container" aria-label="Chat">
+        <header class="chat-header">
+          <div id="agentLogo" class="agent-logo" aria-hidden="true">🤖</div>
+          <div class="agent-info">
+            <h1 id="agentTitle">Standalone Chat Assistant</h1>
+            <p id="agentSubtitle">Klaar om te starten</p>
+          </div>
+        </header>
+
+        <div id="messagesContainer" class="messages-container" aria-live="polite">
+          <!-- Dynamic messages via JS -->
+        </div>
+
+        <div id="typingIndicator" class="typing-indicator" style="display:none">
+          <div class="typing-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="sr-only">Assistent typt…</span>
+        </div>
+
+        <div class="input-container">
+          <label for="messageInput" class="sr-only">Bericht</label>
+          <textarea id="messageInput" placeholder="Type your message..." rows="1" aria-label="Bericht invoerveld"></textarea>
+          <button id="sendBtn" onclick="sendMessage()" aria-label="Verstuur bericht">Send</button>
+        </div>
+
+        <div class="status-bar">
+          <span id="statusText">Ready</span>
+          <div class="metrics">
+            <span id="responseTime">Response time: --</span>
+            <span id="tokensPerSecond">Speed: --</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Toegankelijkheidshelper (visueel verborgen)
+      (function(){
+        const s = document.createElement('style');
+        s.innerHTML = '.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}';
+        document.head.appendChild(s);
+      })();
+
+      // Agent Configuration
+      function loadAgent(agentId) { /* TODO */ }
+
+      // Session Management
+      function loadUserSessions() { /* TODO */ }
+      function createNewSession() { /* TODO */ }
+      function loadSession(sessionId) { /* TODO */ }
+
+      // Chat Functionality
+      function sendMessage() { /* TODO */ }
+      function streamResponse(message, contentElement) { /* TODO */ }
+      function saveMessage(role, content) { /* TODO */ }
+
+      // UI Helpers
+      function addMessage(role, content, timestamp) { /* TODO */ }
+      function showTyping() { /* TODO */ }
+      function hideTyping() { /* TODO */ }
+      function scrollToBottom() { /* TODO */ }
+      function goBackToDashboard() { /* TODO */ }
+
+      // Kleine util om URL-params te lezen
+      function getQueryParam(key){
+        const params = new URLSearchParams(window.location.search);
+        return params.get(key);
+      }
+
+      // Auto-resize textarea (UI gedrag, geen backend nodig)
+      function autoResize(el){
+        el.style.height = 'auto';
+        el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+      }
+
+      // Initialize on load
+      window.addEventListener('DOMContentLoaded', () => {
+        // Canonical naar huidige URL
+        const canon = document.getElementById('canonicalLink');
+        if (canon) canon.href = window.location.href;
+
+        // Auto-resize setup
+        const ta = document.getElementById('messageInput');
+        if (ta) {
+          autoResize(ta);
+          ta.addEventListener('input', () => autoResize(ta));
+          ta.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); }
+          });
+        }
+
+        // URL params support voor agent ID
+        const agentId = getQueryParam('agent') || getQueryParam('agentId');
+        if (agentId) {
+          try { loadAgent(agentId); } catch (e) { /* ignore */ }
+        }
+
+        // Sessies laden (placeholder aanroep)
+        try { loadUserSessions(); } catch (e) { /* ignore */ }
+      });
+    </script>
+  </body>
+</html>
