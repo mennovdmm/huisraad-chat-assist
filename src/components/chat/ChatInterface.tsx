@@ -1,12 +1,13 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
-import LangflowLoader from './LangflowLoader';
+import { MessageBubble } from './MessageBubble';
+import { ChatInput } from './ChatInput';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
-import './langflow-widget.css';
 
 interface Message {
   id: string;
@@ -122,7 +123,6 @@ export function ChatInterface() {
     return 'Dank je voor je vraag! Ik ben gespecialiseerd in het helpen van makelaars met offertes, marktanalyses en vastgoed content. Kun je me meer vertellen over wat je precies nodig hebt?';
   };
 
-
   const handleNewSession = () => {
     const newSession: ChatSession = {
       id: Date.now().toString(),
@@ -171,11 +171,10 @@ export function ChatInterface() {
         )}
       </div>
 
-      <LangflowLoader key={Date.now()} />
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 backdrop-blur-sm py-2 pl-4 pr-4" style={{ backgroundColor: '#F9FAFB' }}>
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-4 pr-4">
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -218,18 +217,11 @@ export function ChatInterface() {
               />
             </div>
             
-            {/* Centered Title and User Info */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center">
-              <h1 className="text-lg font-bold text-foreground">Agent Title</h1>
-              <p className="text-sm text-muted-foreground">Ingelogd als: Gebruiker Naam</p>
-            </div>
-            
             {/* New Chat Button */}
             <Button 
               onClick={handleNewSession}
               variant="outline"
               className="gap-2"
-              style={{ backgroundColor: '#F9FAFB', borderColor: '#e5e7eb' }}
             >
               <Plus size={16} />
               Nieuwe Chat
@@ -237,114 +229,36 @@ export function ChatInterface() {
           </div>
         </div>
 
-        {/* Langflow Widget - Terug naar originele sizing */}
-        <div className="flex-1 relative overflow-hidden">
-          <div 
-            dangerouslySetInnerHTML={{
-              __html: `
-                <langflow-chat
-                  host_url="https://langflow-ogonline-v2-u36305.vm.elestio.app"
-                  flow_id="62f396d2-3e45-4265-b10c-b18a63cd2b07"
-                  api_key="sk-sQ5DPd1gkq91Uf_gVFMV4bNBL0YzhuxM_DGAsdfGRGw"
-                  start_open="true"
-                  window_title=""
-                  placeholder="Hoe kan ik je helpen vandaag?"
-                  tweaks="{}"
-                  online_message="Online"
-                  chat_window_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "background": "#F9FAFB",
-                    "border": "none",
-                    "borderRadius": "0px",
-                    "color": "#1f2937",
-                    "fontFamily": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
-                    "padding": "60px",
-                    "paddingTop": "20px",
-                    "paddingBottom": "100px",
-                    "margin": "0px",
-                    "boxShadow": "none",
-                    "width": "100%",
-                    "height": "calc(100vh - 120px)",
-                    "minWidth": "100vw",
-                    "minHeight": "calc(100vh - 120px)",
-                    "maxWidth": "100vw",
-                    "maxHeight": "calc(100vh - 120px)",
-                    "position": "fixed",
-                    "top": "60px",
-                    "left": "0",
-                    "right": "0",
-                    "bottom": "60px",
-                    "zIndex": "1"
-                  }'
-                  bot_message_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "color": "#1f2937",
-                    "borderRadius": "12px",
-                    "padding": "12px 16px",
-                    "marginBottom": "8px",
-                    "fontFamily": "Inter, sans-serif",
-                    "fontSize": "14px",
-                    "lineHeight": "1.5",
-                    "border": "1px solid #e5e7eb"
-                  }'
-                  user_message_style='{
-                    "backgroundColor": "#FBC27F",
-                    "color": "#1f2937",
-                    "borderRadius": "12px",
-                    "padding": "12px 16px",
-                    "marginBottom": "8px",
-                    "fontFamily": "Inter, sans-serif",
-                    "fontSize": "14px",
-                    "lineHeight": "1.5"
-                  }'
-                  input_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "color": "#1f2937",
-                    "border": "2px solid #F9FAFB",
-                    "borderRadius": "12px",
-                    "padding": "18px 16px",
-                    "fontSize": "14px",
-                    "lineHeight": "1.5",
-                    "fontFamily": "Inter, sans-serif",
-                    "minHeight": "80px",
-                    "height": "80px",
-                    "maxHeight": "200px",
-                    "resize": "vertical",
-                    "boxShadow": "0 2px 8px rgba(0,0,0,0.1)",
-                    "transition": "all 0.2s ease",
-                    "position": "relative",
-                    "zIndex": "10",
-                    "width": "100%"
-                  }'
-                  send_button_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "border": "2px solid #F9FAFB",
-                    "borderRadius": "8px",
-                    "color": "#F74E06",
-                    "cursor": "pointer",
-                    "padding": "8px 12px"
-                  }'
-                  send_icon_style='{
-                    "backgroundColor": "transparent",
-                    "color": "#F74E06"
-                  }'
-                  input_container_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "border": "none",
-                    "padding": "10px"
-                  }'
-                  error_message_style='{
-                    "backgroundColor": "#F9FAFB",
-                    "color": "#1f2937",
-                    "border": "1px solid #e5e7eb"
-                  }'
-                  chat_trigger_style='{"display":"none"}'
-                  show_close_button="false"
-                  hide_close_button="true"
-                />
-              `
-            }}
-          />
+        {/* Messages Container */}
+        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+          {activeSession?.messages.map((message, index) => (
+            <MessageBubble
+              key={message.id}
+              message={message}
+              isLatest={index === activeSession.messages.length - 1}
+            />
+          ))}
+          
+          {isTyping && (
+            <div className="flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              </div>
+              <div className="bg-muted rounded-2xl px-4 py-3">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
+                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                </div>
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Chat Input */}
+        <div className="p-4 border-t border-border">
+          <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} />
         </div>
 
         {/* Back Button - Links onder */}
@@ -356,11 +270,6 @@ export function ChatInterface() {
         >
           <ArrowLeft size={20} className="text-muted-foreground" />
         </Button>
-      </div>
-
-      {/* Footer */}
-      <div className="chat-footer">
-        HuisRaad Chat Assistant - Powered by AI
       </div>
 
       {/* Overlay for mobile */}
