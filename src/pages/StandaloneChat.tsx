@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,6 @@ const StandaloneChat: React.FC = () => {
   // URL params for agent ID
   const [searchParams] = useSearchParams();
   const agentId = searchParams.get("agent") || "default";
-  const navigate = useNavigate();
 
   // UI State
   const [isTyping, setIsTyping] = useState(false);
@@ -167,8 +166,8 @@ const StandaloneChat: React.FC = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
   function goBackToDashboard() {
-    if (window.history.length > 2) navigate(-1);
-    else navigate("/dashboard");
+    // TODO: Navigate back to dashboard route
+    window.history.back();
   }
 
   // init

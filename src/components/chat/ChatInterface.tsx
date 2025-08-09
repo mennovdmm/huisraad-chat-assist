@@ -8,7 +8,6 @@ import { ChatInput } from './ChatInput';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
-import { useNavigate, Link } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -54,12 +53,7 @@ export function ChatInterface() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-const activeSession = sessions.find(s => s.id === activeSessionId);
-const navigate = useNavigate();
-const handleBack = () => {
-  if (window.history.length > 2) navigate(-1);
-  else navigate("/dashboard");
-};
+  const activeSession = sessions.find(s => s.id === activeSessionId);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -223,23 +217,15 @@ const handleBack = () => {
               />
             </div>
             
-            {/* Acties rechts: Navigatie + Nieuwe Chat */}
-            <div className="flex items-center gap-2">
-              <nav aria-label="Hoofdnavigatie" className="hidden md:flex items-center gap-2">
-                <Button asChild variant="ghost" size="sm"><Link to="/login">Login</Link></Button>
-                <Button asChild variant="ghost" size="sm"><Link to="/dashboard">Dashboard</Link></Button>
-                <Button asChild variant="ghost" size="sm"><Link to="/admin">Admin</Link></Button>
-                <Button asChild variant="ghost" size="sm"><Link to="/standalone">Standalone</Link></Button>
-              </nav>
-              <Button 
-                onClick={handleNewSession}
-                variant="outline"
-                className="gap-2"
-              >
-                <Plus size={16} />
-                Nieuwe Chat
-              </Button>
-            </div>
+            {/* New Chat Button */}
+            <Button 
+              onClick={handleNewSession}
+              variant="outline"
+              className="gap-2"
+            >
+              <Plus size={16} />
+              Nieuwe Chat
+            </Button>
           </div>
         </div>
 
@@ -280,7 +266,7 @@ const handleBack = () => {
           variant="ghost"
           size="sm"
           className="fixed bottom-20 left-4 z-20 h-10 w-10 p-0 bg-background/80 hover:bg-background border border-border/20 rounded-full"
-          onClick={handleBack}
+          onClick={() => window.history.back()}
         >
           <ArrowLeft size={20} className="text-muted-foreground" />
         </Button>
