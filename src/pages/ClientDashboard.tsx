@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ChevronRight, Mail, Bot, Trash2, PlusCircle, Settings, Users, Layers, LogOut } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import logo from "@/assets/huisraad-logo.svg";
+import { useNavigate } from "react-router-dom";
 
 interface FlowItem {
   id: string;
@@ -18,6 +19,8 @@ const ClientDashboard: React.FC = () => {
     description: "Bekijk en start beschikbare agents in jouw Huisraad omgeving.",
     canonicalPath: "/dashboard",
   });
+
+  const navigate = useNavigate();
 
   const [userName] = useState<string>("");
   const [flows, setFlows] = useState<FlowItem[]>([]);
@@ -44,12 +47,7 @@ const ClientDashboard: React.FC = () => {
   }
 
   function openFlow(flowId: string, interfaceMode?: FlowItem["interfaceMode"]) {
-    if (interfaceMode === "streaming") {
-      window.open(`/standalone?agent=${flowId}`, "_blank");
-    } else {
-      // Placeholder for widget mode
-      window.open(`/standalone?agent=${flowId}`, "_blank");
-    }
+    navigate(`/standalone?agent=${flowId}`);
   }
 
   useEffect(() => {
