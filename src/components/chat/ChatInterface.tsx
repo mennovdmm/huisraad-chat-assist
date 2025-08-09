@@ -175,7 +175,7 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm relative py-2 pl-6 pr-6 sm:pl-8 sm:pr-8 lg:pl-10 lg:pr-10">
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm relative py-3 pl-6 pr-6 sm:pl-8 sm:pr-8 lg:pl-10 lg:pr-10">
           <div className="flex items-center justify-between">
             {/* Logo helemaal links en heel groot */}
             <div className="flex items-center">
@@ -230,7 +230,7 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
               </Button>
             </div>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-2 text-center pointer-events-none">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
             <h1 className="text-base font-semibold leading-tight text-foreground">Marketing Assistent</h1>
             <p className="text-xs md:text-sm text-muted-foreground mt-0.5">Ingelogd als: Mark</p>
           </div>
