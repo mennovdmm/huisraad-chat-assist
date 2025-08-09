@@ -39,6 +39,7 @@ const Login: React.FC = () => {
     setLoading(true);
     try {
       login(email, password);
+      navigate("/dashboard");
       // Example for future integration:
       // const userData = await api.login(email, password)
       // checkUserRole(userData)
@@ -64,7 +65,7 @@ const Login: React.FC = () => {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-9 text-sm"
+            className="h-9 text-sm shadow-sm"
             placeholder="Email"
           />
           <Input
@@ -74,11 +75,11 @@ const Login: React.FC = () => {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="h-9 text-sm"
+            className="h-9 text-sm shadow-sm"
             placeholder="Wachtwoord"
           />
-          <div className="pt-2">
-            <Button type="submit" variant="link" disabled={loading} className="px-0">
+          <div className="pt-2 text-center">
+            <Button type="submit" variant="link" disabled={loading} className="px-0 font-semibold">
               {loading ? "Inloggen..." : "Inloggen"}
             </Button>
           </div>
