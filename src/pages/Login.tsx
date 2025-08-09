@@ -52,7 +52,7 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
       <main className="bg-card rounded-lg shadow-lg p-8 w-full max-w-md border border-border">
-        <img src={logo} alt="Huisraad logo" className="h-16 mx-auto mb-8" />
+        <img src={logo} alt="Huisraad logo" className="h-28 mx-auto mb-8" />
 
         <h1 className="sr-only">Inloggen</h1>
 
@@ -66,7 +66,7 @@ const Login: React.FC = () => {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="p-3"
+              className="p-2 text-sm"
               placeholder="jij@voorbeeld.nl"
             />
           </div>
@@ -79,7 +79,7 @@ const Login: React.FC = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="p-3"
+              className="p-2 text-sm"
             />
           </div>
           <Button type="submit" disabled={loading} className="w-full">

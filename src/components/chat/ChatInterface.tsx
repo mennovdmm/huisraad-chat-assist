@@ -8,7 +8,7 @@ import { ChatInput } from './ChatInput';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -225,12 +225,6 @@ const handleBack = () => {
             
             {/* Acties rechts: Navigatie + Nieuwe Chat */}
             <div className="flex items-center gap-2">
-              <nav aria-label="Hoofdnavigatie" className="hidden md:flex items-center gap-2">
-                <Button asChild variant="ghost" size="sm"><Link to="/login">Login</Link></Button>
-                <Button asChild variant="ghost" size="sm"><Link to="/dashboard">Dashboard</Link></Button>
-                <Button asChild variant="ghost" size="sm"><Link to="/admin">Admin</Link></Button>
-                <Button asChild variant="ghost" size="sm"><Link to="/standalone">Standalone</Link></Button>
-              </nav>
               <Button 
                 onClick={handleNewSession}
                 variant="outline"
