@@ -59,7 +59,7 @@ const ClientDashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 bg-background/80 backdrop-blur p-4">
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
+        <div className="flex items-center justify-between max-w-6xl mx-auto px-6 md:px-10">
           <img src={logo} alt="Huisraad logo" className="h-20 md:h-24" />
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-1">
@@ -92,7 +92,7 @@ const ClientDashboard: React.FC = () => {
       </header>
 
       <main className="p-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto px-6 md:px-10">
           <div className="w-full max-w-xl">
             <h1 className="text-2xl font-semibold mb-8">Beschikbare Agents</h1>
 
