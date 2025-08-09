@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChevronRight, Mail, Bot, Trash2, PlusCircle, Settings, Users, Layers } from "lucide-react";
+import { ChevronRight, Mail, Bot, Trash2, PlusCircle, Settings, Users, Layers, LogOut } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import logo from "@/assets/huisraad-logo.svg";
 
@@ -83,8 +83,9 @@ const ClientDashboard: React.FC = () => {
             <span id="userName" className="text-sm text-muted-foreground">
               {userName}
             </span>
-            <button onClick={logout} className="text-sm text-muted-foreground hover:text-foreground">
-              Uitloggen
+            <button onClick={logout} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
+              <LogOut className="w-4 h-4" />
+              <span>Uitloggen</span>
             </button>
           </div>
         </div>
