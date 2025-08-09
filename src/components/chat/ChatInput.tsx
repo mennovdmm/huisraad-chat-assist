@@ -48,12 +48,12 @@ export function ChatInput({
           <Button
             variant="ghost"
             size="sm"
-            className="h-12 w-12 rounded-full flex-shrink-0"
+            className="h-14 w-14 rounded-full flex-shrink-0"
             onClick={() => navigate('/dashboard')}
             aria-label="Terug naar dashboard"
             title="Terug naar dashboard"
           >
-            <ArrowLeftCircle size={20} />
+            <ArrowLeftCircle size={24} />
           </Button>
           <div className="flex-1 relative">
             <Textarea
