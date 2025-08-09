@@ -54,7 +54,7 @@ export function ChatInterface() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-const activeSession = sessions.find(s => s.id === activeSessionId);
+  const activeSession = sessions.find(s => s.id === activeSessionId);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -75,10 +75,10 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
     };
 
     // Add user message
-    setSessions(prev => prev.map(session => 
-      session.id === activeSessionId 
-        ? { 
-            ...session, 
+    setSessions(prev => prev.map(session =>
+      session.id === activeSessionId
+        ? {
+            ...session,
             messages: [...session.messages, userMessage],
             lastMessage: content,
             timestamp: new Date()
@@ -97,10 +97,10 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
         timestamp: new Date()
       };
 
-      setSessions(prev => prev.map(session => 
-        session.id === activeSessionId 
-          ? { 
-              ...session, 
+      setSessions(prev => prev.map(session =>
+        session.id === activeSessionId
+          ? {
+              ...session,
               messages: [...session.messages, aiMessage],
               lastMessage: 'AI heeft geantwoord...'
             }
@@ -116,7 +116,7 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
     if (userMessage.toLowerCase().includes('offerte')) {
       return 'Ik help je graag met het maken van een offerte! Voor welk adres wil je een offerte opstellen? Ik heb de volgende informatie nodig:\n\n• Het volledige adres\n• Type dienstverlening (verkoop/verhuur/taxatie)\n• Gewenste startdatum\n\nMet deze gegevens kan ik een professionele offerte voor je genereren.';
     }
-    
+
     if (userMessage.toLowerCase().includes('marktanalyse')) {
       return 'Voor een grondige marktanalyse verzamel ik de volgende informatie:\n\n• Recente verkopen in de buurt\n• Gemiddelde prijzen per m²\n• Markttrends en vooruitzichten\n• Vergelijkbare objecten\n\nWelke specifieke locatie wil je analyseren?';
     }
@@ -137,7 +137,7 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
   };
 
   const handleRenameSession = (sessionId: string, newName: string) => {
-    setSessions(prev => prev.map(session => 
+    setSessions(prev => prev.map(session =>
       session.id === sessionId ? { ...session, name: newName } : session
     ));
   };
@@ -154,9 +154,9 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
     <div className="h-screen flex bg-background">
       {/* Sidebar */}
       <div className={cn(
-        "transition-all duration-300 ease-in-out",
-        isSidebarOpen ? "w-64" : "w-0",
-        "lg:relative absolute lg:translate-x-0 z-20"
+        'transition-all duration-300 ease-in-out',
+        isSidebarOpen ? 'w-64' : 'w-0',
+        'lg:relative absolute lg:translate-x-0 z-20'
       )}>
         {isSidebarOpen && (
           <ChatSidebar
@@ -175,59 +175,61 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Sticky Header - Clean without border */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2 pl-4 pr-4">
-          <div className="flex items-center justify-between">
-            {/* Logo helemaal links en heel groot */}
-            <div className="flex items-center">
-              {/* Logo eerst op mobile, hamburger menu op desktop verborgen */}
-              <img 
-                src={HuisraadLogo} 
-                alt="HuisRaad" 
-                className="h-14 md:h-28 w-auto lg:hidden mr-1"
-              />
-              
-              {/* Mobile menu button */}
-              {!isSidebarOpen && (
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm py-2">
+          <div className="mx-auto w-full max-w-[720px] lg:max-w-[820px] px-4 sm:px-6 md:px-8">
+            <div className="flex items-center justify-between">
+              {/* Logo helemaal links en heel groot */}
+              <div className="flex items-center">
+                {/* Logo eerst op mobile, hamburger menu op desktop verborgen */}
+                <img
+                  src={HuisraadLogo}
+                  alt="HuisRaad"
+                  className="h-14 md:h-28 w-auto lg:hidden mr-1"
+                />
+
+                {/* Mobile menu button */}
+                {!isSidebarOpen && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsSidebarOpen(true)}
+                    className="lg:hidden h-12 w-12 p-0"
+                  >
+                    <Menu size={32} />
+                  </Button>
+                )}
+
+                {/* Desktop menu button when sidebar is closed */}
+                {!isSidebarOpen && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsSidebarOpen(true)}
+                    className="hidden lg:block p-2 mr-4"
+                  >
+                    <Menu size={24} />
+                  </Button>
+                )}
+
+                {/* Desktop logo */}
+                <img
+                  src={HuisraadLogo}
+                  alt="HuisRaad"
+                  className="h-28 w-auto hidden lg:block"
+                />
+              </div>
+
+              {/* Acties rechts: Navigatie + Nieuwe Chat */}
+              <div className="flex items-center gap-2">
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsSidebarOpen(true)}
-                  className="lg:hidden h-12 w-12 p-0"
+                  onClick={handleNewSession}
+                  variant="outline"
+                  className="gap-2"
                 >
-                  <Menu size={32} />
+                  <Plus size={16} />
+                  Nieuwe Chat
                 </Button>
-              )}
-              
-              {/* Desktop menu button when sidebar is closed */}
-              {!isSidebarOpen && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setIsSidebarOpen(true)}
-                  className="hidden lg:block p-2 mr-4"
-                >
-                  <Menu size={24} />
-                </Button>
-              )}
-              
-              {/* Desktop logo */}
-              <img 
-                src={HuisraadLogo} 
-                alt="HuisRaad" 
-                className="h-28 w-auto hidden lg:block"
-              />
-            </div>
-            
-            {/* Acties rechts: Navigatie + Nieuwe Chat */}
-            <div className="flex items-center gap-2">
-              <Button 
-                onClick={handleNewSession}
-                variant="outline"
-                className="gap-2"
-              >
-                <Plus size={16} />
-                Nieuwe Chat
-              </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -270,7 +272,7 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
 
       {/* Overlay for mobile */}
       {isSidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-background/80 backdrop-blur-sm lg:hidden z-10"
           onClick={() => setIsSidebarOpen(false)}
         />
