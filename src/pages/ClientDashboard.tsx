@@ -60,7 +60,7 @@ const ClientDashboard: React.FC = () => {
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 bg-background/80 backdrop-blur p-4">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <img src={logo} alt="Huisraad logo" className="h-16 md:h-20" />
+          <img src={logo} alt="Huisraad logo" className="h-20 md:h-24" />
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-1">
               <button onClick={() => (window.location.href = '/admin?section=create')} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
@@ -91,7 +91,7 @@ const ClientDashboard: React.FC = () => {
         </div>
       </header>
 
-      <main className="px-4 md:px-8">
+      <main className="p-4">
         <div className="max-w-6xl mx-auto">
           <div className="w-full max-w-xl">
             <h1 className="text-2xl font-semibold mb-8">Beschikbare Agents</h1>
