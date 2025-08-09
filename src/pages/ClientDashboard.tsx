@@ -62,6 +62,24 @@ const ClientDashboard: React.FC = () => {
         <div className="flex items-center justify-between max-w-6xl mx-auto">
           <img src={logo} alt="Huisraad logo" className="h-16 md:h-20" />
           <div className="flex items-center gap-4">
+            <nav className="hidden md:flex items-center gap-2">
+              <button onClick={() => (window.location.href = '/admin?section=create')} className="flex items-center gap-2 rounded-xl bg-[hsl(var(--tile))] px-3 py-2 shadow-sm hover:shadow-md transition">
+                <PlusCircle className="w-4 h-4 text-primary" />
+                <span className="text-sm text-primary">Nieuwe Agent</span>
+              </button>
+              <button onClick={() => (window.location.href = '/admin?section=agents')} className="flex items-center gap-2 rounded-xl bg-[hsl(var(--tile))] px-3 py-2 shadow-sm hover:shadow-md transition">
+                <Settings className="w-4 h-4 text-primary" />
+                <span className="text-sm text-primary">Agent Management</span>
+              </button>
+              <button onClick={() => (window.location.href = '/admin?section=users')} className="flex items-center gap-2 rounded-xl bg-[hsl(var(--tile))] px-3 py-2 shadow-sm hover:shadow-md transition">
+                <Users className="w-4 h-4 text-primary" />
+                <span className="text-sm text-primary">User Management</span>
+              </button>
+              <button onClick={() => (window.location.href = '/admin?section=platforms')} className="flex items-center gap-2 rounded-xl bg-[hsl(var(--tile))] px-3 py-2 shadow-sm hover:shadow-md transition">
+                <Layers className="w-4 h-4 text-primary" />
+                <span className="text-sm text-primary">Platform Management</span>
+              </button>
+            </nav>
             <span id="userName" className="text-sm text-muted-foreground">
               {userName}
             </span>
@@ -87,13 +105,11 @@ const ClientDashboard: React.FC = () => {
                     tabIndex={0}
                     onClick={() => openFlow(flow.id, flow.interfaceMode)}
                     onKeyDown={(e) => e.key === "Enter" && openFlow(flow.id, flow.interfaceMode)}
-                    className="bg-card rounded-2xl p-4 border border-border shadow-sm hover:shadow-md transition-all cursor-pointer"
+                    className="bg-[hsl(var(--tile))] rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer"
                   >
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-md bg-primary/10 text-primary grid place-items-center">
-                          <Bot className="w-5 h-5" />
-                        </div>
+                        <Bot className="w-5 h-5 text-primary" />
                         <div>
                           <h3 className="font-semibold text-primary">{flow.title}</h3>
                           {flow.subtitle && (
@@ -123,43 +139,6 @@ const ClientDashboard: React.FC = () => {
               )}
             </section>
 
-            <section aria-labelledby="superuser-heading" className="mt-10">
-              <h2 id="superuser-heading" className="sr-only">Super user</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <button onClick={() => (window.location.href = '/admin?section=create')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
-                      <PlusCircle className="w-4 h-4" />
-                    </div>
-                    <span className="text-sm font-medium text-primary">Nieuwe Agent</span>
-                  </div>
-                </button>
-                <button onClick={() => (window.location.href = '/admin?section=agents')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
-                      <Settings className="w-4 h-4" />
-                    </div>
-                    <span className="text-sm font-medium text-primary">Agent Management</span>
-                  </div>
-                </button>
-                <button onClick={() => (window.location.href = '/admin?section=users')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
-                      <Users className="w-4 h-4" />
-                    </div>
-                    <span className="text-sm font-medium text-primary">User Management</span>
-                  </div>
-                </button>
-                <button onClick={() => (window.location.href = '/admin?section=platforms')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
-                      <Layers className="w-4 h-4" />
-                    </div>
-                    <span className="text-sm font-medium text-primary">Platform Management</span>
-                  </div>
-                </button>
-              </div>
-            </section>
 
             <aside className="mt-12 rounded-lg p-6 text-center bg-[hsl(var(--apricot))] text-[hsl(var(--apricot-foreground))]">
               <p className="font-medium mb-2">Nieuw idee voor een Agent?</p>

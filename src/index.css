@@ -57,6 +57,9 @@ All colors MUST be HSL.
 
     --apricot: 33 94% 74%;
     --apricot-foreground: 0 0% 100%;
+
+    --tile: 0 0% 100%;
+    --tile-foreground: 222.2 84% 4.9%;
   }
 
   .dark {
@@ -100,6 +103,9 @@ All colors MUST be HSL.
 
     --apricot: 33 94% 74%;
     --apricot-foreground: 0 0% 100%;
+
+    --tile: 222.2 84% 7%;
+    --tile-foreground: 210 40% 98%;
   }
 }
 
