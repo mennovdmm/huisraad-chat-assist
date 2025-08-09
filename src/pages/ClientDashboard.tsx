@@ -72,7 +72,7 @@ const ClientDashboard: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto p-8">
+      <main className="w-full max-w-xl mr-auto ml-4 md:ml-12 p-8">
         <h1 className="text-2xl font-semibold mb-8">Beschikbare Agents</h1>
 
         <section aria-labelledby="flows-heading">
