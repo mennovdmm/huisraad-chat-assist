@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Bot, Users, Wrench, Plus } from "lucide-react";
 
 interface AgentRow {
   id: string;
@@ -151,28 +152,52 @@ const AdminDashboard: React.FC = () => {
           <h1 className="text-2xl font-semibold mb-6">Management Dashboard</h1>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <button onClick={() => showSection("agents")} className="management-btn bg-card border border-border p-4 rounded-lg hover:shadow-md transition-shadow text-left">
-              <div className="text-2xl mb-2">🤖</div>
-              <h3 className="font-medium">Agent Management</h3>
-              <p className="text-sm text-muted-foreground">Beheer alle agents</p>
+            <button onClick={() => showSection("agents")} className="bg-card border border-border rounded-2xl p-3 shadow-sm hover:shadow-md transition-all text-left">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                  <Bot className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-primary">Agent Management</h3>
+                  <p className="text-xs text-muted-foreground">Beheer alle agents</p>
+                </div>
+              </div>
             </button>
 
-            <button onClick={() => showSection("users")} className="management-btn bg-card border border-border p-4 rounded-lg hover:shadow-md transition-shadow text-left">
-              <div className="text-2xl mb-2">👥</div>
-              <h3 className="font-medium">User Management</h3>
-              <p className="text-sm text-muted-foreground">Beheer gebruikers</p>
+            <button onClick={() => showSection("users")} className="bg-card border border-border rounded-2xl p-3 shadow-sm hover:shadow-md transition-all text-left">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                  <Users className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-primary">User Management</h3>
+                  <p className="text-xs text-muted-foreground">Beheer gebruikers</p>
+                </div>
+              </div>
             </button>
 
-            <button onClick={() => showSection("platforms")} className="management-btn bg-card border border-border p-4 rounded-lg hover:shadow-md transition-shadow text-left">
-              <div className="text-2xl mb-2">🔧</div>
-              <h3 className="font-medium">Platform Management</h3>
-              <p className="text-sm text-muted-foreground">Langflow platforms</p>
+            <button onClick={() => showSection("platforms")} className="bg-card border border-border rounded-2xl p-3 shadow-sm hover:shadow-md transition-all text-left">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                  <Wrench className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-primary">Platform Management</h3>
+                  <p className="text-xs text-muted-foreground">Langflow platforms</p>
+                </div>
+              </div>
             </button>
 
-            <button onClick={() => setSection("create")} className="bg-primary text-primary-foreground p-4 rounded-lg hover:bg-primary/90 transition-colors text-left">
-              <div className="text-2xl mb-2">➕</div>
-              <h3 className="font-medium">Nieuwe Agent</h3>
-              <p className="text-sm opacity-90">Agent aanmaken</p>
+            <button onClick={() => setSection("create")} className="bg-card border border-border rounded-2xl p-3 shadow-sm hover:shadow-md transition-all text-left">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                  <Plus className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-primary">Nieuwe Agent</h3>
+                  <p className="text-xs text-muted-foreground">Agent aanmaken</p>
+                </div>
+              </div>
             </button>
           </div>
         </section>

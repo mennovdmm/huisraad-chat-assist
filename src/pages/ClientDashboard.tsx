@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChevronRight, Mail } from "lucide-react";
+import { ChevronRight, Mail, Bot, Trash2 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import logo from "@/assets/huisraad-logo.svg";
 
@@ -33,10 +33,10 @@ const ClientDashboard: React.FC = () => {
     console.log("TODO: GET /api/user/flows");
     setFlows([
       {
-        id: "ks-offerte-generator",
-        icon: "🧰",
-        title: "K&S Offerte Generator",
-        subtitle: "AI-powered verkoopoffertes in minuten",
+        id: "huurmarkt-research-assistant",
+        icon: "🤖",
+        title: "Huurmarkt Research Assistant",
+        subtitle: "Direct toegang tot huurnieuws database en actuele marktinformatie",
         streaming: true,
         interfaceMode: "streaming",
       },
@@ -85,25 +85,29 @@ const ClientDashboard: React.FC = () => {
                 tabIndex={0}
                 onClick={() => openFlow(flow.id, flow.interfaceMode)}
                 onKeyDown={(e) => e.key === "Enter" && openFlow(flow.id, flow.interfaceMode)}
-                className="flow-item bg-card rounded-lg p-4 border border-border hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-card rounded-2xl p-4 border border-border shadow-sm hover:shadow-md transition-all cursor-pointer"
               >
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-lg">
-                      {flow.icon || "🤖"}
+                    <div className="w-10 h-10 rounded-md bg-primary/10 text-primary grid place-items-center">
+                      <Bot className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-medium">{flow.title}</h3>
+                      <h3 className="font-semibold text-primary">{flow.title}</h3>
                       {flow.subtitle && (
                         <p className="text-sm text-muted-foreground">{flow.subtitle}</p>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    {flow.streaming && (
-                      <span className="streaming-badge text-xs bg-green-100 text-green-800 px-2 py-1 rounded">🚀 Streaming</span>
-                    )}
+                  <div className="flex items-center gap-3">
                     <ChevronRight className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                    <button
+                      onClick={(e) => { e.stopPropagation(); console.log('delete flow', flow.id); }}
+                      aria-label="Verwijderen"
+                      className="text-destructive/60 hover:text-destructive"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
               </article>
