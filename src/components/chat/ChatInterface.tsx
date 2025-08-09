@@ -243,8 +243,8 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
             {activeSession?.messages.length === 0 && !isUserTyping && (
               <section className="text-center space-y-3 mt-6">
                 <img src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" alt="Client Logo" className="mx-auto h-9 sm:h-10 w-auto" />
-                <h2 className="text-xl font-semibold text-foreground">Market Intelligence Agent</h2>
-                <p className="text-sm text-muted-foreground max-w-prose mx-auto">Van marktdata naar strategische merkpijlers - realtime concurrentie en customer journey analyse</p>
+                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Market Intelligence Agent</h2>
+                <p className="text-base md:text-lg text-muted-foreground max-w-prose mx-auto">Van marktdata naar strategische merkpijlers - realtime concurrentie en customer journey analyse</p>
                 <p className="text-sm text-muted-foreground/90 max-w-prose mx-auto">Welkom! Ik ben gespecialiseerd in merkpositionering voor Cense Makelaars. Met toegang tot uitgebreide markt-, concurrentie- en klantdata help ik je van challenger naar marktleider. Waar ben je naar op zoek?</p>
               </section>
             )}
