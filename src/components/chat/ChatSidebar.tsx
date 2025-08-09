@@ -78,8 +78,8 @@ export function ChatSidebar({
           )}
         </div>
         <div className="mb-4">
-          <div className="text-xl font-semibold text-foreground mb-1" data-dynamic-content="COMPANY_NAME">Makelaar Amsterdam</div>
-          <div className="text-sm text-muted-foreground" data-dynamic-content="FLOW_NAME">Marketing Assistent</div>
+          <div className="text-xl font-semibold text-foreground mb-1" data-dynamic-content="AGENT_TITLE">Makelaar Amsterdam</div>
+          <div className="text-sm text-muted-foreground" data-dynamic-content="AGENT_SUBTITLE">Marketing Assistent</div>
         </div>
 
         {/* New Chat Button */}

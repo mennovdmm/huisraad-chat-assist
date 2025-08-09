@@ -45,7 +45,7 @@ export function ChatHeader({
         </div>
       </div>
       
-      <div className="text-xs text-muted-foreground hidden sm:block">
+      <div className="text-xs text-muted-foreground hidden sm:block" data-dynamic-content="AGENT_SUBTITLE">
         AI Marketing Assistent
       </div>
     </header>

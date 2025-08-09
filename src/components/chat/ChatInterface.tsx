@@ -232,8 +232,8 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
             </div>
           </div>
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none">
-            <h1 className="text-base font-semibold leading-tight text-foreground">Marketing Assistent</h1>
-            <p className="text-xs md:text-sm text-muted-foreground mt-0.5">Ingelogd als: Mark</p>
+            <h1 className="text-base font-semibold leading-tight text-foreground" data-dynamic-content="AGENT_TITLE">Marketing Assistent</h1>
+            <p className="text-xs md:text-sm text-muted-foreground mt-0.5">Ingelogd als: <span data-dynamic-content="CLIENT_FIRST_NAME">Mark</span></p>
           </div>
         </div>
 
@@ -242,10 +242,10 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
           <div className="mx-auto w-full max-w-[720px] lg:max-w-[820px] px-4 sm:px-6 md:px-8 pt-2 pb-6 space-y-6">
             {activeSession?.messages.length === 0 && !isUserTyping && (
               <section className="text-center space-y-3 mt-6">
-                <img src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" alt="Client Logo" className="mx-auto h-9 sm:h-10 w-auto" />
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">Market Intelligence Agent</h2>
-                <p className="text-base md:text-lg text-muted-foreground max-w-prose mx-auto">Van marktdata naar strategische merkpijlers - realtime concurrentie en customer journey analyse</p>
-                <p className="text-sm text-muted-foreground/90 max-w-prose mx-auto">Welkom! Ik ben gespecialiseerd in merkpositionering voor Cense Makelaars. Met toegang tot uitgebreide markt-, concurrentie- en klantdata help ik je van challenger naar marktleider. Waar ben je naar op zoek?</p>
+                <img src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" alt="Client Logo" className="mx-auto h-9 sm:h-10 w-auto" data-dynamic-content="CLIENT_LOGO_URL" />
+                <h2 className="text-2xl md:text-3xl font-semibold text-foreground" data-dynamic-content="AGENT_TITLE">Market Intelligence Agent</h2>
+                <p className="text-base md:text-lg text-muted-foreground max-w-prose mx-auto" data-dynamic-content="AGENT_SUBTITLE">Van marktdata naar strategische merkpijlers - realtime concurrentie en customer journey analyse</p>
+                <p className="text-sm text-muted-foreground/90 max-w-prose mx-auto" data-dynamic-content="KICKOFF_MESSAGE">Welkom! Ik ben gespecialiseerd in merkpositionering voor Cense Makelaars. Met toegang tot uitgebreide markt-, concurrentie- en klantdata help ik je van challenger naar marktleider. Waar ben je naar op zoek?</p>
               </section>
             )}
             {activeSession?.messages.map((message, index) => (
