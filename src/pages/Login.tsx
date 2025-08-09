@@ -27,9 +27,9 @@ const Login: React.FC = () => {
 
   function checkUserRole(userData: { isSuperUser: boolean }) {
     if (userData.isSuperUser) {
-      navigate("/admin");
+      navigate("/super-user-dashboard");
     } else {
-      navigate("/dashboard");
+      navigate("/user-dashboard");
     }
   }
 
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
     setLoading(true);
     try {
       login(email, password);
-      navigate("/dashboard");
+      navigate("/user-dashboard");
       // Example for future integration:
       // const userData = await api.login(email, password)
       // checkUserRole(userData)

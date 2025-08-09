@@ -52,7 +52,7 @@ export function ChatInput({
             variant="ghost"
             size="sm"
             className="h-14 w-14 rounded-full flex-shrink-0"
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/user-dashboard')}
             aria-label="Terug naar dashboard"
             title="Terug naar dashboard"
           >

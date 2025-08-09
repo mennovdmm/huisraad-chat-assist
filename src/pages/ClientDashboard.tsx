@@ -15,9 +15,9 @@ interface FlowItem {
 
 const ClientDashboard: React.FC = () => {
   useSEO({
-    title: "Client Dashboard - Huisraad Agents",
+    title: "Super User Dashboard - Huisraad Agents",
     description: "Bekijk en start beschikbare agents in jouw Huisraad omgeving.",
-    canonicalPath: "/dashboard",
+    canonicalPath: "/super-user-dashboard",
   });
 
   const navigate = useNavigate();
@@ -61,19 +61,19 @@ const ClientDashboard: React.FC = () => {
           <img src={logo} alt="Huisraad logo" className="h-20 md:h-24" />
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-1">
-              <button onClick={() => (window.location.href = '/admin?section=create')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+              <button onClick={() => (window.location.href = '/super-user-dashboard?section=create')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
                 <PlusCircle className="w-3.5 h-3.5" />
                 <span>Nieuwe Agent</span>
               </button>
-              <button onClick={() => (window.location.href = '/admin?section=agents')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+              <button onClick={() => (window.location.href = '/super-user-dashboard?section=agents')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
                 <Settings className="w-3.5 h-3.5" />
                 <span>Agent Management</span>
               </button>
-              <button onClick={() => (window.location.href = '/admin?section=users')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+              <button onClick={() => (window.location.href = '/super-user-dashboard?section=users')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
                 <Users className="w-3.5 h-3.5" />
                 <span>User Management</span>
               </button>
-              <button onClick={() => (window.location.href = '/admin?section=platforms')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+              <button onClick={() => (window.location.href = '/super-user-dashboard?section=platforms')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
                 <Layers className="w-3.5 h-3.5" />
                 <span>Platform Management</span>
               </button>

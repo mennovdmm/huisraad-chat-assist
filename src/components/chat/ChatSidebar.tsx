@@ -210,7 +210,7 @@ export function ChatSidebar({
       </div>
       {/* Footer */}
       <div className="p-4 border-t border-border">
-        <Button onClick={() => navigate('/dashboard')} variant="secondary" className="w-full justify-start">
+        <Button onClick={() => navigate('/user-dashboard')} variant="secondary" className="w-full justify-start">
           ← Dashboard
         </Button>
       </div>
