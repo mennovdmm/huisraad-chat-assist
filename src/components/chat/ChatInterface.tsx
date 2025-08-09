@@ -233,30 +233,31 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
         </div>
 
         {/* Messages Container */}
-        <div className="flex-1 overflow-y-auto px-6 md:px-12 py-6 space-y-6">
-          {activeSession?.messages.map((message, index) => (
-            <MessageBubble
-              key={message.id}
-              message={message}
-              isLatest={index === activeSession.messages.length - 1}
-            />
-          ))}
-          
-          {isTyping && (
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              </div>
-              <div className="bg-muted rounded-2xl px-4 py-3">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                  <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+        <div className="flex-1 overflow-y-auto">
+          <div className="mx-auto w-full max-w-[720px] lg:max-w-[820px] px-4 sm:px-6 md:px-8 py-6 space-y-6">
+            {activeSession?.messages.map((message, index) => (
+              <MessageBubble
+                key={message.id}
+                message={message}
+                isLatest={index === activeSession.messages.length - 1}
+              />
+            ))}
+            {isTyping && (
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                </div>
+                <div className="bg-muted rounded-2xl px-4 py-3">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
+                    <div className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
+            )}
+            <div ref={messagesEndRef} />
+          </div>
         </div>
 
         {/* Chat Input */}
