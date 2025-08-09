@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Mic } from 'lucide-react';
+import { Send, Mic, ArrowLeftCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-
+import { useNavigate } from 'react-router-dom';
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
   disabled?: boolean;
@@ -17,7 +17,7 @@ export function ChatInput({
 }: ChatInputProps) {
   const [message, setMessage] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+  const navigate = useNavigate();
   const handleSubmit = () => {
     if (message.trim() && !disabled) {
       onSendMessage(message.trim());
@@ -45,6 +45,16 @@ export function ChatInput({
     <div className="border-t border-border bg-background/80 backdrop-blur-sm p-4">
       <div className="max-w-4xl mx-auto">
         <div className="relative flex items-end gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-12 w-12 rounded-full flex-shrink-0"
+            onClick={() => navigate('/dashboard')}
+            aria-label="Terug naar dashboard"
+            title="Terug naar dashboard"
+          >
+            <ArrowLeftCircle size={20} />
+          </Button>
           <div className="flex-1 relative">
             <Textarea
               ref={textareaRef}
