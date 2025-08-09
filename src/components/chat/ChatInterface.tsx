@@ -52,6 +52,7 @@ export function ChatInterface() {
   ]);
   const [activeSessionId, setActiveSessionId] = useState<string>('1');
   const [isTyping, setIsTyping] = useState(false);
+  const [isUserTyping, setIsUserTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
 const activeSession = sessions.find(s => s.id === activeSessionId);
@@ -239,6 +240,14 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
         {/* Messages Container */}
         <div className="flex-1 overflow-y-auto">
           <div className="mx-auto w-full max-w-[720px] lg:max-w-[820px] px-4 sm:px-6 md:px-8 pt-2 pb-6 space-y-6">
+            {activeSession?.messages.length === 0 && !isUserTyping && (
+              <section className="text-center space-y-3 mt-6">
+                <img src="https://www.keij-stefels.nl/layouts/main/images/logo.svg" alt="Client Logo" className="mx-auto h-9 sm:h-10 w-auto" />
+                <h2 className="text-xl font-semibold text-foreground">Market Intelligence Agent</h2>
+                <p className="text-sm text-muted-foreground max-w-prose mx-auto">Van marktdata naar strategische merkpijlers - realtime concurrentie en customer journey analyse</p>
+                <p className="text-sm text-muted-foreground/90 max-w-prose mx-auto">Welkom! Ik ben gespecialiseerd in merkpositionering voor Cense Makelaars. Met toegang tot uitgebreide markt-, concurrentie- en klantdata help ik je van challenger naar marktleider. Waar ben je naar op zoek?</p>
+              </section>
+            )}
             {activeSession?.messages.map((message, index) => (
               <MessageBubble
                 key={message.id}
@@ -266,7 +275,7 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
 
         {/* Chat Input */}
         <div className="p-4 border-t border-border">
-          <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} placeholder="" />
+          <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} placeholder="" onTypingChange={setIsUserTyping} />
         </div>
 
         {/* Back Button - Links onder */}

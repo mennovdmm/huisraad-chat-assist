@@ -8,12 +8,14 @@ interface ChatInputProps {
   onSendMessage: (message: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  onTypingChange?: (isTyping: boolean) => void;
 }
 
 export function ChatInput({ 
   onSendMessage, 
   disabled = false,
-  placeholder = "Je kunt mij vragen stellen over offertes, marktanalyses of vastgoed content. Start bijvoorbeeld met 'Ik wil een offerte maken voor [adres]'..."
+  placeholder = "Je kunt mij vragen stellen over offertes, marktanalyses of vastgoed content. Start bijvoorbeeld met 'Ik wil een offerte maken voor [adres]'...",
+  onTypingChange
 }: ChatInputProps) {
   const [message, setMessage] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -22,6 +24,7 @@ export function ChatInput({
     if (message.trim() && !disabled) {
       onSendMessage(message.trim());
       setMessage('');
+      onTypingChange?.(false);
     }
   };
 
@@ -59,7 +62,7 @@ export function ChatInput({
             <Textarea
               ref={textareaRef}
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e) => { setMessage(e.target.value); onTypingChange?.(e.target.value.trim().length > 0); }}
               onKeyDown={handleKeyDown}
               placeholder={placeholder}
               disabled={disabled}
