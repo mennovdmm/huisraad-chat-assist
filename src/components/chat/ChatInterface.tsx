@@ -235,6 +235,10 @@ const activeSession = sessions.find(s => s.id === activeSessionId);
         {/* Messages Container */}
         <div className="flex-1 overflow-y-auto">
           <div className="mx-auto w-full max-w-[720px] lg:max-w-[820px] px-4 sm:px-6 md:px-8 py-6 space-y-6">
+            <header className="text-center">
+              <h1 className="text-xl font-semibold leading-tight text-foreground">Marketing Assistent</h1>
+              <p className="text-sm text-muted-foreground mt-1">Ingelogd als: Mark</p>
+            </header>
             {activeSession?.messages.map((message, index) => (
               <MessageBubble
                 key={message.id}
