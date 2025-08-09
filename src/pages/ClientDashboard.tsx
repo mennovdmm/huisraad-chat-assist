@@ -63,28 +63,28 @@ const ClientDashboard: React.FC = () => {
           <img src={logo} alt="Huisraad logo" className="h-20 md:h-24" />
           <div className="flex items-center gap-4">
             <nav className="hidden md:flex items-center gap-1">
-              <button onClick={() => (window.location.href = '/admin?section=create')} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
-                <PlusCircle className="w-4 h-4" />
+              <button onClick={() => (window.location.href = '/admin?section=create')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+                <PlusCircle className="w-3.5 h-3.5" />
                 <span>Nieuwe Agent</span>
               </button>
-              <button onClick={() => (window.location.href = '/admin?section=agents')} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
-                <Settings className="w-4 h-4" />
+              <button onClick={() => (window.location.href = '/admin?section=agents')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+                <Settings className="w-3.5 h-3.5" />
                 <span>Agent Management</span>
               </button>
-              <button onClick={() => (window.location.href = '/admin?section=users')} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
-                <Users className="w-4 h-4" />
+              <button onClick={() => (window.location.href = '/admin?section=users')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+                <Users className="w-3.5 h-3.5" />
                 <span>User Management</span>
               </button>
-              <button onClick={() => (window.location.href = '/admin?section=platforms')} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
-                <Layers className="w-4 h-4" />
+              <button onClick={() => (window.location.href = '/admin?section=platforms')} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+                <Layers className="w-3.5 h-3.5" />
                 <span>Platform Management</span>
               </button>
             </nav>
-            <span id="userName" className="text-sm text-muted-foreground">
+            <span id="userName" className="text-xs text-muted-foreground">
               {userName}
             </span>
-            <button onClick={logout} className="flex items-center gap-1.5 px-2 py-1 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition">
-              <LogOut className="w-4 h-4" />
+            <button onClick={logout} className="flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-accent transition">
+              <LogOut className="w-3.5 h-3.5" />
               <span>Uitloggen</span>
             </button>
           </div>
