@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Plus, ArrowLeft } from 'lucide-react';
+import { Menu, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ChatSidebar } from './ChatSidebar';
 import { MessageBubble } from './MessageBubble';
@@ -8,7 +8,7 @@ import { ChatInput } from './ChatInput';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
-import { useNavigate } from 'react-router-dom';
+
 
 interface Message {
   id: string;
@@ -55,10 +55,6 @@ export function ChatInterface() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
 const activeSession = sessions.find(s => s.id === activeSessionId);
-const navigate = useNavigate();
-const handleBack = () => {
-  navigate("/dashboard");
-};
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -237,7 +233,7 @@ const handleBack = () => {
         </div>
 
         {/* Messages Container */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+        <div className="flex-1 overflow-y-auto px-6 md:px-12 py-6 space-y-6">
           {activeSession?.messages.map((message, index) => (
             <MessageBubble
               key={message.id}
@@ -265,18 +261,10 @@ const handleBack = () => {
 
         {/* Chat Input */}
         <div className="p-4 border-t border-border">
-          <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} />
+          <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} placeholder="" />
         </div>
 
         {/* Back Button - Links onder */}
-        <Button
-          variant="ghost"
-          size="sm"
-          className="fixed bottom-20 left-4 z-20 h-10 w-10 p-0 bg-background/80 hover:bg-background border border-border/20 rounded-full"
-          onClick={handleBack}
-        >
-          <ArrowLeft size={20} className="text-muted-foreground" />
-        </Button>
       </div>
 
       {/* Overlay for mobile */}

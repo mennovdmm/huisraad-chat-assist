@@ -101,7 +101,7 @@ export function ChatSidebar({
               className={cn(
                 "group relative rounded-lg p-3 cursor-pointer transition-colors",
                 activeSessionId === session.id 
-                  ? "bg-primary/10 border border-primary/20" 
+                  ? "bg-[hsl(var(--apricot))]" 
                   : "hover:bg-muted/50"
               )}
               onClick={() => onSessionSelect(session.id)}
