@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChevronRight, Mail, Bot, Trash2 } from "lucide-react";
+import { ChevronRight, Mail, Bot, Trash2, PlusCircle, Settings, Users, Layers } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import logo from "@/assets/huisraad-logo.svg";
 
@@ -58,9 +58,9 @@ const ClientDashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 border-b border-border bg-background/80 backdrop-blur p-4">
+      <header className="sticky top-0 bg-background/80 backdrop-blur p-4">
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <img src={logo} alt="Huisraad logo" className="h-12" />
+          <img src={logo} alt="Huisraad logo" className="h-16 md:h-20" />
           <div className="flex items-center gap-4">
             <span id="userName" className="text-sm text-muted-foreground">
               {userName}
@@ -72,64 +72,106 @@ const ClientDashboard: React.FC = () => {
         </div>
       </header>
 
-      <main className="w-full max-w-xl mr-auto ml-4 md:ml-12 p-8">
-        <h1 className="text-2xl font-semibold mb-8">Beschikbare Agents</h1>
+      <main className="px-4 md:px-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-xl">
+            <h1 className="text-2xl font-semibold mb-8">Beschikbare Agents</h1>
 
-        <section aria-labelledby="flows-heading">
-          <h2 id="flows-heading" className="sr-only">Flows</h2>
-          <div id="flowsList" className="space-y-3">
-            {flows.map((flow) => (
-              <article
-                key={flow.id}
-                role="button"
-                tabIndex={0}
-                onClick={() => openFlow(flow.id, flow.interfaceMode)}
-                onKeyDown={(e) => e.key === "Enter" && openFlow(flow.id, flow.interfaceMode)}
-                className="bg-card rounded-2xl p-4 border border-border shadow-sm hover:shadow-md transition-all cursor-pointer"
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-md bg-primary/10 text-primary grid place-items-center">
-                      <Bot className="w-5 h-5" />
+            <section aria-labelledby="flows-heading">
+              <h2 id="flows-heading" className="sr-only">Flows</h2>
+              <div id="flowsList" className="space-y-3">
+                {flows.map((flow) => (
+                  <article
+                    key={flow.id}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => openFlow(flow.id, flow.interfaceMode)}
+                    onKeyDown={(e) => e.key === "Enter" && openFlow(flow.id, flow.interfaceMode)}
+                    className="bg-card rounded-2xl p-4 border border-border shadow-sm hover:shadow-md transition-all cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-md bg-primary/10 text-primary grid place-items-center">
+                          <Bot className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-primary">{flow.title}</h3>
+                          {flow.subtitle && (
+                            <p className="text-sm text-muted-foreground">{flow.subtitle}</p>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <ChevronRight className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                        <button
+                          onClick={(e) => { e.stopPropagation(); console.log('delete flow', flow.id); }}
+                          aria-label="Verwijderen"
+                          className="text-destructive/60 hover:text-destructive"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-primary">{flow.title}</h3>
-                      {flow.subtitle && (
-                        <p className="text-sm text-muted-foreground">{flow.subtitle}</p>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <ChevronRight className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
-                    <button
-                      onClick={(e) => { e.stopPropagation(); console.log('delete flow', flow.id); }}
-                      aria-label="Verwijderen"
-                      className="text-destructive/60 hover:text-destructive"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
+                  </article>
+                ))}
+              </div>
+
+              {flows.length === 0 && (
+                <div id="emptyState" className="text-center py-12">
+                  <p className="text-muted-foreground">Geen agents beschikbaar</p>
                 </div>
-              </article>
-            ))}
+              )}
+            </section>
+
+            <section aria-labelledby="superuser-heading" className="mt-10">
+              <h2 id="superuser-heading" className="sr-only">Super user</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <button onClick={() => (window.location.href = '/admin?section=create')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                      <PlusCircle className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium text-primary">Nieuwe Agent</span>
+                  </div>
+                </button>
+                <button onClick={() => (window.location.href = '/admin?section=agents')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                      <Settings className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium text-primary">Agent Management</span>
+                  </div>
+                </button>
+                <button onClick={() => (window.location.href = '/admin?section=users')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                      <Users className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium text-primary">User Management</span>
+                  </div>
+                </button>
+                <button onClick={() => (window.location.href = '/admin?section=platforms')} className="bg-card rounded-2xl p-3 border border-border shadow-sm hover:shadow-md transition text-left">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-primary/10 text-primary grid place-items-center">
+                      <Layers className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm font-medium text-primary">Platform Management</span>
+                  </div>
+                </button>
+              </div>
+            </section>
+
+            <aside className="mt-12 rounded-lg p-6 text-center bg-[hsl(var(--apricot))] text-[hsl(var(--apricot-foreground))]">
+              <p className="font-medium mb-2">Nieuw idee voor een Agent?</p>
+              <p className="text-sm">
+                <Mail className="inline w-4 h-4 mr-1" aria-hidden="true" />
+                <a href="mailto:menno@dehuisraad.com" className="underline underline-offset-2 hover:opacity-90">
+                  menno@dehuisraad.com
+                </a>
+              </p>
+            </aside>
           </div>
-
-          {flows.length === 0 && (
-            <div id="emptyState" className="text-center py-12">
-              <p className="text-muted-foreground">Geen agents beschikbaar</p>
-            </div>
-          )}
-        </section>
-
-        <aside className="mt-12 bg-accent/20 rounded-lg p-6 text-center">
-          <p className="font-medium mb-2">Nieuw idee voor een Agent?</p>
-          <p className="text-sm text-muted-foreground">
-            <Mail className="inline w-4 h-4 mr-1" aria-hidden="true" />
-            <a href="mailto:menno@dehuisraad.com" className="underline-offset-2 hover:underline">
-              menno@dehuisraad.com
-            </a>
-          </p>
-        </aside>
+        </div>
       </main>
     </div>
   );

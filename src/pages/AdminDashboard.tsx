@@ -44,7 +44,11 @@ const AdminDashboard: React.FC = () => {
 
   // Section state
   type Section = "none" | "agents" | "users" | "platforms" | "create";
-  const [section, setSection] = useState<Section>("none");
+  const initialSection = ((): Section => {
+    const s = new URLSearchParams(window.location.search).get("section");
+    return (s === "agents" || s === "users" || s === "platforms" || s === "create") ? (s as Section) : "none";
+  })();
+  const [section, setSection] = useState<Section>(initialSection);
 
   // Modal state
   const [editAgentOpen, setEditAgentOpen] = useState(false);
