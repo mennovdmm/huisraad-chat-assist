@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/useSEO";
 import logo from "@/assets/huisraad-logo.svg";
@@ -51,40 +51,37 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
-      <main className="bg-card rounded-lg shadow-lg p-8 w-full max-w-md border border-border">
-        <img src={logo} alt="Huisraad logo" className="h-28 mx-auto mb-8" />
+      <div className="w-full max-w-sm px-6">
+        <img src={logo} alt="Huisraad logo" className="h-32 mx-auto mb-8" />
 
         <h1 className="sr-only">Inloggen</h1>
 
-        <form id="loginForm" className="space-y-4" onSubmit={onSubmit} noValidate>
-          <div>
-            <Label htmlFor="email" className="mb-2 block">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="p-2 text-sm"
-              placeholder="jij@voorbeeld.nl"
-            />
+        <form id="loginForm" className="space-y-3" onSubmit={onSubmit} noValidate>
+          <Input
+            id="email"
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="h-9 text-sm"
+            placeholder="Email"
+          />
+          <Input
+            id="password"
+            type="password"
+            required
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="h-9 text-sm"
+            placeholder="Wachtwoord"
+          />
+          <div className="pt-2">
+            <Button type="submit" variant="link" disabled={loading} className="px-0">
+              {loading ? "Inloggen..." : "Inloggen"}
+            </Button>
           </div>
-          <div>
-            <Label htmlFor="password" className="mb-2 block">Wachtwoord</Label>
-            <Input
-              id="password"
-              type="password"
-              required
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="p-2 text-sm"
-            />
-          </div>
-          <Button type="submit" disabled={loading} className="w-full">
-            {loading ? "Bezig met inloggen..." : "Inloggen"}
-          </Button>
         </form>
 
         {error && (
@@ -92,7 +89,7 @@ const Login: React.FC = () => {
             {error}
           </div>
         )}
-      </main>
+      </div>
     </div>
   );
 };

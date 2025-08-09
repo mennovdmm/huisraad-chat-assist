@@ -31,8 +31,16 @@ const ClientDashboard: React.FC = () => {
 
   function loadUserFlows() {
     console.log("TODO: GET /api/user/flows");
-    // Populate flowsList in the future
-    setFlows([]);
+    setFlows([
+      {
+        id: "ks-offerte-generator",
+        icon: "🧰",
+        title: "K&S Offerte Generator",
+        subtitle: "AI-powered verkoopoffertes in minuten",
+        streaming: true,
+        interfaceMode: "streaming",
+      },
+    ]);
   }
 
   function openFlow(flowId: string, interfaceMode?: FlowItem["interfaceMode"]) {
