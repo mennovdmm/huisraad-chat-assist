@@ -8,6 +8,7 @@ import { ChatInput } from './ChatInput';
 
 import { cn } from '@/lib/utils';
 import HuisraadLogo from '@/assets/huisraad-logo.svg';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: string;
@@ -53,7 +54,12 @@ export function ChatInterface() {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const activeSession = sessions.find(s => s.id === activeSessionId);
+const activeSession = sessions.find(s => s.id === activeSessionId);
+const navigate = useNavigate();
+const handleBack = () => {
+  if (window.history.length > 2) navigate(-1);
+  else navigate("/dashboard");
+};
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -266,7 +272,7 @@ export function ChatInterface() {
           variant="ghost"
           size="sm"
           className="fixed bottom-20 left-4 z-20 h-10 w-10 p-0 bg-background/80 hover:bg-background border border-border/20 rounded-full"
-          onClick={() => window.history.back()}
+          onClick={handleBack}
         >
           <ArrowLeft size={20} className="text-muted-foreground" />
         </Button>
