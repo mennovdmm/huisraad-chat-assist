@@ -57,8 +57,7 @@ export function ChatInterface() {
 const activeSession = sessions.find(s => s.id === activeSessionId);
 const navigate = useNavigate();
 const handleBack = () => {
-  if (window.history.length > 2) navigate(-1);
-  else navigate("/dashboard");
+  navigate("/dashboard");
 };
 
   const scrollToBottom = () => {

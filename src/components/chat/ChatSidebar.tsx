@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { MessageSquare, Plus, MoreHorizontal, Edit2, Trash2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import HuisraadLogo from '@/assets/huisraad-logo.svg';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 interface ChatSession {
   id: string;
@@ -37,7 +37,7 @@ export function ChatSidebar({
 }: ChatSidebarProps) {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState('');
-
+  const navigate = useNavigate();
   const handleRename = (sessionId: string, currentName: string) => {
     setEditingId(sessionId);
     setEditingName(currentName);
@@ -208,15 +208,11 @@ export function ChatSidebar({
           ))}
         </div>
       </div>
-
       {/* Footer */}
       <div className="p-4 border-t border-border">
-        <div className="flex items-center gap-2">
-          <img src={HuisraadLogo} alt="HuisRaad" className="h-6 w-auto" />
-          <div className="text-xs text-muted-foreground">
-            Powered by HuisRaad
-          </div>
-        </div>
+        <Button onClick={() => navigate('/dashboard')} variant="secondary" className="w-full justify-start">
+          ← Dashboard
+        </Button>
       </div>
     </div>
   );
